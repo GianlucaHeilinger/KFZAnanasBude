@@ -43,12 +43,12 @@ if(isset($_POST['Speichern']))
     $Bezeichnung=$_POST["txtBezeichnung"];
     $Preis=$_POST["txtPreis"];
 
-    echo $Bezeichnung;
+    // echo $Bezeichnung;
     $sql = "INSERT INTO teile (teileid, bezeichnung, preis) VALUES (?,?,?)";
     $statement= $pdo->prepare($sql);
     $statement->execute([Null,$Bezeichnung,$Preis]);
 
-header("Refresh: 1; url=part_list.php");
+header("Refresh: 0; url=part_list.php");
 }
 ?>
 
