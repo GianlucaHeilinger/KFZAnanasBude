@@ -1,4 +1,5 @@
 <?php include('base.php') ?>
+<?php $kundennummer = $_GET['kundennummer']; ?> 
 
 <!DOCTYPE html>
 <html lang="en">
