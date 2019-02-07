@@ -19,7 +19,7 @@
     </div>
     <br />
     <br />
-    <center><h1>LOGO</h1></center>
+    <center><img src="static/img/pp.jpg" /></center>
     <br />
     <br />
     <center><a class="btn btn-dark" href="kunden.php"<>KUNDEN<a/></center>
