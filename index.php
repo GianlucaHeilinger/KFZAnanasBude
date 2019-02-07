@@ -9,26 +9,25 @@
     <title>ANANAS KFZ-BUDE</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="static/css/main.css">
 </head>
 <body>
 
 <div class="container">
     <div class="pb-2 mt-4 mb-2 border-bottom">
-        <center>Page header</center>
+        <center><img class="logosmall" src="static/img/pp.jpg" /><span class="logotext">ANANAS KFZ-BUDE</span></center>
     </div>
     <br />
+    <center><img class="logo" src="static/img/pp.jpg" /></center>
     <br />
-    <center><img src="static/img/pp.jpg" /></center>
     <br />
+    <center><a class="btn btn-dark indexlink" href="kunden.php"<>KUNDEN<a/></center>
     <br />
-    <center><a class="btn btn-dark" href="kunden.php"<>KUNDEN<a/></center>
+    <center><a class="btn btn-dark indexlink" href="part_list.php">TEILE<a/></center>
     <br />
-    <center><a class="btn btn-dark" href="part_list.php">TEILE<a/></center>
+    <center><a class="btn btn-dark indexlink" href="#">REPARATUREN<a/></center>
     <br />
-    <center><a class="btn btn-dark" href="#">REPARATUREN<a/></center>
-    <br />
-    <center><a class="btn btn-dark" href="#">RECHNUNGEN<a/></center>
+    <center><a class="btn btn-dark indexlink" href="#">RECHNUNGEN<a/></center>
 
 </div>
 
