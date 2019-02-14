@@ -35,7 +35,7 @@ foreach ($pdo->query($sql) as $row) {
     break;
 } 
 
-echo "<tr><td><label for='submit'></label></td><td><input type='submit' name='Speichern' value='Speichern' class='btn btn-dark'></td></tr>";
+echo "<tr><td><input type='submit' name='Löschen' value='Löschen' class='btn btn-dark'></td><td><input type='submit' name='Speichern' value='Speichern' class='btn btn-dark'></td></tr>";
 
 echo "</table>";
 echo "</form>";
@@ -52,6 +52,13 @@ if(isset($_POST['Speichern']))
     $stmt= $pdo->prepare($sql);
     $stmt->execute([$Bezeichnung, $Art, $Preis,$id]);
 
+    header("Refresh: 0; url=part_list.php");
+}else if(isset($_POST['Löschen']))
+{
+    $sql = "DELETE FROM teile WHERE teileid=?";
+    $stmt= $pdo->prepare($sql);
+    $stmt->execute([$id]);
+    
     header("Refresh: 0; url=part_list.php");
 }
 ?>
