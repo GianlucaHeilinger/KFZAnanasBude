@@ -4,7 +4,7 @@
 <!-- <body> from header.php -->
 <?php
 
-header("Refresh: 3; url=new_car.php");
+header("Refresh: 3; url=new_car.php?kundennummer=$_GET['kundennummer");
 
 $anrede = $_GET['anrede'];
 $titel = $_GET['titel'];

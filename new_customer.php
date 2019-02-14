@@ -130,13 +130,6 @@
     </table>   
 </form>
 
-<script>
-    function myfunc() {           
-        document.getElementById('gebdat').valueAsDate = new Date();
-        document.getElementById('kundeseit').valueAsDate = new Date();
-    }
-</script>
-
 <!-- </body> from footer.php -->
 
 <?php include('footer.php') ?>
