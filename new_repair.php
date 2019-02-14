@@ -10,6 +10,9 @@ $FzName = '';
 
 if (count($_POST)) {
 	//print_r($_POST);
+	if ($_POST['todo'] == 'reset') {
+		echo '<meta http-equiv="refresh" content="0;">';
+	}
 	if ($_POST['todo'] == 'kdsetzen') {
 		
 		$kundeName .= '<option>'.$_POST['kd'].'</option>';	
@@ -28,7 +31,7 @@ if (count($_POST)) {
 	}
 }
 else {
-	print_r($_POST);
+	//print_r($_POST);
 	
 	// ----- DB abfragen / KUNDE -----
 	include('connection.php');
@@ -57,6 +60,10 @@ else {
 <thead class="thead-dark">
     <tr>
         <th scope='col'>Neue Reparatur</th>
+					<form form action="" method="post" id="welcherkunde" name="welcherkunde">
+				<input type="hidden" id="todo" name="todo" value="reset" >
+				<input type="submit" class="btn btn-dark" value="reset">
+			</form>
         <th scope='col'>&nbsp;</th>
     </tr>
 </thead>
@@ -80,12 +87,20 @@ else {
 			<select name="FzName" id="FzName">
 				<?php echo $FzName; ?>
 			</select>
-		</td>	
+		</td>
     </tr>
     <tr>
         <td>Datum</td>
         <td><input name='ReparaturDatum' Id='ReparaturDatum' type='date' value=''/></td>
-    </tr>   	
+    </tr>   
+    <tr>
+        <td>Ersatzteil</td>
+        <td><input name='Ersatzteil' Id='Ersatzteil' type='text' value=''/></td>
+    </tr> 
+    <tr>
+        <td>Anzahl</td>
+        <td><input name='Ersatzteil' Id='Ersatzteil' type='number' value=''/></td>
+    </tr> 	
     <tr>
     <td>
         <label for="submit"></label>
