@@ -1,6 +1,9 @@
-<?php
+<?php include('connection.php') ?>
+<?php include('header.php') ?>
 
-require('base.php');
+<!-- <body> from header.php -->
+
+<?php
 
 $sql ="SELECT * FROM `teile`";
 
@@ -33,3 +36,8 @@ echo "<form action='new_part.php' method='get'>";
 echo "<input type='submit' value='Neues Teil' />";
 echo "</form>";
 ?>
+
+
+<!-- </body> from footer.php -->
+
+<?php include('footer.php') ?>

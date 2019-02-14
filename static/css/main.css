@@ -27,3 +27,11 @@ a.indexlink {
     width: 20%;
     border-radius: 20px;
 }
+
+.navmargin {
+    margin-top: 6.5rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    margin-bottom: 2rem;
+}
+

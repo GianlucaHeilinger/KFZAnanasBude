@@ -1,4 +1,7 @@
-<?php include('base.php') ?>
+<?php include('connection.php') ?>
+<?php include('header.php') ?>
+
+<!-- <body> from header.php -->
 <?php
 
 header("Refresh: 3; url=new_car.php");
@@ -23,3 +26,7 @@ $statement->execute(array($anrede, $titel, $vorname, $nachname, $gebdat, $strass
 
 echo "Gespeichert wurde: " . " " . $anrede . " " . $titel . " " . $vorname .  " " . $nachname .  " " . $gebdat .  " " . $strasse .  " " . $plz . " " . $ort . " " . $telefon . " " . $email . " " . $newsletter . " " . $kommentar . " " . $kundeseit;
 ?>
+
+<!-- </body> from footer.php -->
+
+<?php include('footer.php') ?>
