@@ -1,4 +1,4 @@
-<?php include('connection.php'); ?>
+<?php include_once('connection.php'); ?>
 <?php include('header.php'); ?>
 
 <?php
@@ -21,7 +21,7 @@ if (count($_POST)) {
 
 		
 		// ----- jew KD-Fahrzeuge ebfragen -----
-		include('connection.php');
+		include_once('connection.php');
 
 		$sql='SELECT * FROM fahrzeug WHERE kundeid = '.$id.'';
 		foreach($pdo->query($sql) as $row) {
@@ -34,7 +34,7 @@ else {
 	//print_r($_POST);
 	
 	// ----- DB abfragen / KUNDE -----
-	include('connection.php');
+	include_once('connection.php');
 
 	$sql='SELECT * FROM kunde';
 	foreach($pdo->query($sql) as $row) {
