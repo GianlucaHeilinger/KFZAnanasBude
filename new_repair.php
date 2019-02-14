@@ -61,22 +61,22 @@ else {
     <tr>
         <th scope='col'>Neue Reparatur</th>
 					<form form action="" method="post" id="welcherkunde" name="welcherkunde">
-				<input type="hidden" id="todo" name="todo" value="reset" >
-				<input type="submit" class="btn btn-dark" value="reset">
+				<!-- <input type="hidden" id="todo" name="todo" value="reset" >
+				<input type="submit" class="btn btn-dark" value="reset"> -->
 			</form>
         <th scope='col'>&nbsp;</th>
     </tr>
 </thead>
 <tbody>
-<form form action="" method="post" id="welcherkunde" name="welcherkunde">
+<form onload="myfunc()" action="" method="post" id="welcherkunde" name="welcherkunde">
 	<input type="hidden" id="todo" name="todo" value="kdsetzen" >
     <tr>
 		<td>Kunde</td>
 		<td>
-			<select name="kd" id="kd">
+			<select onchange=this.form.submit() name="kd" id="kd">
 				<?php echo $kundeName; ?>
 			</select>
-			<input type="submit" class="btn btn-dark" value="setzen">
+			<!-- <input type="submit" class="btn btn-dark" value="setzen">  -->
 		</td>
     </tr>
 </form>
@@ -132,6 +132,13 @@ if(isset($_POST['Speichern']))
 header("Refresh: 0; url=part_list.php");
 }
 ?>
+
+<script>
+    function myfunc() {           
+        document.getElementById('ReparaturDatum').valueAsDate = new Date();
+        
+    }
+</script>
 
 <!-- </body> from footer.php -->
 
