@@ -18,7 +18,7 @@
     </tr> 
     <tr>
         <td>Art</td>
-        <td><select name="teileart" size="2"><option selected="selected" value="Lohn">Lohn</option><option value="Teil">Teil</option></select></td>
+        <td><select name="teileart" size="1"><option selected="selected" value="Lohn">Lohn</option><option value="Teil">Teil</option></select></td>
     </tr>   
     <tr>
         <td>Preis</td>
