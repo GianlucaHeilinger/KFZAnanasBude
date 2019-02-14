@@ -15,10 +15,14 @@
     <tr>
         <td>Bezeichnung</td>
         <td><input name='txtBezeichnung' type='text' Id='bezeichnung' value=''/></td>
-    </tr>
+    </tr> 
+    <tr>
+        <td>Art</td>
+        <td><select name="teileart" size="2"><option selected="selected" value="Lohn">Lohn</option><option value="Teil">Teil</option></select></td>
+    </tr>   
     <tr>
         <td>Preis</td>
-        <td><input maxlength='11' name='txtPreis' Id='preis' type='number' value=''/></td>
+        <td><input maxlength='11' name='txtPreis' Id='preis' type='number' step="0.01" value=''/></td>
     </tr>   
     <tr>
     <td>
@@ -42,11 +46,12 @@ if(isset($_POST['Speichern']))
 {
     $Bezeichnung=$_POST["txtBezeichnung"];
     $Preis=$_POST["txtPreis"];
+    $Art=$_POST["teileart"];
 
     // echo $Bezeichnung;
-    $sql = "INSERT INTO teile (teileid, bezeichnung, preis) VALUES (?,?,?)";
+    $sql = "INSERT INTO teile (teileid, bezeichnung,teileart, preis) VALUES (?,?,?,?)";
     $statement= $pdo->prepare($sql);
-    $statement->execute([Null,$Bezeichnung,$Preis]);
+    $statement->execute([Null,$Bezeichnung,$Art,$Preis]);
 
 header("Refresh: 0; url=part_list.php");
 }
