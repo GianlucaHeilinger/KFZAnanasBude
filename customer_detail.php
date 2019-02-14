@@ -12,9 +12,8 @@ $stmt = $pdo->prepare("SELECT * FROM kunde WHERE kundennummer = '$kundennummer'"
 $stmt->execute();
 $result = $stmt->fetch();
 
-
-
 ?>
+<h4><?php echo $result['nachname'] . ' ' . $result['vorname'] ?></h4><br />
 
     <table class="table table-striped table-hover ml-2 mr-2">
             <tr>
