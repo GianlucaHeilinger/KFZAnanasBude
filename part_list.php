@@ -17,6 +17,7 @@ echo "<th>Teile Nr.</th>";
 echo "<th>Bezeichnung</th>";
 echo "<th>Art</th>";
 echo "<th>Preis</th>";
+echo "<th><center>Editieren</center></th>";
 echo "</tr>";
 echo "</thead>";
 echo "<tbody>";
@@ -29,6 +30,7 @@ while($row = $result->fetch())
     echo "<td>".$row["bezeichnung"]."</td>";
     echo "<td>".$row["teileart"]."</td>";
     echo "<td>".$row["preis"]."</td>";
+    echo "<td><a name='id' class='' href='edit_part.php?teileid=" . $row['teileid']."'><center><i class='fas fa-file-invoice'></i></center></a></td>";
     echo "</tr>";
 }
 
