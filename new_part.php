@@ -4,11 +4,11 @@
 <!-- <body> from header.php -->
     
 <form form action="" method="post">
-<table>
-<thead>
+<table class="table table-striped table-hover ml-2 mr-2">
+<thead class="thead-dark">
     <tr>
-        <td scope='col'>Neues Teil</td>
-        <td scope='col'>&nbsp;</td>
+        <th scope='col'>Neues Teil</th>
+        <th scope='col'>&nbsp;</th>
     </tr>
 </thead>
 <tbody>  
@@ -28,7 +28,7 @@
 
 
 <?php
-include('base.php');
+include('connection.php');
 
 if(isset($_POST['Speichern']))
 {

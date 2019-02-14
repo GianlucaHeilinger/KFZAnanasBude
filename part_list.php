@@ -9,12 +9,16 @@ $sql ="SELECT * FROM `teile`";
 
 $result = $pdo->query($sql);
 
-echo "<table>"; 
-echo "<thead>";
+echo "<a class='btn btn-dark btn-sm ml-2' href='new_part.php'>Neues Teil</a> <br /><br />";
+   
+
+
+echo "<table class='table table-striped table-hover ml-2 mr-2'>"; 
+echo "<thead class='thead-dark'>";
 echo "<tr>";
-echo "<td>Teile ID</td>";
-echo "<td>Bezeichnung</td>";
-echo "<td>Preis</td>";
+echo "<th>Teile ID</th>";
+echo "<th>Bezeichnung</th>";
+echo "<th>Preis</th>";
 echo "</tr>";
 echo "</thead>";
 echo "<tbody>";
@@ -31,10 +35,6 @@ while($row = $result->fetch())
 
 echo "</tbody>";
 echo "</table>";   
-
-echo "<form action='new_part.php' method='get'>";
-echo "<input type='submit' value='Neues Teil' />";
-echo "</form>";
 ?>
 
 
