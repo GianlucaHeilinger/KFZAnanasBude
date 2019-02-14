@@ -68,7 +68,7 @@ else {
     </tr>
 </thead>
 <tbody>
-<form onload="myfunc()" action="" method="post" id="welcherkunde" name="welcherkunde">
+<form action="" method="post" id="welcherkunde" name="welcherkunde">
 	<input type="hidden" id="todo" name="todo" value="kdsetzen" >
     <tr>
 		<td>Kunde</td>
@@ -91,7 +91,7 @@ else {
     </tr>
     <tr>
         <td>Datum</td>
-        <td><input name='ReparaturDatum' Id='ReparaturDatum' type='date' value=''/></td>
+        <td><input name='ReparaturDatum' id='ReparaturDatum' type='date'/></td>
     </tr>   
     <tr>
         <td>Ersatzteil</td>
@@ -132,13 +132,6 @@ if(isset($_POST['Speichern']))
 header("Refresh: 0; url=part_list.php");
 }
 ?>
-
-<script>
-    function myfunc() {           
-        document.getElementById('ReparaturDatum').valueAsDate = new Date();
-        
-    }
-</script>
 
 <!-- </body> from footer.php -->
 
