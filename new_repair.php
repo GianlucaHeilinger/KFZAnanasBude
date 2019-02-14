@@ -9,25 +9,21 @@ $FzName = '';
 
 
 if (count($_POST)) {
-	//print_r($_POST);
-	if ($_POST['todo'] == 'reset') {
-		echo '<meta http-equiv="refresh" content="0;">';
-	}
+	print_r($_POST);
 	if ($_POST['todo'] == 'kdsetzen') {
 		
-		$kundeName .= '<option>'.$_POST['kd'].'</option>';	
+		//$kundeName .= '<option>'.$_POST['kd'].'</option>';	
 
-		$id = substr($_POST['kd'], -1);
+		$id = substr($_POST['kd'], -1);		
 
 		
-		// ----- jew KD-Fahrzeuge ebfragen -----
+		// ----- jew KD-Fahrzeuge abfragen -----
 		include_once('connection.php');
 
 		$sql='SELECT * FROM fahrzeug WHERE kundeid = '.$id.'';
 		foreach($pdo->query($sql) as $row) {
 			$FzName .= '<option>'.$row['marke'].'</option>';	
 		}
-		
 	}
 }
 else {
@@ -47,21 +43,52 @@ else {
 
 
 
+	// ----- Ersatzteil abfragen -----
+	include_once('connection.php');
+
+	$sql='SELECT * FROM teile';
+	foreach($pdo->query($sql) as $row) {
+		$kundeName .= '<option>'.$row['bezeichnung'].'</option>';	
+	}
+
+
+
+
+
+
+
+
+
+include_once('connection.php');
+
+if(isset($_POST['Speichern']))
+{
+    $Bezeichnung=$_POST["txtBezeichnung"];
+    $Preis=$_POST["txtPreis"];
+
+    // echo $Bezeichnung;
+    $sql = "INSERT INTO teile (teileid, bezeichnung, preis) VALUES (?,?,?)";
+    $statement= $pdo->prepare($sql);
+    $statement->execute([Null,$Bezeichnung,$Preis]);
+
+header("Refresh: 0; url=part_list.php");
+}
+
+
+
 
 
 ?>
 
 <!-- <body> from header.php -->
     
-
+	
+	
+	
 <table class="table table-striped table-hover ml-2 mr-2">
 <thead class="thead-dark">
     <tr>
         <th scope='col'>Neue Reparatur</th>
-					<form form action="" method="post" id="welcherkunde" name="welcherkunde">
-				<!-- <input type="hidden" id="todo" name="todo" value="reset" >
-				<input type="submit" class="btn btn-dark" value="reset"> -->
-			</form>
         <th scope='col'>&nbsp;</th>
     </tr>
 </thead>
@@ -71,14 +98,15 @@ else {
     <tr>
 		<td>Kunde</td>
 		<td>
-			<select onchange=this.form.submit() name="kd" id="kd">
+			<select onchange="this.form.submit()" name="kd" id="kd">
+				<option>&nbsp;</option>
 				<?php echo $kundeName; ?>
 			</select>
 			<!-- <input type="submit" class="btn btn-dark" value="setzen">  -->
 		</td>
     </tr>
 </form>
-<form form action="" method="post" id="kdform">
+<form onload="myfunc()" action="" method="post" id="kdform">
     <tr>
 		<td>KFZ</td>
 		<td>
@@ -89,16 +117,8 @@ else {
     </tr>
     <tr>
         <td>Datum</td>
-        <td><input name='ReparaturDatum' id='ReparaturDatum' type='date'/></td>
+        <td><input name='ReparaturDatum' Id='ReparaturDatum' type='date' value=''/></td>
     </tr>   
-    <tr>
-        <td>Ersatzteil</td>
-        <td><input name='Ersatzteil' Id='Ersatzteil' type='text' value=''/></td>
-    </tr> 
-    <tr>
-        <td>Anzahl</td>
-        <td><input name='Ersatzteil' Id='Ersatzteil' type='number' value=''/></td>
-    </tr> 	
     <tr>
     <td>
         <label for="submit"></label>
@@ -114,22 +134,30 @@ else {
 </form>
 
 
-<?php
-include('connection.php');
+<table>
+	<form>
+		<tr>
+			<td>Ersatzteil</td>
+			<td>
+				<select name="ersatzteil" id="ersatzteil">
+					<?php echo $Ersatzteil; ?>
+				</select>
+			</td>
+		</tr> 
+		<tr>
+			<td>Anzahl</td>
+			<td><input name='Ersatzteil' Id='Ersatzteil' type='number' value='' min="1"/></td>
+		</tr> 	
+	</form>
+</table>
 
-if(isset($_POST['Speichern']))
-{
-    $Bezeichnung=$_POST["txtBezeichnung"];
-    $Preis=$_POST["txtPreis"];
 
-    // echo $Bezeichnung;
-    $sql = "INSERT INTO teile (teileid, bezeichnung, preis) VALUES (?,?,?)";
-    $statement= $pdo->prepare($sql);
-    $statement->execute([Null,$Bezeichnung,$Preis]);
-
-header("Refresh: 0; url=part_list.php");
-}
-?>
+<script>
+    function myfunc() {           
+        document.getElementById('ReparaturDatum').valueAsDate = new Date();
+        
+    }
+</script>
 
 <!-- </body> from footer.php -->
 
