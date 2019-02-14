@@ -26,63 +26,67 @@ $result = $stmt->fetch();
             </tr>
             <tr>
                 <td>Anrede</td>
-                <td><?php echo $result['anrede'] ?></td>
+                <td><input name="anrede" type="text" value="<?php echo $result['anrede'] ?>"/></td>
             </tr>
             <tr>
                 <td>Titel</td>
-                <td><?php echo $result['titel'] ?></td>
+                <td><input name="titel" type="text" value="<?php echo $result['titel'] ?>"/></td>
             </tr>
             <tr>
                 <td>Vorname</td>
-                <td><?php echo $result['vorname'] ?></td>
+                <td><input name="vorname" type="text" value="<?php echo $result['vorname'] ?>"/></td>
             </tr>
             <tr>
                 <td>Nachname</td>
-                <td><?php echo $result['nachname'] ?></td>
+                <td><input name="nachname" type="text" value="<?php echo $result['nachname'] ?>"/></td>
             </tr>
             <tr>
                 <td>Geburtsdatum</td>
-                <td><?php echo $result['gebdat'] ?></td>
+                <td><input name="gebdat" type="date" value="<?php echo $result['gebdat'] ?>"/></td>
             </tr>
             <tr>
                 <td>Strasse</td>
-                <td><?php echo $result['strasse'] ?></td>
+                <td><input name="strasse" type="text" value="<?php echo $result['strasse'] ?>"/></td>
             </tr>
             <tr>
                 <td>PLZ</td>
-                <td><?php echo $result['plz'] ?></td>
+                <td><input name="plz" type="number" value="<?php echo $result['plz'] ?>"/></td>
             </tr>
             <tr>
                 <td>Ort</td>
-                <td><?php echo $result['ort'] ?></td>
+                <td><input name="ort" type="text" value="<?php echo $result['ort'] ?>"/></td>
             </tr>
             <tr>
                 <td>Telefon</td>
-                <td><?php echo $result['telefon'] ?></td>
+                <td><input name="telefon" type="text" value="<?php echo $result['telefon'] ?>"/></td>
             </tr>
             <tr>
                 <td>EMail</td>
-                <td><?php echo $result['email'] ?></td>
+                <td><input name="email" type="text" value="<?php echo $result['email'] ?>"/></td>
             </tr>
             <tr>
                 <td>Newsletter</td>
                 <td>
-                    <?php 
-                        if ($result['newsletter'] == 1) {
-                            echo "Ja";
-                        } else {
-                            echo "Nein";
-                        } 
-                    ?>
+                    <select name="newsletter" size="1">
+                        <?php 
+                            if ($result['newsletter'] == 0) { ?>
+                                <option selected="selected" value="<?php echo $result['newsletter'] ?>">Nein</option>
+                                <option value="1">Ja</option>
+                            <?php } else { ?>
+                                <option selected="selected" value="1">Ja</option>
+                                <option value="0">Nein</option>
+                            <?php }
+                        ?>
+                    </select>
                 </td>
             </tr>
             <tr>
                 <td>Kommentar</td>
-                <td><?php echo $result['kommentar'] ?></td>
+                <td><input name="kommentar" type="text" value="<?php echo $result['kommentar'] ?>"/></td>
             </tr>
             <tr>
                 <td>Kunde seit</td>
-                <td><?php echo $result['kundeseit'] ?></td>
+                <td><input name="kuneseit" type="date" value="<?php echo $result['kundeseit'] ?>"/></td>
             </tr>
         
     </table>
