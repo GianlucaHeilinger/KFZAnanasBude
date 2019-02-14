@@ -53,9 +53,7 @@ else {
 
 <!-- <body> from header.php -->
     
-	
-	
-	
+
 <table class="table table-striped table-hover ml-2 mr-2">
 <thead class="thead-dark">
     <tr>
