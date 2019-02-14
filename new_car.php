@@ -1,6 +1,6 @@
 <?php include('connection.php') ?>
 <?php include('header.php') ?>
-<?php $kundennummer = $_GET['kundennummer']; ?>
+<?php // $kundennummer = $_GET['kundennummer']; ?>
 
 <!-- <body> from header.php -->
 
@@ -8,7 +8,7 @@
 
 <div class="container">
 
-    <a class="btn btn-dark btn-sm" href="kunden.php">Zu den Kunden</a>
+    <a class="btn btn-dark btn-sm" href="customer.php">Zu den Kunden</a>
     <br /><br />
     
 

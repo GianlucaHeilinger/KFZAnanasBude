@@ -3,9 +3,6 @@
 
 <!-- <body> from header.php -->
 
-<br />
-<h5 class="ml-2">Super Awesome Kunden</h5><br />
-
 <a class="btn btn-dark btn-sm ml-2" href="new_customer.php">Neuer Kunde</a>
     <br /><br />
 
