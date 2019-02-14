@@ -15,7 +15,7 @@
             <th></th>
         </tr>
     </thead>
-        
+        <tbody>
         <tr>
             <td>
                 <label for="anrede">Anrede</label>
@@ -127,6 +127,7 @@
                 <input type="submit" name="submit" value="Speichern" class="btn btn-dark">
             </td>
         </tr>
+    </tbody>
     </table>   
 </form>
 
