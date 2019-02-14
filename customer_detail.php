@@ -13,7 +13,9 @@ $stmt->execute();
 $result = $stmt->fetch();
 
 ?>
-<h4><?php echo $result['nachname'] . ' ' . $result['vorname'] ?></h4><br />
+<h4><?php echo $result['nachname'] . ' ' . $result['vorname'] ?></h4><a class='' href='customer_delete.php?kundennummer=" . $kundennummer . "'><i class="far fa-trash-alt"></i></a>
+
+<br /><br />
 
     <table class="table table-striped table-hover ml-2 mr-2">
             <tr>

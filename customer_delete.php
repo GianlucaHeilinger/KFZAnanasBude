@@ -1,5 +1,5 @@
 <?php
-header("Refresh: 3; url=index.php");
+header("Refresh: 3; url=customer.php");
 
 
 $kundennummer = $_GET['kundennummer'];

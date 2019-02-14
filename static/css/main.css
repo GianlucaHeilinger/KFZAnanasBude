@@ -35,10 +35,10 @@ a.indexlink {
     margin-bottom: 2rem;
 }
 
-.fas {
+.fas, .far {
     color: #212529;
 }
 
-.fas:hover {
+.fas:hover, .far:hover {
     color: #414850;
 }
