@@ -11,13 +11,13 @@
     <center><img class="logo" src="static/img/pp.jpg" /></center>
     <br />
     <br />
-    <center><a class="btn btn-dark indexlink" href="customer.php"<>KUNDEN<a/></center>
+    <center><a class="btn btn-dark indexlink" href="customer.php">KUNDEN</a></center>
     <br />
-    <center><a class="btn btn-dark indexlink" href="part_list.php">TEILE<a/></center>
+    <center><a class="btn btn-dark indexlink" href="part_list.php">TEILE</a></center>
     <br />
-    <center><a class="btn btn-dark indexlink" href="#">REPARATUREN<a/></center>
+    <center><a class="btn btn-dark indexlink" href="#">REPARATUREN</a></center>
     <br />
-    <center><a class="btn btn-dark indexlink" href="#">RECHNUNGEN<a/></center>
+    <center><a class="btn btn-dark indexlink" href="#">RECHNUNGEN</a></center>
 	<p>test</p>
 
 </div>
