@@ -4,7 +4,6 @@
 <!-- <body> from header.php -->
 
 <?php
-
 $sql ="SELECT * FROM `teile`";
 
 $result = $pdo->query($sql);
