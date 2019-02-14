@@ -20,10 +20,18 @@
         <td>Preis</td>
         <td><input maxlength='11' name='txtPreis' Id='preis' type='number' value=''/></td>
     </tr>   
+    <tr>
+    <td>
+        <label for="submit"></label>
+    </td>
+    <td>
+        <input type="submit" name="Speichern" value="Speichern" class="btn btn-dark">
+    </td>
+</tr>
 </tbody>
 </table>
 
-<input value='Speichern' Name="Speichern" type="submit"/>
+
 </form>
 
 
