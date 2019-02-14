@@ -4,16 +4,43 @@
 <?php
 $kundeName = '';
 $kn = '';
-// ----- DB abfragen / KUNDE -----
-include('connection.php');
-$sql='SELECT * FROM kunde';
-foreach($pdo->query($sql) as $row) {
-	$kundeName .= '<option value="'.$row['kundennummer'].'">'.$row['nachname'].' '.$row['vorname'].' '.$row['kundennummer'].'</option>';
-	$kn = $row['kundennummer'];
+
+
+
+
+if (count($_POST)) {
+	print_r($_POST);
+	if ($_POST['todo'] == 'kdsetzen') {
+		
+		$kundeName .= '<option value="'.$_POST['kd'].'">'.$_POST['kd'].'</option>';	
+
+		
+		// ----- DB abfragen / KFZ zum jew. KD -----
+		include('connection.php');
+		$sql='SELECT * FROM fahrzeug WHERE kundennummer = '.$_POST['kd'].'';
+		foreach($pdo->query($sql) as $row) {
+			$kundeName .= '<option value="'.$row['kundennummer'].'">'.$row['nachname'].' '.$row['vorname'].' '.$row['kundennummer'].'</option>';
+			$kn = $row['kundennummer'];
+		}
+		
+		
+	}
 }
-// ----- DB abfragen / KFZ zum jew. KD -----
-include('connection.php');
-$sql='SELECT * FROM fahrzeug';
+else {
+	print_r($_POST);
+	
+	// ----- DB abfragen / KUNDE -----
+	include('connection.php');
+
+	$sql='SELECT * FROM kunde';
+	foreach($pdo->query($sql) as $row) {
+		$kundeName .= '<option value="'.$row['nachname'].' '.$row['vorname'].' '.$row['kundennummer'].'">'.$row['nachname'].' '.$row['vorname'].' '.$row['kundennummer'].'</option>';	
+	}
+}
+
+
+
+
 
 
 
@@ -22,7 +49,23 @@ $sql='SELECT * FROM fahrzeug';
 
 <!-- <body> from header.php -->
     
-<form form action="" method="post">
+	
+<form form action="" method="post" id="welcherkunde" name="welcherkunde">
+	<input type="hidden" id="todo" name="todo" value="kdsetzen" >
+    <tr>
+		<td>Kunde</td>
+		<td>
+			<select name="kd" id="kd">
+				<?php echo $kundeName; ?>
+			</select>
+		</td>
+		<td>
+			<input type="submit" class="btn btn-dark" value="setzen">
+		</td>
+    </tr>
+</form>	
+	
+<form form action="" method="post" id="kdform">
 <table class="table table-striped table-hover ml-2 mr-2">
 <thead class="thead-dark">
     <tr>
@@ -33,16 +76,9 @@ $sql='SELECT * FROM fahrzeug';
 <tbody>
     <tr>
         <td>Neue Reparatur</td>
-        <td><input maxlength='11' name='txtPreis' Id='preis' type='number' value=''/></td>
+        <td><input maxlength='11' name='txtPreis' Id='preis' type='text' value=''/></td>
     </tr> 
-    <tr>
-		<td>Kunde</td>
-		<td>
-			<select>
-				<?php echo $kundeName; ?>
-			</select>
-		</td>	
-    </tr>	
+
     <tr>
 		<td>KFZ</td>
 		<td>
