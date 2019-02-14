@@ -19,6 +19,7 @@ $result = $stmt->fetch();
 
 <br /><br />
 
+<form action="save_customer.php" method="get">
     <table class="table table-striped table-hover ml-2 mr-2">
             <tr>
                 <td>Kd.Nr.</td>
@@ -88,8 +89,15 @@ $result = $stmt->fetch();
                 <td>Kunde seit</td>
                 <td><input name="kuneseit" type="date" value="<?php echo $result['kundeseit'] ?>"/></td>
             </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" name="submit" value="Speichern" class="btn btn-dark">
+                </td>
+            </tr>
+    </table>   
+</form>
         
-    </table>
 
 
 <!-- </body> from footer.php -->
