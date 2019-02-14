@@ -19,11 +19,12 @@ $result = $stmt->fetch();
 
 <br /><br />
 
-<form action="save_customer.php" method="get">
+<form action="customer_save_edited.php" method="get">
     <table class="table table-striped table-hover ml-2 mr-2">
+            
             <tr>
                 <td>Kd.Nr.</td>
-                <td><?php echo $result['kundennummer'] ?></td>
+                <td><input type="hidden" name="kundennummer" value="<?php echo $result['kundennummer'] ?>"/><?php echo $result['kundennummer'] ?></td>
             </tr>
             <tr>
                 <td>Anrede</td>
@@ -87,7 +88,7 @@ $result = $stmt->fetch();
             </tr>
             <tr>
                 <td>Kunde seit</td>
-                <td><input name="kuneseit" type="date" value="<?php echo $result['kundeseit'] ?>"/></td>
+                <td><input name="kundeseit" type="date" value="<?php echo $result['kundeseit'] ?>"/></td>
             </tr>
             <tr>
                 <td></td>
