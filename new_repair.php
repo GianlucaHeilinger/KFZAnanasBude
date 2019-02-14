@@ -4,25 +4,26 @@
 <?php
 $kundeName = '';
 $kn = '';
-
+$FzName = '';
 
 
 
 if (count($_POST)) {
-	print_r($_POST);
+	//print_r($_POST);
 	if ($_POST['todo'] == 'kdsetzen') {
 		
-		$kundeName .= '<option value="'.$_POST['kd'].'">'.$_POST['kd'].'</option>';	
+		$kundeName .= '<option>'.$_POST['kd'].'</option>';	
+
+		$id = substr($_POST['kd'], -1);
 
 		
-		// ----- DB abfragen / KFZ zum jew. KD -----
+		// ----- jew KD-Fahrzeuge ebfragen -----
 		include('connection.php');
-		$sql='SELECT * FROM fahrzeug WHERE kundennummer = '.$_POST['kd'].'';
+
+		$sql='SELECT * FROM fahrzeug WHERE kundeid = '.$id.'';
 		foreach($pdo->query($sql) as $row) {
-			$kundeName .= '<option value="'.$row['kundennummer'].'">'.$row['nachname'].' '.$row['vorname'].' '.$row['kundennummer'].'</option>';
-			$kn = $row['kundennummer'];
+			$FzName .= '<option>'.$row['marke'].'</option>';	
 		}
-		
 		
 	}
 }
@@ -34,7 +35,7 @@ else {
 
 	$sql='SELECT * FROM kunde';
 	foreach($pdo->query($sql) as $row) {
-		$kundeName .= '<option value="'.$row['nachname'].' '.$row['vorname'].' '.$row['kundennummer'].'">'.$row['nachname'].' '.$row['vorname'].' '.$row['kundennummer'].'</option>';	
+		$kundeName .= '<option>'.$row['nachname'].' '.$row['vorname'].' '.$row['kundennummer'].'</option>';	
 	}
 }
 
@@ -50,22 +51,8 @@ else {
 <!-- <body> from header.php -->
     
 	
-<form form action="" method="post" id="welcherkunde" name="welcherkunde">
-	<input type="hidden" id="todo" name="todo" value="kdsetzen" >
-    <tr>
-		<td>Kunde</td>
-		<td>
-			<select name="kd" id="kd">
-				<?php echo $kundeName; ?>
-			</select>
-		</td>
-		<td>
-			<input type="submit" class="btn btn-dark" value="setzen">
-		</td>
-    </tr>
-</form>	
 	
-<form form action="" method="post" id="kdform">
+	
 <table class="table table-striped table-hover ml-2 mr-2">
 <thead class="thead-dark">
     <tr>
@@ -74,25 +61,30 @@ else {
     </tr>
 </thead>
 <tbody>
+<form form action="" method="post" id="welcherkunde" name="welcherkunde">
+	<input type="hidden" id="todo" name="todo" value="kdsetzen" >
     <tr>
-        <td>Neue Reparatur</td>
-        <td><input maxlength='11' name='txtPreis' Id='preis' type='text' value=''/></td>
-    </tr> 
-
+		<td>Kunde</td>
+		<td>
+			<select name="kd" id="kd">
+				<?php echo $kundeName; ?>
+			</select>
+			<input type="submit" class="btn btn-dark" value="setzen">
+		</td>
+    </tr>
+</form>
+<form form action="" method="post" id="kdform">
     <tr>
 		<td>KFZ</td>
 		<td>
-			<select>
-				<option value="volvo">Volvo</option>
-				<option value="saab">Saab</option>
-				<option value="opel">Opel</option>
-				<option value="audi">Audi</option>
+			<select name="FzName" id="FzName">
+				<?php echo $FzName; ?>
 			</select>
 		</td>	
     </tr>
     <tr>
-        <td>Detail</td>
-        <td><input maxlength='11' name='detail' Id='detail' type='number' value=''/></td>
+        <td>Datum</td>
+        <td><input name='ReparaturDatum' Id='ReparaturDatum' type='date' value=''/></td>
     </tr>   	
     <tr>
     <td>
