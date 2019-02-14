@@ -17,14 +17,7 @@
     <br />
     <center><a class="btn btn-dark indexlink" href="#">REPARATUREN</a></center>
     <br />
-<<<<<<< HEAD
     <center><a class="btn btn-dark indexlink" href="#">RECHNUNGEN</a></center>
-	<p>test</p>
-=======
-    <center><a class="btn btn-dark indexlink" href="#">RECHNUNGEN<a/></center>
-	
->>>>>>> 3886ead8d32925c2f7c0500183db4e2c4a5add6c
-
 </div>
 
 <!-- </body> from footer.php -->
