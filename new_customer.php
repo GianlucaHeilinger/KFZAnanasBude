@@ -6,8 +6,8 @@
 <a class="btn btn-dark btn-sm" href="customer.php">Zu den Kunden</a>
 <br /><br />
     
-
-<form action="save_customer.php" method="get">
+<body onload="myfunc()">
+<form  action="save_customer.php" method="get">
     <table class="table table-striped table-hover">
     <thead class="thead-dark">
         <tr>
@@ -53,7 +53,7 @@
                 <label for="gebdat">Geburtsdatum</label>
             </td>
             <td>
-                <input type="date" name="gebdat">
+                <input type="date" id="gebdat" name="gebdat">
             </td>
         </tr>
         <tr>
@@ -116,7 +116,7 @@
                 <label for="kundeseit">Kunde seit</label>
             </td>
             <td>
-                <input type="date" name="kundeseit">
+                <input type="date" id="kundeseit" name="kundeseit">
             </td>
         </tr>
         <tr>
@@ -127,11 +127,16 @@
                 <input type="submit" name="submit" value="Speichern" class="btn btn-dark">
             </td>
         </tr>
-    </table>
-</form> 
+    </table>   
+</form>
 
-
-
+<script>
+    function myfunc() {           
+        document.getElementById('gebdat').valueAsDate = new Date();
+        document.getElementById('kundeseit').valueAsDate = new Date();
+    }
+</script>
+</body>
 <!-- </body> from footer.php -->
 
 <?php include('footer.php') ?>
