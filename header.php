@@ -29,7 +29,7 @@
         <a class="nav-link" href="part_list.php">Teile</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Reparaturen</a>
+        <a class="nav-link" href="new_repair.php">Reparaturen</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Rechnungen</a>
