@@ -42,8 +42,8 @@
                 echo "<td>" . $row['ort'] . "</td>";
                 echo "<td>" . $row['telefon'] . "</td>";
                
-                echo "<td><a class='' href='detail.php?kundennummer=" . $row['kundennummer'] . "'><i class="fas fa-info-circle"></i></a></td>";
-                echo "<td><a class='' href='rechnungen.php?kundennummer=" . $row['kundennummer'] . "'><i class="fas fa-file-invoice"></i></a></td></tr>";
+                echo "<td><a class='' href='detail.php?kundennummer=" . $row['kundennummer'] . "'><i class='fas fa-info-circle'></i></a></td>";
+                echo "<td><a class='' href='rechnungen.php?kundennummer=" . $row['kundennummer'] . "'><i class='fas fa-file-invoice'></i></a></td></tr>";
             } 
 
         ?> 
