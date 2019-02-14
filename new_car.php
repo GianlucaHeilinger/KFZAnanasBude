@@ -1,4 +1,4 @@
-<?php include('connection.php') ?>
+<?php include_once('connection.php') ?>
 <?php include('header.php') ?>
 <?php // $kundennummer = $_GET['kundennummer']; ?>
 

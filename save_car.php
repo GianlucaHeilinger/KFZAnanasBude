@@ -1,4 +1,4 @@
-<?php include('base.php') ?>
+<?php include_once('connection.php') ?>
 <?php
 
 header("Refresh: 3; url=index.php");

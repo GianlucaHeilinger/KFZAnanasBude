@@ -1,4 +1,4 @@
-<?php include('connection.php') ?>
+<?php include_once('connection.php') ?>
 <?php include('header.php') ?>
 
 <!-- <body> from header.php -->
@@ -38,7 +38,7 @@
 
 
 <?php
-include('connection.php');
+include_once('connection.php');
 
 if(isset($_POST['Speichern']))
 {
