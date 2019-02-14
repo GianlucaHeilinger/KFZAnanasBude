@@ -52,7 +52,7 @@
                 <label for="gebdat">Geburtsdatum</label>
             </td>
             <td>
-                <input onload="myfunc()" type="date" id="gebdat" name="gebdat">
+                <input type="date" id="gebdat" name="gebdat">
             </td>
         </tr>
         <tr>
@@ -115,7 +115,7 @@
                 <label for="kundeseit">Kunde seit</label>
             </td>
             <td>
-                <input onload="myfunc()" type="date" id="kundeseit" name="kundeseit">
+                <input type="date" id="kundeseit" name="kundeseit">
             </td>
         </tr>
         <tr>
