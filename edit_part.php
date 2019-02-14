@@ -33,7 +33,7 @@ foreach ($pdo->query($sql) as $row) {
     
 
     echo "<tr><td>Preis</td>";
-    echo "<td><input name='txtPreis' maxlength='11' name='txtPreis' Id='preis' value=".$row['preis']." type='number' step='0.01' /></td>";
+    echo "<td><input name='txtPreis' maxlength='11' name='txtPreis' Id='preis' min=0 value=".$row['preis']." type='number' step='0.01' /></td>";
 
     break;
 } 

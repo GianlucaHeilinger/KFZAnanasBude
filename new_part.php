@@ -22,7 +22,7 @@
     </tr>   
     <tr>
         <td>Preis</td>
-        <td><input maxlength='11' name='txtPreis' Id='preis' type='number' step="0.01" value=''/></td>
+        <td><input maxlength='11' name='txtPreis' Id='preis' type='number' min=0 step="0.01" value=''/></td>
     </tr>   
     <tr>
     <td>
