@@ -21,10 +21,8 @@
                 <th>Ort</th>
                 <th>Telefon</th>
                 
-                <th>Edit</th>
-                <th>Delete</th>
-                <th>Detail</th>
-                <th>Rechnungen</th>
+                <th><center>Detail</center></th>
+                <th><center>Rechnungen</center></th>
             </tr>
         </thead>
         <tbody>
@@ -44,13 +42,11 @@
                 echo "<td>" . $row['ort'] . "</td>";
                 echo "<td>" . $row['telefon'] . "</td>";
                
-                echo "<td><a class='badge badge-dark' href='edit.php?kundennummer=" . $row['kundennummer'] . "'>Edit</a></td>";
-                echo "<td><a class='badge badge-dark' href='delete.php?kundennummer=" . $row['kundennummer'] . "'>Delete</a></td>";
-                echo "<td><a class='badge badge-dark' href='detail.php?kundennummer=" . $row['kundennummer'] . "'>Detail</a></td>";
-                echo "<td><a class='badge badge-dark' href='rechnungen.php?kundennummer=" . $row['kundennummer'] . "'>Rechnungen</a></td></tr>";
+                echo "<td><a class='' href='detail.php?kundennummer=" . $row['kundennummer'] . "'><center><i class='fas fa-info-circle'></i></center></a></td>";
+                echo "<td><a class='' href='rechnungen.php?kundennummer=" . $row['kundennummer'] . "'><center><i class='fas fa-file-invoice'></i></center></a></td></tr>";
             } 
 
-        ?>
+        ?> 
         </tbody>
     </table>
 

@@ -109,7 +109,7 @@
             </tr>
             <tr>
                 <td>
-                    <label for="hubraum">Hubraume</label>
+                    <label for="hubraum">Hubraum</label>
                 </td>
                 <td>
                     <input type="number" name="hubraum">
