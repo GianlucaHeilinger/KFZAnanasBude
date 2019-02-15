@@ -1,8 +1,17 @@
 <?php include_once('connection.php') ?>
 <?php include('header.php') ?>
-<?php // $kundennummer = $_GET['kundennummer']; ?>
 
 <!-- <body> from header.php -->
+
+<?php 
+$kundennummer = $_GET['kundennummer'];
+
+$sql = "SELECT * FROM kunde WHERE kundennummer = '$kundennummer'";
+
+$stmt = $pdo->prepare($sql);
+$stmt->execute();
+$result = $stmt->fetch();
+?>
 
 <br />
 
@@ -25,7 +34,8 @@
                     <label for="kunde">Kunde</label>
                 </td>
                 <td>
-                    <input type="text" name="Kunde">
+                    <input type="hidden" name="kundennummer" value="<?php echo $kundennummer; ?>">
+                    <?php echo $result['nachname'] . " " . $result['vorname']; ?>
                 </td>
             </tr>
             <tr>

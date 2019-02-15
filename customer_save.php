@@ -1,0 +1,35 @@
+<?php include_once('connection.php') ?>
+<?php include('header.php') ?>
+
+<!-- <body> from header.php -->
+<?php
+    $anrede = $_GET['anrede'];
+    $titel = $_GET['titel'];
+    $vorname = $_GET['vorname'];
+    $nachname = $_GET['nachname'];
+    $gebdat = $_GET['gebdat'];
+    $strasse = $_GET['strasse'];
+    $plz = $_GET['plz'];
+    $ort = $_GET['ort'];
+    $telefon = $_GET['telefon'];
+    $email = $_GET['email'];
+    $newsletter = $_GET['newsletter'];
+    $kommentar = $_GET['kommentar'];
+    $kundeseit = $_GET['kundeseit'];
+
+
+    $statement = $pdo->prepare("INSERT INTO kunde (anrede, titel, vorname, nachname, gebdat, strasse, plz, ort, telefon, email, newsletter, kommentar, kundeseit)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)");
+    $statement->execute(array($anrede, $titel, $vorname, $nachname, $gebdat, $strasse, $plz, $ort, $telefon, $email, $newsletter, $kommentar, $kundeseit));
+
+    echo "Gespeichert wurde: " . " " . $anrede . " " . $titel . " " . $vorname .  " " . $nachname .  " " . $gebdat .  " " . $strasse .  " " . $plz . " " . $ort . " " . $telefon . " " . $email . " " . $newsletter . " " . $kommentar . " " . $kundeseit;
+    
+    $kundennummer = $pdo->lastInsertId();
+    $url = "new_car.php?kundennummer={$kundennummer}";
+    header("Refresh: 3; url={$url}");
+
+
+?>
+
+<!-- </body> from footer.php -->
+
+<?php include('footer.php') ?>

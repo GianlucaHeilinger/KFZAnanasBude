@@ -3,7 +3,7 @@
 
 <!-- <body> from header.php -->
 
-<a class="btn btn-dark btn-sm ml-2" href="new_customer.php">Neuer Kunde</a>
+<a class="btn btn-dark btn-sm ml-2" href="customer_new.php">Neuer Kunde</a>
     <br /><br />
 
 
