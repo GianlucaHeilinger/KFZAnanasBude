@@ -99,7 +99,7 @@
                 <label for="newsletter">Newsletter</label>
             </td>
             <td>
-                <input type="checkbox" name="newsletter">
+                <input type="checkbox" name="newsletter[]" value="1">
             </td>
         </tr>
         <tr>
