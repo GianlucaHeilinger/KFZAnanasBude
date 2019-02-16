@@ -7,17 +7,15 @@
 header("Refresh: 3; url=customer.php");
 
 
-$kundennummer = $_GET['kundennummer'];
+$fzid = $_GET['fzid'];
 
 $pdo = new PDO('mysql:host=localhost; dbname=kfzwerkstatt', 'root', '');
-$statement = $pdo->prepare("DELETE FROM kunde WHERE kundennummer = ?");
-$statement->execute(array($kundennummer));
+$statement = $pdo->prepare("DELETE FROM fahrzeug WHERE fzid = ?");
+$statement->execute(array($fzid));
 
-echo "Gelöscht wurde die Kundennummer: " . " " . $kundennummer;
+echo "Gelöscht wurde das Fahrzeug mit der ID: " . " " . $fzid;
 
 ?>
-
-
 
 <!-- </body> from footer.php -->
 

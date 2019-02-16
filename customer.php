@@ -1,4 +1,4 @@
-<?php include_once('connection.php') ?>
+<?php include('connection.php') ?>
 <?php include('header.php') ?>
 
 <!-- <body> from header.php -->
@@ -7,7 +7,7 @@
     <br /><br />
 
 
-    <table class="table table-striped table-hover ml-2 mr-2">
+    <table id="customertable" class="display table table-hover ml-2 mr-2">
         <thead class="thead-dark">
             <tr>
                 <th>Kd.Nr.</th>

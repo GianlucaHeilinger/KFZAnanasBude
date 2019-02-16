@@ -1,4 +1,4 @@
-<?php include_once('connection.php') ?>
+<?php include('connection.php') ?>
 <?php include('header.php') ?>
 
 <!-- <body> from header.php -->
@@ -86,6 +86,35 @@ $result = $stmt->fetch();
             </tr>
         
     </table>
+
+
+<div class="row">
+<?php
+
+$sql = "SELECT * from fahrzeug WHERE kundeid = $kundennummer ORDER BY fzid ASC";
+
+foreach ($pdo->query($sql) as $row) {
+    echo '<div class="card border-dark mb-3 ml-4" style="max-width: 18rem;">';
+    echo '<div class="card-header"><i class="fas fa-car"></i>'  . " " . $row['marke'] . " " . $row['type'] . '<a class="float-right" href="car_delete.php?fzid=' .  $row['fzid'] . '"><i class="far fa-trash-alt"></i></a></div>';
+    echo '<div class="card-body text-dark">';
+    echo '<h5 class="card-title">' . $row['kennzeichen'] . '</h5>';
+    echo '<p class="card-text">' 
+    .'Fahrgestellnummer: ' . $row['fahrgestellnummer'] . '<br />'
+    .'Nationalcode: ' . $row['nationalcode'] . '<br />'
+    .'Motorkennzeichen: ' . $row['motorkennzeichen'] . '<br />' 
+    .'Getriebekennzeichen: ' . $row['getriebekennzeichen'] . '<br />'
+    .'Farbe: ' . $row['farbe'] . '<br />'
+    .'Treibstoff: ' . $row['treibstoff'] . '<br />'
+    .'Leistung: ' . $row['leistung'] . '<br />'
+    .'Hubraum: ' . $row['hubraum'] . '<br />'
+    .'Erstzulassung: ' . $row['erstzulassung'] . '<br />'
+    .'</p>';
+    echo '</div>';
+    echo '</div>';
+}
+
+?>
+</div>
 
 
 <!-- </body> from footer.php -->
