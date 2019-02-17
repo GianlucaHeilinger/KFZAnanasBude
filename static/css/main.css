@@ -42,3 +42,28 @@ a.indexlink {
 .fas:hover, .far:hover {
     color: #414850;
 }
+
+div.dataTables_wrapper div.dataTables_paginate ul.pagination {
+    margin: 2px 0;
+    white-space: nowrap;
+    /* justify-content: flex-end; */
+    justify-content: flex-start;
+}
+
+.page-item.active .page-link {
+    z-index: 1;
+    color: #fff;
+    background-color: #212529;
+    border-color: #414850;
+}
+
+.page-link {
+    position: relative;
+    display: block;
+    padding: .5rem .75rem;
+    margin-left: -1px;
+    line-height: 1.25;
+    color: #212529;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+}
