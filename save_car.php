@@ -1,9 +1,11 @@
 <?php include_once('connection.php') ?>
 <?php
 
-header("Refresh: 3; url=index.php");
+$kundennummer = $_GET['kundennummer'];
+$url = "customer_detail.php?kundennummer={$kundennummer}";
+header("Refresh: 1; url={$url}");
 
-$kundeid =$_GET['kundennummer'];
+$kundeid = $_GET['kundennummer'];
 $marke = $_GET['marke'];
 $type = $_GET['type'];
 $kennzeichen = $_GET['kennzeichen'];

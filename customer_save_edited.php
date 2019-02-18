@@ -3,8 +3,8 @@
 
 <!-- <body> from header.php -->
 <?php
-
-// header("Refresh: 3; url=new_car.php?kundennummer=$_GET['kundennummer");
+$kundennummer = $_GET['kundennummer'];
+header("Refresh: 3; url=customer_detail.php?kundennummer={$kundennummer}");
 
 $kundennummer = $_GET['kundennummer'];
 $anrede = $_GET['anrede'];

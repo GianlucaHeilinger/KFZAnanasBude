@@ -3,8 +3,13 @@
 
 <!-- <body> from header.php -->
 
-<a class="btn btn-dark btn-sm ml-2" href="customer_new.php">Neuer Kunde</a>
-    <br /><br />
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-dark btn-new-car mb-3 mb-lg-0" data-toggle="modal" data-target="#customernewmodal">
+    Neuer Kunde
+    </button>
+<!-- End Trigger -->
+
+    <br /><hr />
 
 
     <table id="customertable" class="display table table-hover ml-2 mr-2">
@@ -31,7 +36,7 @@
             $sql = "SELECT * from kunde ORDER BY kundennummer ASC";
 
             foreach ($pdo->query($sql) as $row) {
-                echo "<tr><td>" . $row['kundennummer'] . "</td>";
+                echo "<tr href='customer_detail.php?kundennummer=" . $row['kundennummer'] . "'><td>" . $row['kundennummer'] . "</td>";
                 echo "<td>" . $row['anrede'] . "</td>";
                 echo "<td>" . $row['titel'] . "</td>";
                 echo "<td>" . $row['vorname'] . "</td>";
@@ -43,12 +48,98 @@
                 echo "<td>" . $row['telefon'] . "</td>";
                
                 echo "<td><a class='' href='customer_detail.php?kundennummer=" . $row['kundennummer'] . "'><center><i class='fas fa-info-circle'></i></center></a></td>";
-                echo "<td><a class='' href='rechnungen.php?kundennummer=" . $row['kundennummer'] . "'><center><i class='fas fa-file-invoice'></i></center></a></td></tr>";
-            } 
+                echo "<td><a class='' href='rechnungen.php?kundennummer=" . $row['kundennummer'] . "'><center><i class='fas fa-file-invoice'></i></center></a></td></tr>"; ?>
+                
+            <?php }; ?>
 
-        ?> 
         </tbody>
     </table>
+
+<!-- MODAL NEW CAR -->
+<div class="modal fade" id="customernewmodal" tabindex="-1" role="dialog" aria-labelledby="customernewmodalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="customernewmodalLongTitle">Neuer Kunde</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="customer_save.php" method="get">
+                    <div class="card border-dark">
+                        <div id="new-car" class="card-header">
+                        Neuer Kunde
+                        </div>
+                        <div class="card-body text-dark">
+                            <h5 class="card-title">PLATZHALTER</h5>
+                            <p class="card-text">
+                                <div class="row">
+                                    <div class="col-5"><label for="anrede">Anrede</label></div>
+                                    <div class="col-7"><input type="text" name="anrede"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-5"><label for="titel">Titel</label></div>
+                                    <div class="col-7"><input type="text" name="titel"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-5"><label for="vorname">Vorname</label></div>
+                                    <div class="col-7"><input type="text" name="vorname"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-5"><label for="nachname">Nachname</label></div>
+                                    <div class="col-7"><input type="text" name="nachname"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-5"><label for="gebdat">Geburtsdatum</label></div>
+                                    <div class="col-7"><input type="date" id="gebdat" name="gebdat"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-5"><label for="strasse">Strasse</label></div>
+                                    <div class="col-7"><input type="text" name="strasse"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-5"><label for="plz">PLZ</label></div>
+                                    <div class="col-7"><td><input type="number" name="plz"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-5"><label for="ort">Ort</label></div>
+                                    <div class="col-7"><input type="text" name="ort"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-5"><label for="telefon">Telefon</label></div>
+                                    <div class="col-7"><input type="text" name="telefon"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-5"><label for="email">EMail</label></div>
+                                    <div class="col-7"><input type="text" name="email"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-5"><label for="newsletter">Newsletter</label></div>
+                                    <div class="col-7"><input type="checkbox" name="newsletter[]" value="1"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-5"><label for="kommentar">Kommentar</label></div>
+                                    <div class="col-7"><input type="text" name="kommentar"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-5"><label for="kundeseit">Kunde Seit</label></div>
+                                    <div class="col-7"><input type="date" id="kundeseit" name="kundeseit"></div>
+                                </div>
+                            </p>
+                        </div>
+                    </div>
+            </div> <!-- modal body -->
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Abbrechen</button>
+                <button type="submit" name="submit" value="Speichern" class="btn btn-dark">Kunde speichern</button>
+            </div>
+                </form>
+        </div>
+    </div>
+</div>
+<!-- MODAL ENDE -->
 
 
 <!-- </body> from footer.php -->

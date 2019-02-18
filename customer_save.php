@@ -32,8 +32,8 @@
     echo "Newsletter war: " . " " . $newsletter;
 
     $kundennummer = $pdo->lastInsertId();
-    $url = "new_car.php?kundennummer={$kundennummer}";
-    header("Refresh: 3; url={$url}");
+    $url = "customer_detail.php?kundennummer={$kundennummer}";
+    header("Refresh: 1; url={$url}");
 
 
 ?>

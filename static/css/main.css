@@ -67,3 +67,18 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
     background-color: #fff;
     border: 1px solid #dee2e6;
 }
+
+.btn-new-car {
+    margin-top: 1rem;
+    width: 100%;
+}
+
+/*
+.modal-backdrop {
+    background-color: red;
+ }
+ */
+
+.modal-body input {
+    width: 100%;
+}

@@ -34,15 +34,17 @@ $(document).ready( function () {
             "lengthMenu": "Zeige _MENU_ Einträge",
             "zeroRecords": "Keine passenden Einträge gefunden",
         },
-        fixedHeader: true,
     });
-
-    new $.fn.dataTable.FixedHeader( table, {
-        alwaysCloneTop: true
-    } );
 
 } );
 
+</script>
+<script>
+$(document).ready( function () {
+    $('#customertable').on( 'dblclick', 'tbody tr', function () {
+        window.location.href = $(this).attr('href');
+    } );
+} );
 </script>
 </body>
 </html>
