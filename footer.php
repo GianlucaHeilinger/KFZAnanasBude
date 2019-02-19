@@ -15,7 +15,7 @@ $(document).ready( function () {
         ordering: true,
         responsive: true,
         "order": [[ 0, "asc" ]],
-        dom: "<'row'<'col-sm-4'l><'col-sm-8'f>tr>" + "<'row'<'col-sm-4'p><'col-sm-8'>>",
+        dom: "<'row'<'col-4'l><'col-8'f>tr>" + "<'row'<'col-4'p><'col-8'>>",
         buttons: [
             { extend: 'colvis', text: 'Visible', className: 'btn btn-outline-dark btn-sm colvis' },
         ],

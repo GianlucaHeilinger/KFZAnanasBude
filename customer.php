@@ -12,7 +12,7 @@
     <br /><hr />
 
 
-    <table id="customertable" class="display table table-hover ml-2 mr-2">
+    <table id="customertable" class="display table table-hover">
         <thead class="thead-dark">
             <tr>
                 <th>Kd.Nr.</th>
@@ -47,8 +47,8 @@
                 echo "<td>" . $row['ort'] . "</td>";
                 echo "<td>" . $row['telefon'] . "</td>";
                
-                echo "<td><a class='' href='customer_detail.php?kundennummer=" . $row['kundennummer'] . "'><center><i class='fas fa-info-circle'></i></center></a></td>";
-                echo "<td><a class='' href='rechnungen.php?kundennummer=" . $row['kundennummer'] . "'><center><i class='fas fa-file-invoice'></i></center></a></td></tr>"; ?>
+                echo "<td><a title='Details' class='' href='customer_detail.php?kundennummer=" . $row['kundennummer'] . "'><center><i class='fas fa-info-circle'></i></center></a></td>";
+                echo "<td><a title='Rechnungen' class='' href='rechnungen.php?kundennummer=" . $row['kundennummer'] . "'><center><i class='fas fa-file-invoice'></i></center></a></td></tr>"; ?>
                 
             <?php }; ?>
 

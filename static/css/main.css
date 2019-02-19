@@ -82,3 +82,17 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
 .modal-body input {
     width: 100%;
 }
+
+#customertable_wrapper .col-4, .col-8 {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+#customertable_wrapper .row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+hr {
+    border: 1px solid #dee2e6;
+}
