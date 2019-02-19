@@ -34,7 +34,7 @@
         <a class="nav-link" href="repair_new.php">Reparaturen</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Rechnungen</a>
+        <a class="nav-link" href="invoice_new.php">Rechnungen</a>
       </li>
     </ul>
   </div>

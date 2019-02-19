@@ -1,4 +1,4 @@
-<?php include_once('connection.php') ?>
+<?php include('connection.php') ?>
 <?php include('header.php') ?>
 
 <!-- <body> from header.php -->
@@ -15,9 +15,9 @@
     <br/>
     <center><a class="btn btn-dark indexlink" href="part_list.php">TEILE</a></center>
     <br />
-    <center><a class="btn btn-dark indexlink" href="new_repair.php">REPARATUREN</a></center>
+    <center><a class="btn btn-dark indexlink" href="repair_new.php">REPARATUREN</a></center>
     <br/>
-    <center><a class="btn btn-dark indexlink" href="#">RECHNUNGEN</a></center>
+    <center><a class="btn btn-dark indexlink" href="invoice_new.php">RECHNUNGEN</a></center>
 </div>
 
 <!-- </body> from footer.php -->
