@@ -20,13 +20,13 @@
                 <th>Rechnungsnummer</th>
                 <th>Rechnungsdatum</th>
                 <th>Kundennummer</th>
-                <th>Kunde (VN + NN)</th>
+                <th>Kunde (NN + VN)</th>
                 <th>Fahrzeug (Marke + Type)</th>
                 
                 <th>Kennzeichen</th>
                 <th>Status</th>
-                <th>Nettopreis</th>
-                <th>Bruttopreis</th>
+                <th>Anzahl</th>
+                <th>Preis</th>
                 
                 <th><center>Detail</center></th>
                 <th><center>Bearbeiten</center></th>
@@ -35,7 +35,8 @@
         <tbody>
         <?php
             
-            $sql = "SELECT * from kunde ORDER BY kundennummer ASC";
+            $sql = "SELECT rechnung.rechnungsnummer, rechnung.rechnungsdatum, kunde.kundennummer, kunde.nachname, kunde.vorname, fahrzeug.marke, fahrzeug.type, fahrzeug.kennzeichen, rechnung.status, rechnungdetails.anzahl, rechnungdetails.preis FROM rechnung LEFT JOIN kunde ON rechnung.kundenid = kunde.kundennummer LEFT JOIN fahrzeug ON rechnung.fahrzeugid = fahrzeug.fzid LEFT JOIN rechnungdetails ON rechnung.rechnungsnummer = rechnungdetails.rechnungsnummer ORDER BY rechnung.rechnungsnummer DESC";
+            // $sql = "SELECT * from kunde ORDER BY kundennummer ASC";
 
             foreach ($pdo->query($sql) as $row) {
                 echo "<tr href='customer_detail.php?kundennummer=" . $row['kundennummer'] . "'><td>" . $row['kundennummer'] . "</td>";
