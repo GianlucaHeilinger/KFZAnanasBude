@@ -75,56 +75,56 @@
                         <div class="card-body text-dark">
                             <h5 class="card-title">PLATZHALTER</h5>
                             <p class="card-text">
-                                <div class="row">
-                                    <div class="col-5"><label for="anrede">Anrede</label></div>
+                                <div class="row mb-1">
+                                    <div class="col-5 pt-2"><label for="anrede">Anrede</label></div>
                                     <div class="col-7"><input type="text" class="form-control" name="anrede"></div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-5"><label for="titel">Titel</label></div>
+                                <div class="row mb-1">
+                                    <div class="col-5 pt-2"><label for="titel">Titel</label></div>
                                     <div class="col-7"><input type="text" class="form-control" name="titel"></div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-5"><label for="vorname">Vorname</label></div>
+                                <div class="row mb-1">
+                                    <div class="col-5 pt-2"><label for="vorname">Vorname</label></div>
                                     <div class="col-7"><input type="text" class="form-control" name="vorname"></div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-5"><label for="nachname">Nachname</label></div>
+                                <div class="row mb-1">
+                                    <div class="col-5 pt-2"><label for="nachname">Nachname</label></div>
                                     <div class="col-7"><input type="text" class="form-control" name="nachname"></div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-5"><label for="gebdat">Geburtsdatum</label></div>
+                                <div class="row mb-1">
+                                    <div class="col-5 pt-2"><label for="gebdat">Geburtsdatum</label></div>
                                     <div class="col-7"><input type="date" class="form-control" id="gebdat" name="gebdat"></div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-5"><label for="strasse">Strasse</label></div>
+                                <div class="row mb-1">
+                                    <div class="col-5 pt-2"><label for="strasse">Strasse</label></div>
                                     <div class="col-7"><input type="text" class="form-control" name="strasse"></div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-5"><label for="plz">PLZ</label></div>
+                                <div class="row mb-1">
+                                    <div class="col-5 pt-2"><label for="plz">PLZ</label></div>
                                     <div class="col-7"><td><input type="number" class="form-control" name="plz"></div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-5"><label for="ort">Ort</label></div>
+                                <div class="row mb-1">
+                                    <div class="col-5 pt-2"><label for="ort">Ort</label></div>
                                     <div class="col-7"><input type="text" class="form-control" name="ort"></div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-5"><label for="telefon">Telefon</label></div>
+                                <div class="row mb-1">
+                                    <div class="col-5 pt-2"><label for="telefon">Telefon</label></div>
                                     <div class="col-7"><input type="text" class="form-control" name="telefon"></div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-5"><label for="email">EMail</label></div>
+                                <div class="row mb-1">
+                                    <div class="col-5 pt-2"><label for="email">EMail</label></div>
                                     <div class="col-7"><input type="text" class="form-control" name="email"></div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-5"><label for="newsletter">Newsletter</label></div>
-                                    <div class="col-7"><input type="checkbox" class="form-control" name="newsletter[]" value="1"></div>
+                                <div class="row mb-1">
+                                    <div class="col-5 pt-2"><label for="newsletter">Newsletter</label></div>
+                                    <div class="col-7"><input style="width: 25px; height: 25px;" type="checkbox" class="form-control mt-2" name="newsletter[]" value="1"></div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-5"><label for="kommentar">Kommentar</label></div>
+                                <div class="row mb-1">
+                                    <div class="col-5 pt-2"><label for="kommentar">Kommentar</label></div>
                                     <div class="col-7"><input type="text" class="form-control" name="kommentar"></div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-5"><label for="kundeseit">Kunde Seit</label></div>
+                                    <div class="col-5 pt-2"><label for="kundeseit">Kunde Seit</label></div>
                                     <div class="col-7"><input type="date" class="form-control" id="kundeseit" name="kundeseit"></div>
                                 </div>
                             </p>

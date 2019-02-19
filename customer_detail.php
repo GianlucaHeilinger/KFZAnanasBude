@@ -213,7 +213,7 @@ $result = $stmt->fetch();
                                 <div class="row">
                                     <div class="col-5"><label for="kunde">Kunde</label></div>
                                     <div class="col-7"><input type="hidden" class="form-control" name="kundennummer" value="<?php echo $kundennummer; ?>">
-                                    <?php echo $result['nachname'] . " " . $result['vorname']; ?></div>
+                                    <?php echo "<span class='pl075rem'>" . $result['nachname'] . " " . $result['vorname'] . "</span>"; ?></div>
                                 </div>
                                 <div class="row mb-1">
                                     <div class="col-5 pt-2"><label for="anrede">Anrede</label></div>
@@ -329,7 +329,7 @@ $result = $stmt->fetch();
                                 <div class="row mb-1">
                                     <div class="col-5"><label for="kunde">Kunde</label></div>
                                     <div class="col-7"><input type="hidden" class="form-control" name="kundennummer" value="<?php echo $kundennummer; ?>">
-                                    <?php echo $result['nachname'] . " " . $result['vorname']; ?></div>
+                                    <?php echo "<span class='pl075rem'>" . $result['nachname'] . " " . $result['vorname'] . "</span>"; ?></div>
                                 </div>
                                 <div class="row mb-1">
                                     <div class="col-5 pt-2"><label for="marke">Marke</label></div>

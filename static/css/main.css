@@ -96,3 +96,7 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
 hr {
     border: 1px solid #dee2e6;
 }
+
+.pl075rem {
+    padding-left: 0.75rem;
+}
