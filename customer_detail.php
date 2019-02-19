@@ -100,10 +100,16 @@ $result = $stmt->fetch();
         </div> <!-- card -->
 
         <!-- Button trigger modal -->
-            <button type="button" class="btn btn-dark btn-new-car mb-3 mb-lg-0" data-toggle="modal" data-target="#newcarmodal">
-            Neues Fahrzeug
+            <button type="button" class="btn btn-dark btn-new-car mb-3 mb-lg-0 p-3" data-toggle="modal" data-target="#newcarmodal">
+                <i class="fas fa-car text-white"></i> Neues Fahrzeug
             </button>
         <!-- End Trigger -->
+
+        <!-- Button new_repair -->
+            <a href="repair_new.php"><button type="button" class="btn btn-dark btn-new-car mb-3 mb-lg-0 p-3">
+                <i class="fas fa-tools text-white"></i> Neue Reparatur
+            </button></a>
+        <!-- End Button -->
 
             
 
