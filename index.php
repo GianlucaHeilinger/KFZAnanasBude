@@ -17,7 +17,7 @@
     <br />
     <center><a class="btn btn-dark indexlink" href="repair_new.php">REPARATUREN</a></center>
     <br/>
-    <center><a class="btn btn-dark indexlink" href="invoice_new.php">RECHNUNGEN</a></center>
+    <center><a class="btn btn-dark indexlink" href="invoice.php">RECHNUNGEN</a></center>
 </div>
 
 <!-- </body> from footer.php -->

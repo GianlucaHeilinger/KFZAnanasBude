@@ -8,7 +8,7 @@ $sql ="SELECT * FROM `teile`";
 
 $result = $pdo->query($sql);
 
-echo "<a class='btn btn-dark btn-sm ml-2' href='new_part.php'>Neues Teil</a> <br /><br />";
+echo "<a class='btn btn-dark btn-sm ml-2' href='part_new.php'>Neues Teil</a> <br /><br />";
    
 echo "<table class='table table-striped table-hover ml-2 mr-2'>"; 
 echo "<thead class='thead-dark'>";
@@ -30,7 +30,7 @@ while($row = $result->fetch())
     echo "<td>".$row["bezeichnung"]."</td>";
     echo "<td>".$row["teileart"]."</td>";
     echo "<td>".$row["preis"]."</td>";
-    echo "<td><a name='id' class='' href='edit_part.php?teileid=" . $row['teileid']."'><center><i class='fas fa-file-invoice'></i></center></a></td>";
+    echo "<td><a name='id' class='' href='part_edit.php?teileid=" . $row['teileid']."'><center><i class='fas fa-file-invoice'></i></center></a></td>";
     echo "</tr>";
 }
 
