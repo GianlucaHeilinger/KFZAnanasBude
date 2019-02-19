@@ -202,6 +202,7 @@ $result = $stmt->fetch();
             ?>
 
                 <form action="customer_save_edited.php" method="get">
+                <div class="form-group">
                     <div class="card border-dark">
                         <div id="new-car" class="card-header">
                         <?php echo $result['nachname'] . " " . $result['vorname']; ?>
@@ -211,53 +212,53 @@ $result = $stmt->fetch();
                             <p class="card-text">
                                 <div class="row">
                                     <div class="col-5"><label for="kunde">Kunde</label></div>
-                                    <div class="col-7"><input type="hidden" name="kundennummer" value="<?php echo $kundennummer; ?>">
+                                    <div class="col-7"><input type="hidden" class="form-control" name="kundennummer" value="<?php echo $kundennummer; ?>">
                                     <?php echo $result['nachname'] . " " . $result['vorname']; ?></div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-5"><label for="anrede">Anrede</label></div>
-                                    <div class="col-7"><input type="text" name="anrede" value="<?php echo $result['anrede'] ?>"></div>
+                                <div class="row mb-1">
+                                    <div class="col-5 pt-2"><label for="anrede">Anrede</label></div>
+                                    <div class="col-7"><input type="text" class="form-control" name="anrede" value="<?php echo $result['anrede'] ?>"></div>
+                                </div>
+                                <div class="row mb-1">
+                                    <div class="col-5 pt-2"><label for="titel">Titel</label></div>
+                                    <div class="col-7"><input type="text" class="form-control" name="titel" value="<?php echo $result['titel'] ?>"></div>
+                                </div>
+                                <div class="row mb-1">
+                                    <div class="col-5 pt-2"><label for="vorname">Vorname</label></div>
+                                    <div class="col-7"><input type="text" class="form-control" name="vorname" value="<?php echo $result['vorname'] ?>"></div>
+                                </div>
+                                <div class="row mb-1">
+                                    <div class="col-5 pt-2"><label for="nachname">Nachname</label></div>
+                                    <div class="col-7"><input type="text" class="form-control" name="nachname" value="<?php echo $result['nachname'] ?>"></div>
+                                </div>
+                                <div class="row mb-1">
+                                    <div class="col-5 pt-2"><label for="gebdat">Geburtsdatum</label></div>
+                                    <div class="col-7"><input type="date" class="form-control" name="gebdat" value="<?php echo $result['gebdat'] ?>"></div>
+                                </div>
+                                <div class="row mb-1">
+                                    <div class="col-5 pt-2"><label for="strasse">Strasse</label></div>
+                                    <div class="col-7"><td><input type="text" class="form-control" name="strasse" value="<?php echo $result['strasse'] ?>"></div>
+                                </div>
+                                <div class="row mb-1">
+                                    <div class="col-5 pt-2"><label for="plz">PLZ</label></div>
+                                    <div class="col-7"><input type="number" class="form-control" name="plz" value="<?php echo $result['plz'] ?>"></div>
+                                </div>
+                                <div class="row mb-1">
+                                    <div class="col-5 pt-2"><label for="ort">Ort</label></div>
+                                    <div class="col-7"><input type="text" class="form-control" name="ort" value="<?php echo $result['ort'] ?>"></div>
+                                </div>
+                                <div class="row mb-1">
+                                    <div class="col-5 pt-2"><label for="telefon">Telefon</label></div>
+                                    <div class="col-7"><input type="text" class="form-control" name="telefon" value="<?php echo $result['telefon'] ?>"></div>
+                                </div>
+                                <div class="row mb-1">
+                                    <div class="col-5 pt-2"><label for="email">EMail</label></div>
+                                    <div class="col-7"><input type="text" class="form-control" name="email" value="<?php echo $result['email'] ?>"></div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-5"><label for="titel">Titel</label></div>
-                                    <div class="col-7"><input type="text" name="titel" value="<?php echo $result['titel'] ?>"></div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-5"><label for="vorname">Vorname</label></div>
-                                    <div class="col-7"><input type="text" name="vorname" value="<?php echo $result['vorname'] ?>"></div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-5"><label for="nachname">Nachname</label></div>
-                                    <div class="col-7"><input type="text" name="nachname" value="<?php echo $result['nachname'] ?>"></div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-5"><label for="gebdat">Geburtsdatum</label></div>
-                                    <div class="col-7"><input type="date" name="gebdat" value="<?php echo $result['gebdat'] ?>"></div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-5"><label for="strasse">Strasse</label></div>
-                                    <div class="col-7"><td><input type="text" name="strasse" value="<?php echo $result['strasse'] ?>"></div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-5"><label for="plz">PLZ</label></div>
-                                    <div class="col-7"><input type="number" name="plz" value="<?php echo $result['plz'] ?>"></div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-5"><label for="ort">Ort</label></div>
-                                    <div class="col-7"><input type="text" name="ort" value="<?php echo $result['ort'] ?>"></div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-5"><label for="telefon">Telefon</label></div>
-                                    <div class="col-7"><input type="text" name="telefon" value="<?php echo $result['telefon'] ?>"></div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-5"><label for="email">EMail</label></div>
-                                    <div class="col-7"><input type="text" name="email" value="<?php echo $result['email'] ?>"></div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-5"><label for="hubraum">Newsletter</label></div>
+                                    <div class="col-5 pt-2"><label for="hubraum">Newsletter</label></div>
                                     <div class="col-7">
-                                        <select name="newsletter" size="1">
+                                        <select name="newsletter" class="form-control" size="1">
                                             <?php 
                                                 if ($result['newsletter'] == 0) { ?>
                                                     <option selected="selected" value="<?php echo $result['newsletter'] ?>">Nein</option>
@@ -270,13 +271,13 @@ $result = $stmt->fetch();
                                         </select>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-5"><label for="kommentar">Kommentar</label></div>
-                                    <div class="col-7"><input type="text" name="kommentar" value="<?php echo $result['kommentar'] ?>"></div>
+                                <div class="row mb-1">
+                                    <div class="col-5 pt-2"><label for="kommentar">Kommentar</label></div>
+                                    <div class="col-7"><input type="text" class="form-control" name="kommentar" value="<?php echo $result['kommentar'] ?>"></div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-5"><label for="kundeseit">Kunde seit</label></div>
-                                    <div class="col-7"><input type="date" name="kundeseit" value="<?php echo $result['kundeseit'] ?>"></div>
+                                    <div class="col-5 pt-2"><label for="kundeseit">Kunde seit</label></div>
+                                    <div class="col-7"><input type="date" class="form-control" name="kundeseit" value="<?php echo $result['kundeseit'] ?>"></div>
                                 </div>
                             </p>
                         </div>
@@ -287,6 +288,7 @@ $result = $stmt->fetch();
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Abbrechen</button>
                 <button type="submit" name="submit" value="Speichern" class="btn btn-dark">Kunde speichern</button>
             </div>
+                </div>
                 </form>
         </div>
     </div>
@@ -316,6 +318,7 @@ $result = $stmt->fetch();
             ?>
 
                 <form action="save_car.php" method="get">
+                    <div class="form-group">
                     <div class="card border-dark">
                         <div id="new-car" class="card-header">
                         <?php echo $result['nachname'] . " " . $result['vorname']; ?>
@@ -323,58 +326,58 @@ $result = $stmt->fetch();
                         <div class="card-body text-dark">
                             <h5 class="card-title">PLATZHALTER</h5>
                             <p class="card-text">
-                                <div class="row">
+                                <div class="row mb-1">
                                     <div class="col-5"><label for="kunde">Kunde</label></div>
-                                    <div class="col-7"><input type="hidden" name="kundennummer" value="<?php echo $kundennummer; ?>">
+                                    <div class="col-7"><input type="hidden" class="form-control" name="kundennummer" value="<?php echo $kundennummer; ?>">
                                     <?php echo $result['nachname'] . " " . $result['vorname']; ?></div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-5"><label for="marke">Marke</label></div>
-                                    <div class="col-7"><input type="text" name="marke"></div>
+                                <div class="row mb-1">
+                                    <div class="col-5 pt-2"><label for="marke">Marke</label></div>
+                                    <div class="col-7"><input type="text" class="form-control" name="marke"></div>
+                                </div>
+                                <div class="row mb-1">
+                                    <div class="col-5 pt-2"><label for="type">Type</label></div>
+                                    <div class="col-7"><input type="text" class="form-control" name="type"></div>
+                                </div>
+                                <div class="row mb-1">
+                                    <div class="col-5 pt-2"><label for="kennzeichen">Kennzeichen</label></div>
+                                    <div class="col-7"><input type="text" class="form-control" name="kennzeichen"></div>
+                                </div>
+                                <div class="row mb-1">
+                                    <div class="col-5 pt-2"><label for="fahrgestellnummer">Fahrgestellnummer</label></div>
+                                    <div class="col-7"><input type="text" class="form-control" name="fahrgestellnummer"></div>
+                                </div>
+                                <div class="row mb-1">
+                                    <div class="col-5 pt-2"><label for="nationalcode">Nationalcode</label></div>
+                                    <div class="col-7"><input type="text" class="form-control" name="nationalcode"></div>
+                                </div>
+                                <div class="row mb-1">
+                                    <div class="col-5 pt-2"><label for="motorkennzeichen">Motorkennzeichen</label></div>
+                                    <div class="col-7"><td><input type="text" class="form-control" name="motorkennzeichen"></div>
+                                </div>
+                                <div class="row mb-1">
+                                    <div class="col-5 pt-2"><label for="getriebekennzeichen">Getriebekennzeichen</label></div>
+                                    <div class="col-7"><input type="text" class="form-control" name="getriebekennzeichen"></div>
+                                </div>
+                                <div class="row mb-1">
+                                    <div class="col-5 pt-2"><label for="farbe">Farbe</label></div>
+                                    <div class="col-7"><input type="text" class="form-control" name="farbe"></div>
+                                </div>
+                                <div class="row mb-1">
+                                    <div class="col-5 pt-2"><label for="treibstoff">Treibstoff</label></div>
+                                    <div class="col-7"><input type="text" class="form-control" name="treibstoff"></div>
+                                </div>
+                                <div class="row mb-1">
+                                    <div class="col-5 pt-2"><label for="leistung">Leistung</label></div>
+                                    <div class="col-7"><input type="number" class="form-control" name="leistung"></div>
+                                </div>
+                                <div class="row mb-1">
+                                    <div class="col-5 pt-2"><label for="hubraum">Hubraum</label></div>
+                                    <div class="col-7"><input type="number" class="form-control" name="hubraum"></div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-5"><label for="type">Type</label></div>
-                                    <div class="col-7"><input type="text" name="type"></div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-5"><label for="kennzeichen">Kennzeichen</label></div>
-                                    <div class="col-7"><input type="text" name="kennzeichen"></div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-5"><label for="fahrgestellnummer">Fahrgestellnummer</label></div>
-                                    <div class="col-7"><input type="text" name="fahrgestellnummer"></div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-5"><label for="nationalcode">Nationalcode</label></div>
-                                    <div class="col-7"><input type="text" name="nationalcode"></div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-5"><label for="motorkennzeichen">Motorkennzeichen</label></div>
-                                    <div class="col-7"><td><input type="text" name="motorkennzeichen"></div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-5"><label for="getriebekennzeichen">Getriebekennzeichen</label></div>
-                                    <div class="col-7"><input type="text" name="getriebekennzeichen"></div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-5"><label for="farbe">Farbe</label></div>
-                                    <div class="col-7"><input type="text" name="farbe"></div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-5"><label for="treibstoff">Treibstoff</label></div>
-                                    <div class="col-7"><input type="text" name="treibstoff"></div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-5"><label for="leistung">Leistung</label></div>
-                                    <div class="col-7"><input type="number" name="leistung"></div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-5"><label for="hubraum">Hubraum</label></div>
-                                    <div class="col-7"><input type="number" name="hubraum"></div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-5"><label for="erstzulassung">Erstzulassung</label></div>
-                                    <div class="col-7"><input type="date" name="erstzulassung"></div>
+                                    <div class="col-5 pt-2"><label for="erstzulassung">Erstzulassung</label></div>
+                                    <div class="col-7"><input type="date" class="form-control" name="erstzulassung"></div>
                                 </div>
                             </p>
                         </div>
@@ -385,6 +388,7 @@ $result = $stmt->fetch();
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Abbrechen</button>
                 <button type="submit" name="submit" value="Speichern" class="btn btn-dark">Fahrzeug speichern</button>
             </div>
+                    </div>
                 </form>
         </div>
     </div>
