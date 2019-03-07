@@ -57,21 +57,109 @@
 
             // $sql = "SELECT * from kunde ORDER BY kundennummer ASC";
 
-            foreach ($pdo->query($sql) as $row) {
-                echo "<tr href='invoice_detail.php?kundennummer=" . $row['rechnungsnummer'] . "'><td>" . $row['rechnungsnummer'] . "</td>";
-                echo "<td>" . $row['rechnungsdatum'] . "</td>";
-                echo "<td>" . $row['kundennummer'] . "</td>";
-                echo "<td>" . $row['nachname'] . " " . $row['vorname'] . "</td>";
-                echo "<td>" . $row['marke'] . " " . $row['type'] . "</td>";
-                echo "<td>" . $row['kennzeichen'] . "</td>";
-                echo "<td>" . $row['status'] . "</td>";
-                echo "<td>" . $row['anzahl'] . "</td>";
-                echo "<td>" . $row['preis'] . "</td>";
+            foreach ($pdo->query($sql) as $row) { ?>
+                <tr href='invoice_detail.php?kundennummer="<?php echo $row['rechnungsnummer'] ?>"'><td><?php echo $row['rechnungsnummer'] ?></td>
+                <td><?php echo $row['rechnungsdatum'] ?></td>
+                <td><?php echo $row['kundennummer'] ?></td>
+                <td><?php echo $row['nachname'] . " " . $row['vorname'] ?></td>
+                <td><?php echo $row['marke'] . " " . $row['type'] ?></td>
+                <td><?php echo $row['kennzeichen'] ?></td>
+                <td><?php echo $row['status'] ?></td>
+                <td><?php echo $row['anzahl'] ?></td>
+                <td><?php echo $row['preis'] ?></td>
                
-                echo "<td><a title='Details' class='' href='invoice_detail.php?rechnungsnummer=" . $row['rechnungsnummer'] . "'><center><i class='fas fa-info-circle'></i></center></a></td>";
-                echo "<td><a title='Bearbeiten' class='' href='invoice.php?rechnungsnummer=" . $row['rechnungsnummer'] . "'><center><i class='fas fa-file-invoice'></i></center></a></td></tr>"; ?>
+                <td><a title='Details' class='' href='invoice_detail.php?rechnungsnummer='<?php echo $row["rechnungsnummer"] ?>'<center><i class='fas fa-info-circle'></i></center></a></td>
+                <td><a data-toggle='modal' data-target='#invoiceeditmodal" . $row["rechnungsnummer"] . "' title='Bearbeiten' class=''><center><i class='fas fa-file-invoice'></i></center></a></td></tr>
                 
-            <?php }; ?>
+
+                <!-- MODAL EDIT INVOICE -->
+                <div class="modal fade" id="invoiceeditmodal<?php echo $row["echnungsnummer"] ?>" tabindex="-1" role="dialog" aria-labelledby="invoiceeditmodalTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">Rechnung bearbeiten</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="invoice_edit.php" method="get">
+                                <div class="form-group">
+                                    <div class="card border-dark">
+                                        <div id="new-car" class="card-header">
+                                        Rechnung bearbeiten
+                                        </div>
+                                        <div class="card-body text-dark">
+                                            <h5 class="card-title">PLATZHALTER</h5>
+                                            <p class="card-text">
+                                                <div class="row mb-1">
+                                                    <div class="col-5 pt-2"><label for="anrede">Anrede</label></div>
+                                                    <div class="col-7"><input type="text" class="form-control" name="anrede"></div>
+                                                </div>
+                                                <div class="row mb-1">
+                                                    <div class="col-5 pt-2"><label for="titel">Titel</label></div>
+                                                    <div class="col-7"><input type="text" class="form-control" name="titel"></div>
+                                                </div>
+                                                <div class="row mb-1">
+                                                    <div class="col-5 pt-2"><label for="vorname">Vorname</label></div>
+                                                    <div class="col-7"><input type="text" class="form-control" name="vorname"></div>
+                                                </div>
+                                                <div class="row mb-1">
+                                                    <div class="col-5 pt-2"><label for="nachname">Nachname</label></div>
+                                                    <div class="col-7"><input type="text" class="form-control" name="nachname"></div>
+                                                </div>
+                                                <div class="row mb-1">
+                                                    <div class="col-5 pt-2"><label for="gebdat">Geburtsdatum</label></div>
+                                                    <div class="col-7"><input type="date" class="form-control" id="gebdat" name="gebdat"></div>
+                                                </div>
+                                                <div class="row mb-1">
+                                                    <div class="col-5 pt-2"><label for="strasse">Strasse</label></div>
+                                                    <div class="col-7"><input type="text" class="form-control" name="strasse"></div>
+                                                </div>
+                                                <div class="row mb-1">
+                                                    <div class="col-5 pt-2"><label for="plz">PLZ</label></div>
+                                                    <div class="col-7"><td><input type="number" class="form-control" name="plz"></div>
+                                                </div>
+                                                <div class="row mb-1">
+                                                    <div class="col-5 pt-2"><label for="ort">Ort</label></div>
+                                                    <div class="col-7"><input type="text" class="form-control" name="ort"></div>
+                                                </div>
+                                                <div class="row mb-1">
+                                                    <div class="col-5 pt-2"><label for="telefon">Telefon</label></div>
+                                                    <div class="col-7"><input type="text" class="form-control" name="telefon"></div>
+                                                </div>
+                                                <div class="row mb-1">
+                                                    <div class="col-5 pt-2"><label for="email">EMail</label></div>
+                                                    <div class="col-7"><input type="text" class="form-control" name="email"></div>
+                                                </div>
+                                                <div class="row mb-1">
+                                                    <div class="col-5 pt-2"><label for="newsletter">Newsletter</label></div>
+                                                    <div class="col-7"><input style="width: 25px; height: 25px;" type="checkbox" class="form-control mt-2" name="newsletter[]" value="1"></div>
+                                                </div>
+                                                <div class="row mb-1">
+                                                    <div class="col-5 pt-2"><label for="kommentar">Kommentar</label></div>
+                                                    <div class="col-7"><input type="text" class="form-control" name="kommentar"></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-5 pt-2"><label for="kundeseit">Kunde Seit</label></div>
+                                                    <div class="col-7"><input type="date" class="form-control" id="kundeseit" name="kundeseit"></div>
+                                                </div>
+                                            </p>
+                                        </div>
+                                    </div>
+                            </div> <!-- modal body -->
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Abbrechen</button>
+                                <button type="submit" name="submit" value="Speichern" class="btn btn-dark">Rechnung speichern</button>
+                            </div>
+                                </div>
+                                </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- MODAL ENDE -->
+                
+            <?php } ?>
 
         </tbody>
     </table>
