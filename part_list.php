@@ -33,7 +33,7 @@ while($row = $result->fetch())
     echo "<td>".$row["bezeichnung"]."</td>";
     echo "<td>".$row["teileart"]."</td>";
     echo "<td>".$row["preis"]."</td>";
-    echo "<td><a name='id' class='' href='part_edit.php?teileid=" . $row['teileid']."'><center><i class='fas fa-file-invoice'></i></center></a></td>";
+    echo "<td><a name='id' href='part_edit.php?teileid=" . $row['teileid']."'><center><i class='fas fa-file-invoice'></i></center></a></td>";
     echo "<td><a href='part_delete.php?teileid=".$row['teileid']."'><center><i class='far fa-trash-alt'></i></center></a></td>";
     echo "</tr>";
 }
@@ -42,12 +42,12 @@ echo "</tbody>";
 echo "</table>";
 ?>
 
-<!-- MODAL NEW CUSTOMER -->
+<!-- MODAL NEW PART -->
 <div class="modal fade" id="partnewmodal" tabindex="-1" role="dialog" aria-labelledby="partnewmodalTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="partnewmodalLongTitle">Neuer Kunde</h5>
+                <h5 class="modal-title" id="partnewmodalLongTitle">Neues Teil</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
