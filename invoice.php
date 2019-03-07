@@ -3,7 +3,7 @@
 
 <!-- <body> from header.php -->
 
-<center><h2 style="background-color: yellow; border: 1px dotted black; padding: 0.5rem; font-weight: bold; border-radius: 10px;">UNDER CONSTRUCTION</h2></center>
+
 
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-dark btn-new-car mb-3 mb-lg-0" data-toggle="modal" data-target="#invoicenewmodal">
@@ -35,45 +35,62 @@
         <tbody>
         <?php
             
-            $sql = "SELECT rechnung.rechnungsnummer, rechnung.rechnungsdatum, kunde.kundennummer, kunde.nachname, kunde.vorname, fahrzeug.marke, fahrzeug.type, fahrzeug.kennzeichen, rechnung.status, rechnungdetails.anzahl, rechnungdetails.preis FROM rechnung LEFT JOIN kunde ON rechnung.kundenid = kunde.kundennummer LEFT JOIN fahrzeug ON rechnung.fahrzeugid = fahrzeug.fzid LEFT JOIN rechnungdetails ON rechnung.rechnungsnummer = rechnungdetails.rechnungsnummer ORDER BY rechnung.rechnungsnummer DESC";
+            $sql = "SELECT  rechnung.rechnungsnummer, 
+                            rechnung.rechnungsdatum, 
+                            kunde.kundennummer, 
+                            kunde.nachname, 
+                            kunde.vorname, 
+                            fahrzeug.marke, 
+                            fahrzeug.type, 
+                            fahrzeug.kennzeichen, 
+                            rechnung.status, 
+                            rechnungdetails.anzahl, 
+                            rechnungdetails.preis 
+                            FROM rechnung 
+                            LEFT JOIN kunde 
+                            ON rechnung.kundenid = kunde.kundennummer 
+                            LEFT JOIN fahrzeug 
+                            ON rechnung.fahrzeugid = fahrzeug.fzid 
+                            LEFT JOIN rechnungdetails 
+                            ON rechnung.rechnungsnummer = rechnungdetails.rechnungsnummer 
+                            ORDER BY rechnung.rechnungsnummer DESC";
+
             // $sql = "SELECT * from kunde ORDER BY kundennummer ASC";
 
             foreach ($pdo->query($sql) as $row) {
-                echo "<tr href='customer_detail.php?kundennummer=" . $row['kundennummer'] . "'><td>" . $row['kundennummer'] . "</td>";
-                echo "<td>" . $row['anrede'] . "</td>";
-                echo "<td>" . $row['titel'] . "</td>";
-                echo "<td>" . $row['vorname'] . "</td>";
-                echo "<td>" . $row['nachname'] . "</td>";
-                
-                echo "<td>" . $row['strasse'] . "</td>";
-                echo "<td>" . $row['plz'] . "</td>";
-                echo "<td>" . $row['ort'] . "</td>";
-                echo "<td>" . $row['telefon'] . "</td>";
+                echo "<tr href='invoice_detail.php?kundennummer=" . $row['rechnungsnummer'] . "'><td>" . $row['rechnungsnummer'] . "</td>";
+                echo "<td>" . $row['rechnungsdatum'] . "</td>";
+                echo "<td>" . $row['kundennummer'] . "</td>";
+                echo "<td>" . $row['nachname'] . " " . $row['vorname'] . "</td>";
+                echo "<td>" . $row['marke'] . " " . $row['type'] . "</td>";
+                echo "<td>" . $row['kennzeichen'] . "</td>";
+                echo "<td>" . $row['status'] . "</td>";
+                echo "<td>" . $row['anzahl'] . "</td>";
+                echo "<td>" . $row['preis'] . "</td>";
                
-                echo "<td><a title='Details' class='' href='customer_detail.php?kundennummer=" . $row['kundennummer'] . "'><center><i class='fas fa-info-circle'></i></center></a></td>";
-                echo "<td><a title='Rechnungen' class='' href='rechnungen.php?kundennummer=" . $row['kundennummer'] . "'><center><i class='fas fa-file-invoice'></i></center></a></td></tr>"; ?>
+                echo "<td><a title='Details' class='' href='invoice_detail.php?rechnungsnummer=" . $row['rechnungsnummer'] . "'><center><i class='fas fa-info-circle'></i></center></a></td>";
+                echo "<td><a title='Bearbeiten' class='' href='invoice.php?rechnungsnummer=" . $row['rechnungsnummer'] . "'><center><i class='fas fa-file-invoice'></i></center></a></td></tr>"; ?>
                 
             <?php }; ?>
 
         </tbody>
     </table>
 
-<!-- MODAL NEW CUSTOMER -->
-<div class="modal fade" id="customernewmodal" tabindex="-1" role="dialog" aria-labelledby="customernewmodalTitle" aria-hidden="true">
+<!-- MODAL NEW INVOICE -->
+<div class="modal fade" id="invoicenewmodal" tabindex="-1" role="dialog" aria-labelledby="invoicenewmodalTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="customernewmodalLongTitle">Neuer Kunde</h5>
+            <div class="modal-header">Neue Rechnung</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form action="customer_save.php" method="get">
+                <form action="invoice_save.php" method="get">
                 <div class="form-group">
                     <div class="card border-dark">
                         <div id="new-car" class="card-header">
-                        Neuer Kunde
+                        Neue Rechnung
                         </div>
                         <div class="card-body text-dark">
                             <h5 class="card-title">PLATZHALTER</h5>
@@ -137,7 +154,7 @@
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Abbrechen</button>
-                <button type="submit" name="submit" value="Speichern" class="btn btn-dark">Kunde speichern</button>
+                <button type="submit" name="submit" value="Speichern" class="btn btn-dark">Rechnung speichern</button>
             </div>
                 </div>
                 </form>
