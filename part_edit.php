@@ -10,7 +10,7 @@ $sql ="SELECT * FROM teile WHERE teileid = $id";
 
 echo "<form form action='' method='post'>";
 
-echo "<a href='delete_part.php?teileid=".$id."'><i class='far fa-trash-alt'></i></a>";
+echo "<a href='part_delete.php?teileid=".$id."'><i class='far fa-trash-alt'></i></a>";
 
 echo "<table class='table table-striped table-hover ml-2 mr-2>'";
 
