@@ -8,7 +8,7 @@ $sql ="SELECT * FROM `reparatur`";
 
 $result = $pdo->query($sql);
 
-echo" <button type='button' class='btn btn-dark btn-new-car mb-3 mb-lg-0' data-toggle='modal' data-target='#contractnewmodal'>Neues Teil</button><br /><hr />";
+echo" <button type='button' class='btn btn-dark btn-new-car mb-3 mb-lg-0' data-toggle='modal' data-target='#contractnewmodal'>Neuer Auftrag</button><br /><hr />";
 
 // echo "<a class='btn btn-dark btn-sm ml-2' href='part_new.php'>Neues Teil</a> <br /><br />";
 
@@ -57,5 +57,62 @@ while($row = $result->fetch())
 echo "</tbody>";
 echo "</table>";
 ?>
+
+<!-- MODAL NEW CONTRACT -->
+<div class="modal fade" id="contractnewmodal" tabindex="-1" role="dialog" aria-labelledby="contractnewmodalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="contractnewmodalLongTitle">Neuer Auftrag</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="contract_save.php" method="post">
+                <div class="form-group">
+                    <div class="card border-dark">
+                        <div id="new-contract" class="card-header">
+                        Neuer Auftrag
+                        </div>
+                        <div class="card-body text-dark">
+                         <!--<h5 class="card-title">PLATZHALTER</h5>-->
+                            <p class="card-text">
+                                <div class="row mb-1">
+                                    <div class="col-5 pt-2"><label for="fahrzeug">Fahrzeug</label></div>
+                                    <div class="col-7"><select name="fahrzeug" size="1">
+                                    <?php 
+                                    
+                                    $sql ="SELECT * FROM `fahrzeug`";
+
+                                    $result = $pdo->query($sql);    
+   
+                                    while($row2 = $result2->fetch())
+                                    {
+                                        $kundenid=$row2['kundeid'];
+                                    }
+
+                                    ?>
+                                    </select></div>
+                                </div>    
+                                <div class="row mb-1">
+                                    <div class="col-5 pt-2"><label for="date">Datum</label></div>
+                                    <div class="col-7"><input name='date' type='date' Id='date'/></div>
+                                </div>                                                                                     
+                            </p>
+                        </div>
+                    </div>
+            </div> <!-- modal body -->
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Abbrechen</button>
+                <button type="submit" name="submit" value="Speichern" class="btn btn-dark">Teil speichern</button>
+            </div>
+                </div>
+                </form>
+        </div>
+    </div>
+</div>
+<!-- MODAL ENDE -->
 
 <?php include('footer.php') ?>
