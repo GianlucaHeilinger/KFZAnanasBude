@@ -34,7 +34,7 @@ while($row = $result->fetch())
     echo "<td>".$row["teileart"]."</td>";
     echo "<td>".$row["preis"]."</td>";
     echo "<td><a  data-toggle='modal' data-target='#partupdatemodal" . $row["teileid"]."' name='id'><center><i class='fas fa-file-invoice'></i></center></a></td>";
-    echo "<td><ahref='part_delete.php?teileid=".$row['teileid']."'><center><i class='far fa-trash-alt'></i></center></a></td>";
+    echo "<td><a href='part_delete.php?teileid=".$row['teileid']."'><center><i class='far fa-trash-alt'></i></center></a></td>";
     echo "</tr>";
 ?>
     <!-- MODAL UPDATE PART -->

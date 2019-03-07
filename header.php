@@ -31,7 +31,7 @@
         <a class="nav-link" href="part_list.php">Teile</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="repair_new.php">Reparaturen</a>
+        <a class="nav-link" href="contract_list.php">Aufträge</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="invoice.php">Rechnungen</a>

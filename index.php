@@ -15,7 +15,7 @@
     <br/>
     <center><a class="btn btn-dark indexlink" href="part_list.php">TEILE</a></center>
     <br />
-    <center><a class="btn btn-dark indexlink" href="repair_new.php">REPARATUREN</a></center>
+    <center><a class="btn btn-dark indexlink" href="contract_list.php">AUFTRÄGE</a></center>
     <br/>
     <center><a class="btn btn-dark indexlink" href="invoice.php">RECHNUNGEN</a></center>
 </div>
