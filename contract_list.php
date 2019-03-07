@@ -87,9 +87,9 @@ echo "</table>";
 
                                     $result = $pdo->query($sql);    
    
-                                    while($row2 = $result2->fetch())
+                                    while($row = $result->fetch())
                                     {
-                                        $kundenid=$row2['kundeid'];
+                                       echo "<option value=".$row['fzid'].">".$row['fzid']."</option>";
                                     }
 
                                     ?>
