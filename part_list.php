@@ -33,9 +33,59 @@ while($row = $result->fetch())
     echo "<td>".$row["bezeichnung"]."</td>";
     echo "<td>".$row["teileart"]."</td>";
     echo "<td>".$row["preis"]."</td>";
-    echo "<td><a name='id' href='part_edit.php?teileid=" . $row['teileid']."'><center><i class='fas fa-file-invoice'></i></center></a></td>";
-    echo "<td><a href='part_delete.php?teileid=".$row['teileid']."'><center><i class='far fa-trash-alt'></i></center></a></td>";
+    echo "<td><a  data-toggle='modal' data-target='#partupdatemodal" . $row["teileid"]."' name='id'><center><i class='fas fa-file-invoice'></i></center></a></td>";
+    echo "<td><ahref='part_delete.php?teileid=".$row['teileid']."'><center><i class='far fa-trash-alt'></i></center></a></td>";
     echo "</tr>";
+?>
+    <!-- MODAL UPDATE PART -->
+    <div class="modal fade" id="partupdatemodal<?php echo $row["teileid"] ?>" tabindex="-1" role="dialog" aria-labelledby="partupdatemodalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="partupdatemodalLongTitle">Teil bearbeiten</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="part_edit.php?teileid=<?php echo $row["teileid"] ?>" method="post">
+                    <div class="form-group">
+                        <div class="card border-dark">
+                            <div id="new-part" class="card-header">
+                            Teil bearbeiten
+                            </div>
+                            <div class="card-body text-dark">
+                            <!--<h5 class="card-title">PLATZHALTER</h5>-->
+                                <p class="card-text">
+                                    <div class="row mb-1">
+                                        <div class="col-5 pt-2"><label for="anrede">Bezeichnung</label></div>
+                                        <div class="col-7"><input name='txtBezeichnung' type='text' Id='bezeichnung' value="<?php echo $row["bezeichnung"] ?>"/></div>
+                                    </div>
+                                    <div class="row mb-1">
+                                        <div class="col-5 pt-2"><label for="titel">Art</label></div>
+                                        <div class="col-7"><select name="teileart" size="1"><option selected="selected" value="<?php echo $row["teileart"] ?>">Lohn</option><option value="Teil">Teil</option></select></div>
+                                    </div>
+                                    <div class="row mb-1">
+                                        <div class="col-5 pt-2"><label for="vorname">Preis</label></div>
+                                        <div class="col-7"><input maxlength='11' name='txtPreis' Id='preis' type='number' min=0 step="0.01" value="<?php echo $row["preis"] ?>"/></div>
+                                    </div>                               
+                                </p>
+                            </div>
+                        </div>
+                </div> <!-- modal body -->
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Abbrechen</button>
+                    <button type="submit" name="submit" value="Speichern" class="btn btn-dark">Teil speichern</button>
+                </div>
+                    </div>
+                    </form>
+            </div>
+        </div>
+    </div>
+    <!-- MODAL ENDE -->
+
+<?php
 }
 
 echo "</tbody>";
@@ -89,6 +139,8 @@ echo "</table>";
     </div>
 </div>
 <!-- MODAL ENDE -->
+
+
 
 <!-- </body> from footer.php -->
 
