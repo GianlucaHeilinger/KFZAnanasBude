@@ -317,14 +317,14 @@ $result = $stmt->fetch();
             $result = $stmt->fetch();
             ?>
 
-                <form action="save_car.php" method="get">
+                <form action="car_save.php" method="get">
                     <div class="form-group">
                     <div class="card border-dark">
                         <div id="new-car" class="card-header">
                         <?php echo $result['nachname'] . " " . $result['vorname']; ?>
                         </div>
                         <div class="card-body text-dark">
-                            <h5 class="card-title">PLATZHALTER</h5>
+                            <!-- <h5 class="card-title">PLATZHALTER</h5> -->
                             <p class="card-text">
                                 <div class="row mb-1">
                                     <div class="col-5"><label for="kunde">Kunde</label></div>

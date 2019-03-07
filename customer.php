@@ -73,7 +73,7 @@
                         Neuer Kunde
                         </div>
                         <div class="card-body text-dark">
-                            <h5 class="card-title">PLATZHALTER</h5>
+                         <!--<h5 class="card-title">PLATZHALTER</h5>-->
                             <p class="card-text">
                                 <div class="row mb-1">
                                     <div class="col-5 pt-2"><label for="anrede">Anrede</label></div>
