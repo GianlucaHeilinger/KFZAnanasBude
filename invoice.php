@@ -25,8 +25,7 @@
             
             <th>Kennzeichen</th>
             <th>Status</th>
-            <th>Anzahl</th>
-            <th>Preis</th>
+            <th>Gesamtpreis</th>
             
             <th><center>Detail</center></th>
             <th><center>Bearbeiten</center></th>
@@ -43,9 +42,8 @@
                         fahrzeug.marke, 
                         fahrzeug.type, 
                         fahrzeug.kennzeichen, 
-                        rechnung.status, 
-                        rechnungdetails.anzahl, 
-                        rechnungdetails.preis 
+                        rechnung.status,  
+                        rechnungdetails.gesamtpreis 
                         FROM rechnung 
                         LEFT JOIN kunde 
                         ON rechnung.kundenid = kunde.kundennummer 
@@ -67,8 +65,7 @@
     echo "<td>" . $row["marke"] . " ". $row["type"] . "</td>";
     echo "<td>" . $row["kennzeichen"] . "</td>";
     echo "<td>" . $row["status"] . "</td>";
-    echo "<td>" . $row["anzahl"] . "</td>";
-    echo "<td>" . $row["preis"] . "</td>";
+    echo "<td>" . $row["gesamtpreis"] . "</td>";
     echo "<td><a href='invoice_detail.php?rechnungsnummer=".$row['rechnungsnummer']."'><center><i class='fas fa-info-circle'></i></center></a></td>";
     echo "<td><a  data-toggle='modal' data-target='#invoiceeditmodal" . $row["rechnungsnummer"]."' name='id'><center><i class='fas fa-file-invoice'></i></center></a></td>";
     
@@ -175,13 +172,10 @@ echo "</table>";
                                     <div class="col-5 pt-2"><label for="teileid">Teile ID</label></div>
                                     <div class="col-7"><input type="number" class="form-control" name="teileid"></div>
                                 </div>
+                                
                                 <div class="row mb-1">
-                                    <div class="col-5 pt-2"><label for="anzahl">Anzahl</label></div>
-                                    <div class="col-7"><td><input type="number" class="form-control" name="anzahl"></div>
-                                </div>
-                                <div class="row mb-1">
-                                    <div class="col-5 pt-2"><label for="preis">Preis</label></div>
-                                    <div class="col-7"><input type="number" class="form-control" name="preis"></div>
+                                    <div class="col-5 pt-2"><label for="gesamtpreis">Gesamtpreis</label></div>
+                                    <div class="col-7"><input type="number" class="form-control" name="gesamtpreis"></div>
                                 </div>
                             </p>
                         </div>

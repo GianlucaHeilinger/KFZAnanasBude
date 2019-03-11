@@ -89,7 +89,7 @@ echo "</table>";
    
                                     while($row = $result->fetch())
                                     {
-                                       echo "<option value=".$row['fzid'].">".$row['fzid']."</option>";
+                                       echo "<option value=".$row['fzid'].">".$row['fzid'] . " | " . $row['marke']  . " | " . $row['type'] . " | " . $row['kennzeichen'] . "</option>";
                                     }
 
                                     ?>
