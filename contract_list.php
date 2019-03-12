@@ -16,9 +16,10 @@ echo "<table id='contracttable' class='display table table-hover'>";
 echo "<thead class='thead-dark'>";
 echo "<tr>";
 echo "<th>Reparatur ID</th>";
-echo "<th>Fahrzeug ID</th>";
+echo "<th>Kunde</th>";
+echo "<th>Fahrzeug</th>";
 echo "<th>Datum</th>";
-echo "<th><center>Editieren</center></th>";
+echo "<th><center>Detail</center></th>";
 echo "<th><center>Löschen</center></th>";
 echo "</tr>";
 echo "</thead>";
@@ -33,15 +34,23 @@ while($row = $result->fetch())
    
     while($row2 = $result2->fetch())
     {
-        $kundenid=$row2['kundeid'];
+        $kundenid = $row2['kundeid'];
+        $marke = $row2['marke'];
+        $type = $row2['type'];
+        $kennzeichen = $row2['kennzeichen'];
     }
 
     echo "<tr href='contract_edit.php?repid=" . $row['repid']."'>";
     echo "<td>".$row["repid"]."</td>";
+    
+    $sql3 = "SELECT titel, vorname, nachname FROM kunde WHERE kundennummer = $kundenid";
+    foreach ($pdo->query($sql3) as $row3) { 
+        echo '<td>' . $row3['titel'] . ' ' . $row3['nachname'] . ' ' . $row3['vorname'] . '</td>';
+    }
 
     if(isset($kundenid))
     {
-        echo "<td><a href='customer_detail.php?kundennummer=" . $kundenid."'>".$row["fzid"]."</a></td>";
+        echo "<td><i class='fas fa-external-link-alt'></i></i> <a href='customer_detail.php?kundennummer=" . $kundenid."'>".$marke . ' ' . $type . ' | ' .$kennzeichen."</a></td>";
     }
     else
     {
@@ -49,10 +58,35 @@ while($row = $result->fetch())
     }
 
     echo "<td>".$row["datum"]."</td>";
-    echo "<td><a data-toggle='modal' data-target='#contractupdatemodal" . $row["repid"]."' name='id'><center><i class='fas fa-file-invoice'></i></center></a></td>";
-    echo "<td><a href='contract_delete.php?repid=".$row['repid']."'><center><i class='far fa-trash-alt'></i></center></a></td>";
-    echo "</tr>";
-}
+    echo "<td><a href='contract_detail.php?repid=".$row['repid']."'><center><i class='fas fa-info-circle'></i></center></a></td>";
+    echo '<td><a style="cursor: pointer;" class="" data-toggle="modal" data-target="#contractdeletemodal' .$row['repid']. '"><center><i class="far fa-trash-alt"></i></center></a></td>'; 
+    echo "</tr>"; ?>
+
+    <!-- MODAL DELETE CONTRACT -->
+        <div class="modal fade" id="contractdeletemodal<?php echo $row['repid'] ?>" tabindex="-1" role="dialog" aria-labelledby="contractdeletemodalTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="contractdeletemodalLongTitle">Auftrag wirklich löschen?</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="contract_delete.php" method="post">
+                            <input type="hidden" name="repid" value="<?php echo $row['repid'] ?>">
+                            Wollen Sie den Auftrag mit der ID <?php echo $row['repid'] ?> wirklich löschen?<br />                                 
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Abbrechen</button>
+                        <button type="submit" name="submit" value="submit" class="btn btn-dark">Auftrag löschen</button>
+                    </div>
+                        </form>
+                </div>
+            </div>
+        </div>
+        <!-- MODAL ENDE -->
+<?php }
 
 echo "</tbody>";
 echo "</table>";
@@ -60,7 +94,7 @@ echo "</table>";
 
 <!-- MODAL NEW CONTRACT -->
 <div class="modal fade" id="contractnewmodal" tabindex="-1" role="dialog" aria-labelledby="contractnewmodalTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="contractnewmodalLongTitle">Neuer Auftrag</h5>
@@ -69,18 +103,18 @@ echo "</table>";
                 </button>
             </div>
             <div class="modal-body">
-                <form action="contract_save.php" method="post">
+                <form action="contract_save.php" method="get">
                 <div class="form-group">
                     <div class="card border-dark">
                         <div id="new-contract" class="card-header">
-                        Neuer Auftrag
+                        Neuen Auftrag erstellen
                         </div>
                         <div class="card-body text-dark">
                          <!--<h5 class="card-title">PLATZHALTER</h5>-->
                             <p class="card-text">
                                 <div class="row mb-1">
-                                    <div class="col-5 pt-2"><label for="fahrzeug">Fahrzeug</label></div>
-                                    <div class="col-7"><select name="fahrzeug" size="1">
+                                    <div class="col-5 pt-2"><label for="fzid">Fahrzeug</label></div>
+                                    <div class="col-7"><select name="fzid" size="1" class="form-control">
                                     <?php 
                                     
                                     $sql ="SELECT * FROM `fahrzeug`";
@@ -97,7 +131,7 @@ echo "</table>";
                                 </div>    
                                 <div class="row mb-1">
                                     <div class="col-5 pt-2"><label for="date">Datum</label></div>
-                                    <div class="col-7"><input name='date' type='date' Id='date'/></div>
+                                    <div class="col-7"><input name='date' class="form-control" type='date' Id='date'/></div>
                                 </div>                                                                                     
                             </p>
                         </div>
@@ -106,7 +140,7 @@ echo "</table>";
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Abbrechen</button>
-                <button type="submit" name="submit" value="Speichern" class="btn btn-dark">Teil speichern</button>
+                <button type="submit" name="submit" value="Speichern" class="btn btn-dark">Auftrag erstellen</button>
             </div>
                 </div>
                 </form>
@@ -114,5 +148,7 @@ echo "</table>";
     </div>
 </div>
 <!-- MODAL ENDE -->
+
+
 
 <?php include('footer.php') ?>

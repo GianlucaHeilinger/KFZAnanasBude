@@ -18,7 +18,7 @@ echo "<tr>";
 echo "<th>Teile Nr.</th>";
 echo "<th>Bezeichnung</th>";
 echo "<th>Art</th>";
-echo "<th>Preis</th>";
+echo "<th><center>Preis</center></th>";
 echo "<th><center>Editieren</center></th>";
 echo "<th><center>Löschen</center></th>";
 echo "</tr>";
@@ -32,7 +32,7 @@ while($row = $result->fetch())
     echo "<td>".$row["teileid"]."</td>";
     echo "<td>".$row["bezeichnung"]."</td>";
     echo "<td>".$row["teileart"]."</td>";
-    echo "<td>".$row["preis"]."</td>";
+    echo "<td class='text-right'>&euro; " . sprintf('%0.2f', $row['preis']) . "</td>";
     echo "<td><a  data-toggle='modal' data-target='#partupdatemodal" . $row["teileid"]."' name='id'><center><i class='fas fa-file-invoice'></i></center></a></td>";
     echo "<td><a href='part_delete.php?teileid=".$row['teileid']."'><center><i class='far fa-trash-alt'></i></center></a></td>";
     echo "</tr>";
@@ -59,15 +59,15 @@ while($row = $result->fetch())
                                 <p class="card-text">
                                     <div class="row mb-1">
                                         <div class="col-5 pt-2"><label for="anrede">Bezeichnung</label></div>
-                                        <div class="col-7"><input name='txtBezeichnung' type='text' Id='bezeichnung' value="<?php echo $row["bezeichnung"] ?>"/></div>
+                                        <div class="col-7"><input class="form-control" name='txtBezeichnung' type='text' Id='bezeichnung' value="<?php echo $row["bezeichnung"] ?>"/></div>
                                     </div>
                                     <div class="row mb-1">
                                         <div class="col-5 pt-2"><label for="titel">Art</label></div>
-                                        <div class="col-7"><select name="teileart" size="1"><option selected="selected" value="<?php echo $row["teileart"] ?>">Lohn</option><option value="Teil">Teil</option></select></div>
+                                        <div class="col-7"><select class="form-control" name="teileart" size="1"><option selected="selected" value="<?php echo $row["teileart"] ?>">Lohn</option><option value="Teil">Teil</option></select></div>
                                     </div>
                                     <div class="row mb-1">
                                         <div class="col-5 pt-2"><label for="vorname">Preis</label></div>
-                                        <div class="col-7"><input maxlength='11' name='txtPreis' Id='preis' type='number' min=0 step="0.01" value="<?php echo $row["preis"] ?>"/></div>
+                                        <div class="col-7"><input class="form-control" maxlength='11' name='txtPreis' Id='preis' type='number' min=0 step="0.01" value="<?php echo $row["preis"] ?>"/></div>
                                     </div>                               
                                 </p>
                             </div>
@@ -114,15 +114,15 @@ echo "</table>";
                             <p class="card-text">
                                 <div class="row mb-1">
                                     <div class="col-5 pt-2"><label for="anrede">Bezeichnung</label></div>
-                                    <div class="col-7"><input name='txtBezeichnung' type='text' Id='bezeichnung' value=''/></div>
+                                    <div class="col-7"><input class="form-control" name='txtBezeichnung' type='text' Id='bezeichnung' value=''/></div>
                                 </div>
                                 <div class="row mb-1">
                                     <div class="col-5 pt-2"><label for="titel">Art</label></div>
-                                    <div class="col-7"><select name="teileart" size="1"><option selected="selected" value="Lohn">Lohn</option><option value="Teil">Teil</option></select></div>
+                                    <div class="col-7"><select class="form-control" name="teileart" size="1"><option selected="selected" value="Lohn">Lohn</option><option value="Teil">Teil</option></select></div>
                                 </div>
                                 <div class="row mb-1">
                                     <div class="col-5 pt-2"><label for="vorname">Preis</label></div>
-                                    <div class="col-7"><input maxlength='11' name='txtPreis' Id='preis' type='number' min=0 step="0.01" value=''/></div>
+                                    <div class="col-7"><input class="form-control" maxlength='11' name='txtPreis' Id='preis' type='number' min=0 step="0.01" value=''/></div>
                                 </div>                               
                             </p>
                         </div>

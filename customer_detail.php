@@ -105,11 +105,11 @@ $result = $stmt->fetch();
             </button>
         <!-- End Trigger -->
 
-        <!-- Button new_repair -->
-            <a href="repair_new.php"><button type="button" class="btn btn-dark btn-new-car mb-3 mb-lg-0 p-3">
-                <i class="fas fa-tools text-white"></i> Neue Reparatur
-            </button></a>
-        <!-- End Button -->
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-dark btn-new-car mb-3 mb-lg-0 p-3" data-toggle="modal" data-target="#contractnewmodal">
+                <i class="fas fa-tools text-white"></i> Neuer Auftrag
+            </button>
+        <!-- End Trigger -->
 
             
 
@@ -124,7 +124,7 @@ $result = $stmt->fetch();
 
     foreach ($pdo->query($sql) as $row) {
         echo '<div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">';
-        echo '<div class="card border-dark mb-3 ml-0 ml-lg-3 mt-3 mt-lg-0" style="width: 100%;">';
+        echo '<div class="card cardrelative border-dark mb-3 ml-0 ml-lg-3 mt-3 mt-lg-0" style="width: 100%;">';
         echo '<div class="card-header"><i class="fas fa-car"></i><span class="font-weight-bold">'  . " " . $row['marke'] . " " . $row['type'] . '</span><!-- Button trigger modal --><a style="cursor: pointer;" class="float-right" data-toggle="modal" data-target="#cardeletemodal' . $row['fzid'] . '"><i class="far fa-trash-alt"></i></a><!-- End Trigger --></div>';
         echo '<div class="card-body text-dark">';
         echo '<h5 class="card-title">' . $row['kennzeichen'] . '</h5>';
@@ -138,6 +138,7 @@ $result = $stmt->fetch();
         .'Leistung: ' . $row['leistung'] . '<br />'
         .'Hubraum: ' . $row['hubraum'] . '<br />'
         .'Erstzulassung: ' . $row['erstzulassung'] . '<br />'
+        .'<span class="plusbutton"><a title="Auftrag für dieses Fahrzeug mit heutigem Datum erstellen" href="contract_save.php?fzid=' . $row['fzid'] . '&date=' . date("Y-m-d") . '"><i class="fas fa-tools text-white"></i></a></span>'
         .'</p>';
         echo '</div>';
         echo '</div>';
@@ -418,6 +419,63 @@ $result = $stmt->fetch();
             </form>
     </div>
   </div>
+</div>
+<!-- MODAL ENDE -->
+
+<!-- MODAL NEW CONTRACT -->
+<div class="modal fade" id="contractnewmodal" tabindex="-1" role="dialog" aria-labelledby="contractnewmodalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="contractnewmodalLongTitle">Neuer Auftrag</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="contract_save.php" method="get">
+                <div class="form-group">
+                    <div class="card border-dark">
+                        <div id="new-contract" class="card-header">
+                        Neuen Auftrag erstellen
+                        </div>
+                        <div class="card-body text-dark">
+                         <!--<h5 class="card-title">PLATZHALTER</h5>-->
+                            <p class="card-text">
+                                <div class="row mb-1">
+                                    <div class="col-5 pt-2"><label for="fzid">Fahrzeug</label></div>
+                                    <div class="col-7"><select class="form-control" name="fzid" size="1">
+                                    <?php 
+                                    
+                                    $sql ="SELECT * FROM `fahrzeug` WHERE kundeid = $kundennummer";
+
+                                    $result = $pdo->query($sql);    
+   
+                                    while($row = $result->fetch())
+                                    {
+                                       echo "<option value=".$row['fzid'].">".$row['fzid'] . " | " . $row['marke']  . " | " . $row['type'] . " | " . $row['kennzeichen'] . "</option>";
+                                    }
+
+                                    ?>
+                                    </select></div>
+                                </div>    
+                                <div class="row mb-1">
+                                    <div class="col-5 pt-2"><label for="date">Datum</label></div>
+                                    <div class="col-7"><input class="form-control" name='date' type='date' Id='date'/></div>
+                                </div>                                                                                     
+                            </p>
+                        </div>
+                    </div>
+            </div> <!-- modal body -->
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Abbrechen</button>
+                <button type="submit" name="submit" value="Speichern" class="btn btn-dark">Auftrag erstellen</button>
+            </div>
+                </div>
+                </form>
+        </div>
+    </div>
 </div>
 <!-- MODAL ENDE -->
 

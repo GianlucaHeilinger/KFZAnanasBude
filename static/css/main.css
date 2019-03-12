@@ -3,6 +3,11 @@ body {
     padding: 0;
 }
 
+a, a:link, a:active, a:visited, a:hover {
+    /* text-decoration: none; */
+    color: #212529;
+}
+
 .logo {
     width: 10rem;
     height: 10rem;
@@ -88,7 +93,7 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
     padding-left: 0;
 }
 
-#customertable_wrapper .row {
+.row {
     margin-left: 0;
     margin-right: 0;
 }
@@ -99,4 +104,31 @@ hr {
 
 .pl075rem {
     padding-left: 0.75rem;
+}
+
+.cardrelative {
+    position: relative;
+}
+
+.plusbutton {
+    position: absolute;
+    display: block;
+    bottom: 0.5rem;
+    right: 0.5rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+    background-color: #343a40;
+    border-radius: 50%;
+    padding: 0.6rem 0.8rem;
+    text-align: center;
+    margin: 0;
+    cursor: pointer;
+    opacity: 0.25;
+    filter: alpha(opacity=25);
+}
+
+.plusbutton:hover {
+    opacity: 1;
+    filter: alpha(opacity=100);
 }

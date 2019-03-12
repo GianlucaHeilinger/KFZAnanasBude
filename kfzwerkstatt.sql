@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Erstellungszeit: 19. Feb 2019 um 10:58
+-- Erstellungszeit: 12. Mrz 2019 um 16:50
 -- Server-Version: 5.7.25-0ubuntu0.18.04.2
 -- PHP-Version: 7.2.15-0ubuntu0.18.04.1
 
@@ -48,21 +48,15 @@ CREATE TABLE `fahrzeug` (
 --
 
 INSERT INTO `fahrzeug` (`fzid`, `kundeid`, `marke`, `type`, `kennzeichen`, `fahrgestellnummer`, `nationalcode`, `motorkennzeichen`, `getriebekennzeichen`, `farbe`, `treibstoff`, `leistung`, `hubraum`, `erstzulassung`) VALUES
-(5, 11, 'Audi', 'A4', 'S-1234-AB', '123', '123', '123', '123', 'schwarz', 'Benzin', 120, 1800, '2017-10-29'),
-(6, 11, 'Audi', 'A4', 'S-1234-AB', '123', '123', '123', '123', 'schwarz', 'Benzin', 120, 1800, '2017-10-29'),
-(7, 11, 'Audi', 'A4', 'S-1234-AB', '123', '123', '123', '123', 'schwarz', 'Benzin', 120, 1800, '2017-10-29'),
-(8, 11, 'Audi', 'A4', 'S-1234-AB', '123', '123', '123', '123', 'schwarz', 'Benzin', 120, 1800, '2017-10-29'),
-(9, 11, 'Audi', 'A4', 'S-1234-AB', '123', '123', '123', '123', 'schwarz', 'Benzin', 120, 1800, '2017-10-29'),
-(10, 11, 'Audi', 'A4', 'S-1234-AB', '123', '123', '123', '123', 'schwarz', 'Benzin', 120, 1800, '2017-10-29'),
-(11, 12, 'Audi', 'A4', 'S-1234-AB', '123', '123', '123', '123', 'schwarz', 'Benzin', 120, 1800, '2017-10-29'),
-(12, 12, 'Audi', 'A4', 'S-1234-AB', '123', '123', '123', '123', 'schwarz', 'Benzin', 120, 1800, '2017-10-29'),
-(13, 12, 'Audi', 'A4', 'S-1234-AB', '123', '123', '123', '123', 'schwarz', 'Benzin', 120, 1800, '2017-10-29'),
-(14, 12, 'Audi', 'A4', 'S-1234-AB', '123', '123', '123', '123', 'schwarz', 'Benzin', 120, 1800, '2017-10-29'),
-(15, 12, 'Audi', 'A4', 'S-1234-AB', '123', '123', '123', '123', 'schwarz', 'Benzin', 120, 1800, '2017-10-29'),
-(16, 12, 'Audi', 'A4', 'S-1234-AB', '123', '123', '123', '123', 'schwarz', 'Benzin', 120, 1800, '2017-10-29'),
-(17, 13, 'Audi', 'A4', 'S-1234-AB', '123', '123', '123', '123', 'schwarz', 'Benzin', 120, 1800, '2017-10-29'),
-(18, 13, 'Audi', 'A4', 'S-1234-AB', '123', '123', '123', '123', 'schwarz', 'Benzin', 120, 1800, '2017-10-29'),
-(19, 13, 'Audi', 'A4', 'S-1234-AB', '123', '123', '123', '123', 'schwarz', 'Benzin', 120, 1800, '2017-10-29');
+(1, 6, 'Audi', 'A8', 'S-1337-DD', '12345', '12345', '1234', '12345', 'pink', 'benzin', 60, 1400, '2019-02-11'),
+(2, 7, 'Seat', 'Ibiza', 'VB-123-A', '123', '213', '987', '987', 'weiss', 'Benzin', 60, 1400, '2008-02-29'),
+(3, 6, 'BMW', 'X5', 'VB-RBS-1', '12345', '12345', '1234', '12345', 'rot', 'benzin', 60, 1400, '2019-02-11'),
+(4, 6, 'Toyota', 'Yaris', 'VB-FCS-1', '12345', '12345', '1234', '12345', 'rot', 'benzin', 60, 1400, '2019-02-11'),
+(6, 6, 'Dacia', 'Sandero', 'S-LOLSCR-0', '12345', '12345', '1234', '12345', 'rot', 'benzin', 60, 1400, '2019-02-11'),
+(7, 6, 'VW', 'Golf V', 'R-BFI-69', '12345', '12345', '1234', '12345', 'rot', 'benzin', 60, 1400, '2019-02-11'),
+(9, 6, 'Nissan', 'Micra', 'W-STINKT-1', '123', '123', '123', '123', 'schwarz', 'Benzin', 50, 1000, '2016-03-03'),
+(11, 22, 'Porsche', '911', 'S-FTW-11', '876', '86', '867', '876', 'schwarz', 'Benzin', 100, 1000, '2018-11-30'),
+(12, 23, 'Skoda', 'Octavia', 'VB-1337-DD', '123', '213', '987', '987', 'schwarz', 'Benzin', 29, 21, '2017-11-30');
 
 -- --------------------------------------------------------
 
@@ -82,7 +76,7 @@ CREATE TABLE `kunde` (
   `ort` varchar(50) COLLATE utf8_german2_ci NOT NULL,
   `telefon` varchar(20) COLLATE utf8_german2_ci NOT NULL,
   `email` varchar(50) COLLATE utf8_german2_ci NOT NULL,
-  `newsletter` tinyint(1) DEFAULT NULL,
+  `newsletter` tinyint(1) NOT NULL,
   `kommentar` text COLLATE utf8_german2_ci NOT NULL,
   `kundeseit` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_german2_ci;
@@ -92,22 +86,23 @@ CREATE TABLE `kunde` (
 --
 
 INSERT INTO `kunde` (`kundennummer`, `anrede`, `titel`, `vorname`, `nachname`, `gebdat`, `strasse`, `plz`, `ort`, `telefon`, `email`, `newsletter`, `kommentar`, `kundeseit`) VALUES
-(11, 'Herr', 'Dr.', 'Max', 'Mustermann', '1977-12-16', 'Musterstrasse 5', 1234, 'Musterhausen', '067612345678', 'max@mustermann.at', 1, 'Toller Kunde!', '2018-02-19'),
-(12, 'Herr', 'Dr.', 'Max', 'Mustermann', '1977-12-16', 'Musterstrasse 5', 1234, 'Musterhausen', '067612345678', 'max@mustermann.at', 1, 'Toller Kunde!', '2018-02-19'),
-(13, 'Herr', 'Dr.', 'Max', 'Mustermann', '1977-12-16', 'Musterstrasse 5', 1234, 'Musterhausen', '067612345678', 'max@mustermann.at', 1, 'Toller Kunde!', '2018-02-19'),
-(14, 'Herr', 'Dr.', 'Max', 'Mustermann', '1977-12-16', 'Musterstrasse 5', 1234, 'Musterhausen', '067612345678', 'max@mustermann.at', 1, 'Toller Kunde!', '2018-02-19'),
-(15, 'Herr', 'Dr.', 'Max', 'Mustermann', '1977-12-16', 'Musterstrasse 5', 1234, 'Musterhausen', '067612345678', 'max@mustermann.at', 1, 'Toller Kunde!', '2018-02-19'),
-(16, 'Herr', 'Dr.', 'Max', 'Mustermann', '1977-12-16', 'Musterstrasse 5', 1234, 'Musterhausen', '067612345678', 'max@mustermann.at', 1, 'Toller Kunde!', '2018-02-19'),
-(17, 'Herr', 'Dr.', 'Max', 'Mustermann', '1977-12-16', 'Musterstrasse 5', 1234, 'Musterhausen', '067612345678', 'max@mustermann.at', 1, 'Toller Kunde!', '2018-02-19'),
-(18, 'Herr', 'Dr.', 'Max', 'Mustermann', '1977-12-16', 'Musterstrasse 5', 1234, 'Musterhausen', '067612345678', 'max@mustermann.at', 1, 'Toller Kunde!', '2018-02-19'),
-(19, 'Herr', 'Dr.', 'Max', 'Mustermann', '1977-12-16', 'Musterstrasse 5', 1234, 'Musterhausen', '067612345678', 'max@mustermann.at', 1, 'Toller Kunde!', '2018-02-19'),
-(20, 'Herr', 'Dr.', 'Max', 'Mustermann', '1977-12-16', 'Musterstrasse 5', 1234, 'Musterhausen', '067612345678', 'max@mustermann.at', 1, 'Toller Kunde!', '2018-02-19'),
-(21, 'Herr', 'Dr.', 'Max', 'Mustermann', '1977-12-16', 'Musterstrasse 5', 1234, 'Musterhausen', '067612345678', 'max@mustermann.at', 1, 'Toller Kunde!', '2018-02-19'),
-(22, 'Herr', 'Dr.', 'Max', 'Mustermann', '1977-12-16', 'Musterstrasse 5', 1234, 'Musterhausen', '067612345678', 'max@mustermann.at', 1, 'Toller Kunde!', '2018-02-19'),
-(23, 'Herr', 'Dr.', 'Max', 'Mustermann', '1977-12-16', 'Musterstrasse 5', 1234, 'Musterhausen', '067612345678', 'max@mustermann.at', 1, 'Toller Kunde!', '2018-02-19'),
-(24, 'Herr', 'Dr.', 'Max', 'Mustermann', '1977-12-16', 'Musterstrasse 5', 1234, 'Musterhausen', '067612345678', 'max@mustermann.at', 1, 'Toller Kunde!', '2018-02-19'),
-(25, 'Herr', 'Dr.', 'Max', 'Mustermann', '1977-12-16', 'Musterstrasse 5', 1234, 'Musterhausen', '067612345678', 'max@mustermann.at', 1, 'Toller Kunde!', '2018-02-19'),
-(26, 'Herr', 'Dr.', 'Max', 'Mustermann', '1977-12-16', 'Musterstrasse 5', 1234, 'Musterhausen', '067612345678', 'max@mustermann.at', 1, 'Toller Kunde!', '2018-02-19');
+(6, 'Fr.', 'Dr.', 'Susi', 'Musterfrau', '2019-02-04', 'Musterstrasse 5', 1234, 'Musterort', '+491234567890', 'susi@mustermann.com', 0, 'servus susi', '2019-02-14'),
+(7, 'Frau', 'Dipl. Ing.', 'Mariabc', 'Schreiber', '1991-02-16', 'Schreiberstrasse 5', 1337, 'Schreiberort', '33388833', 'schreiber@schreiber.com', 0, 'schreiberkommentar', '2019-02-16'),
+(9, 'Herr', 'Dr.', 'Maxxxxx', 'Musti', '2015-02-16', 'Musterstrasse 5', 1234, 'Musterort', '+491234567890', 'max@mustermann.com', 1, 'on', '2019-02-16'),
+(10, 'Herr', 'Dr.', 'Maxllll', 'Musti', '2014-02-16', 'Musterstrasse 5', 1234, 'Musterort', '+491234567890', 'max@mustermann.com', 1, 'ON', '2019-02-16'),
+(11, 'Herr', 'Dr.', 'Maxll', 'Musti', '2011-02-16', 'Musterstrasse 5', 1234, 'Musterort', '+491234567890', 'max@mustermann.com', 0, 'OFF', '2019-02-16'),
+(12, 'Herr', 'Dr.', 'Maxl', 'Musti', '2014-02-16', 'Musterstrasse 5', 1234, 'Musterort', '+491234567890', 'max@mustermann.com', 0, 'off again', '2019-02-16'),
+(13, 'Herr', 'Dr.', 'Maxl', 'Musti', '2016-02-16', 'Musterstrasse 5', 1234, 'Musterort', '+491234567890', 'max@mustermann.com', 0, 'off', '2019-02-16'),
+(14, 'Fr.', 'Dr.', 'Susi', 'Musterfrau', '2009-02-16', 'Musterstrasse 5', 1234, 'Musterort', '+491234567890', 'susi@mustermann.com', 0, 'susi off', '2019-02-16'),
+(15, 'Frau', 'Dr.', 'Maria', 'Schreiber', '2008-02-16', 'Schreiberstrasse 5', 1337, 'Schreiberort', '033388833', 'schreiber@schreiber.com', 0, 'off', '2019-02-16'),
+(16, 'Herr', '', 'Maxl', 'Musti', '2016-02-16', 'Musterstrasse 5', 1234, 'Musterort', '+491234567890', 'max@mustermann.com', 1, 'ooonnn', '2019-02-16'),
+(17, 'Herr', 'Dr.', 'Manfred', 'Baumann', '2005-02-18', 'Baumannweg 3', 3239, 'Bauhausen', '304932840932', 'bau@mann.com', 1, 'baumann', '2019-02-18'),
+(18, 'Herr', 'Dr.', 'Manfred', 'Baumann', '2005-02-18', 'Baumannweg 3', 3239, 'Bauhausen', '304932840932', 'bau@mann.com', 1, 'baumann', '2019-02-18'),
+(19, 'Herr', 'asdf', 'Maxlsdf', 'Musti', '2013-02-18', 'Musterstrasse 5', 1234, 'Musterortasdf', '+491234567890', 'max@mustermann.com', 1, 'asdfdsafds', '2019-02-18'),
+(20, 'Herr', 'asdf', 'Maxlsdf', 'Musti', '2013-02-18', 'Musterstrasse 5', 1234, 'Musterortasdf', '+491234567890', 'max@mustermann.com', 1, 'asdfdsafds', '2019-02-18'),
+(21, 'Herr', 'dsfgs', 'Maxl', 'Musti', '2019-02-18', 'Musterstrasse 5', 1234, 'Musterort', '+491234567890', 'max@mustermann.com', 1, 'sdfg', '2019-02-18'),
+(22, 'Herr', 'asdf', 'Maxl', 'Musti', '2019-02-18', 'Musterstrasse 5', 1234, 'Musterort', '+491234567890', 'max@mustermann.com', 1, '', '2019-02-18'),
+(23, 'Herr', '', 'Maxl', 'Musti', '2019-02-18', 'Musterstrasse 5', 1234, 'Musterort', '+491234567890', 'max@mustermann.com', 0, '', '2019-02-18');
 
 -- --------------------------------------------------------
 
@@ -124,6 +119,13 @@ CREATE TABLE `rechnung` (
   `status` varchar(20) COLLATE utf8_german2_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_german2_ci;
 
+--
+-- Daten für Tabelle `rechnung`
+--
+
+INSERT INTO `rechnung` (`rechnungid`, `rechnungsnummer`, `rechnungsdatum`, `kundenid`, `fahrzeugid`, `status`) VALUES
+(1, 1, '2019-03-07', 6, 1, 'offen');
+
 -- --------------------------------------------------------
 
 --
@@ -133,10 +135,15 @@ CREATE TABLE `rechnung` (
 CREATE TABLE `rechnungdetails` (
   `rechnungdetailid` int(11) NOT NULL,
   `rechnungsnummer` int(11) NOT NULL,
-  `teileid` int(11) NOT NULL,
-  `anzahl` int(11) NOT NULL,
-  `preis` int(11) NOT NULL
+  `gesamtpreis` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_german2_ci;
+
+--
+-- Daten für Tabelle `rechnungdetails`
+--
+
+INSERT INTO `rechnungdetails` (`rechnungdetailid`, `rechnungsnummer`, `gesamtpreis`) VALUES
+(1, 1, 10);
 
 -- --------------------------------------------------------
 
@@ -150,18 +157,40 @@ CREATE TABLE `reparatur` (
   `datum` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_german2_ci;
 
+--
+-- Daten für Tabelle `reparatur`
+--
+
+INSERT INTO `reparatur` (`repid`, `fzid`, `datum`) VALUES
+(7, 1, '2019-03-12'),
+(10, 7, '2019-03-12'),
+(11, 1, '2019-03-12'),
+(12, 6, '2019-03-14');
+
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `reparaturdetails`
+-- Tabellenstruktur für Tabelle `reparaturteile`
 --
 
-CREATE TABLE `reparaturdetails` (
-  `repdetid` int(11) NOT NULL,
+CREATE TABLE `reparaturteile` (
+  `reparaturteileid` int(11) NOT NULL,
   `repid` int(11) NOT NULL,
   `teileid` int(11) NOT NULL,
   `anzahl` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_german2_ci;
+
+--
+-- Daten für Tabelle `reparaturteile`
+--
+
+INSERT INTO `reparaturteile` (`reparaturteileid`, `repid`, `teileid`, `anzahl`) VALUES
+(22, 7, 28, 234),
+(24, 12, 28, 10),
+(25, 12, 29, 3),
+(27, 10, 29, 2),
+(28, 10, 35, 12),
+(29, 10, 43, 12);
 
 -- --------------------------------------------------------
 
@@ -173,7 +202,7 @@ CREATE TABLE `teile` (
   `teileid` int(11) NOT NULL,
   `bezeichnung` text COLLATE utf8_german2_ci NOT NULL,
   `teileart` enum('Lohn','Teil') COLLATE utf8_german2_ci NOT NULL DEFAULT 'Lohn',
-  `preis` int(11) NOT NULL
+  `preis` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_german2_ci;
 
 --
@@ -181,9 +210,24 @@ CREATE TABLE `teile` (
 --
 
 INSERT INTO `teile` (`teileid`, `bezeichnung`, `teileart`, `preis`) VALUES
-(28, 'Lohn Meister', 'Lohn', 20),
-(29, 'Lohn Lehrling', 'Lohn', 10),
-(30, 'Schraube 3M', 'Teil', 0);
+(28, 'Lohn Meister', 'Lohn', 120),
+(29, 'Lohn Lehrling', 'Lohn', 40),
+(31, 'Mutter M6', 'Teil', 0.1),
+(33, 'Mutter M8', 'Teil', 0.12),
+(34, 'Mutter M10', 'Teil', 0.15),
+(35, 'Mutter M12', 'Teil', 0.18),
+(36, 'Mutter M14', 'Teil', 0.22),
+(37, 'Mutter M16', 'Teil', 0.28),
+(38, 'Mutter M18', 'Teil', 0.35),
+(39, 'Mutter M20', 'Teil', 0.47),
+(40, 'Schraube M6', 'Teil', 0.1),
+(41, 'Schraube M8', 'Teil', 0.12),
+(42, 'Schraube M10', 'Teil', 0.15),
+(43, 'Schraube M12', 'Teil', 0.18),
+(44, 'Schraube M14', 'Teil', 0.22),
+(45, 'Schraube M16', 'Teil', 0.28),
+(46, 'Schraube M18', 'Teil', 0.35),
+(47, 'Schraube M20', 'Teil', 0.47);
 
 --
 -- Indizes der exportierten Tabellen
@@ -216,7 +260,6 @@ ALTER TABLE `rechnung`
 --
 ALTER TABLE `rechnungdetails`
   ADD PRIMARY KEY (`rechnungdetailid`),
-  ADD KEY `teileid` (`teileid`),
   ADD KEY `rechnungsnummer` (`rechnungsnummer`);
 
 --
@@ -227,12 +270,12 @@ ALTER TABLE `reparatur`
   ADD KEY `fzid` (`fzid`);
 
 --
--- Indizes für die Tabelle `reparaturdetails`
+-- Indizes für die Tabelle `reparaturteile`
 --
-ALTER TABLE `reparaturdetails`
-  ADD PRIMARY KEY (`repdetid`),
-  ADD KEY `repid` (`repid`),
-  ADD KEY `teileid` (`teileid`);
+ALTER TABLE `reparaturteile`
+  ADD PRIMARY KEY (`reparaturteileid`),
+  ADD KEY `teileid` (`teileid`),
+  ADD KEY `reparaturdetails` (`repid`);
 
 --
 -- Indizes für die Tabelle `teile`
@@ -248,32 +291,37 @@ ALTER TABLE `teile`
 -- AUTO_INCREMENT für Tabelle `fahrzeug`
 --
 ALTER TABLE `fahrzeug`
-  MODIFY `fzid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `fzid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT für Tabelle `kunde`
 --
 ALTER TABLE `kunde`
-  MODIFY `kundennummer` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `kundennummer` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+--
+-- AUTO_INCREMENT für Tabelle `rechnung`
+--
+ALTER TABLE `rechnung`
+  MODIFY `rechnungid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT für Tabelle `rechnungdetails`
 --
 ALTER TABLE `rechnungdetails`
-  MODIFY `rechnungdetailid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `rechnungdetailid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT für Tabelle `reparatur`
 --
 ALTER TABLE `reparatur`
-  MODIFY `repid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `repid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
--- AUTO_INCREMENT für Tabelle `reparaturdetails`
+-- AUTO_INCREMENT für Tabelle `reparaturteile`
 --
-ALTER TABLE `reparaturdetails`
-  MODIFY `repdetid` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `reparaturteile`
+  MODIFY `reparaturteileid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 --
 -- AUTO_INCREMENT für Tabelle `teile`
 --
 ALTER TABLE `teile`
-  MODIFY `teileid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `teileid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 --
 -- Constraints der exportierten Tabellen
 --
@@ -295,8 +343,7 @@ ALTER TABLE `rechnung`
 -- Constraints der Tabelle `rechnungdetails`
 --
 ALTER TABLE `rechnungdetails`
-  ADD CONSTRAINT `rechnungdetails_ibfk_1` FOREIGN KEY (`rechnungsnummer`) REFERENCES `rechnung` (`rechnungsnummer`),
-  ADD CONSTRAINT `rechnungdetails_ibfk_2` FOREIGN KEY (`teileid`) REFERENCES `teile` (`teileid`);
+  ADD CONSTRAINT `rechnungdetails_ibfk_1` FOREIGN KEY (`rechnungsnummer`) REFERENCES `rechnung` (`rechnungsnummer`);
 
 --
 -- Constraints der Tabelle `reparatur`
@@ -305,11 +352,11 @@ ALTER TABLE `reparatur`
   ADD CONSTRAINT `reparatur_ibfk_1` FOREIGN KEY (`fzid`) REFERENCES `fahrzeug` (`fzid`);
 
 --
--- Constraints der Tabelle `reparaturdetails`
+-- Constraints der Tabelle `reparaturteile`
 --
-ALTER TABLE `reparaturdetails`
-  ADD CONSTRAINT `reparaturdetails_ibfk_1` FOREIGN KEY (`repid`) REFERENCES `reparatur` (`repid`),
-  ADD CONSTRAINT `reparaturdetails_ibfk_2` FOREIGN KEY (`teileid`) REFERENCES `teile` (`teileid`);
+ALTER TABLE `reparaturteile`
+  ADD CONSTRAINT `reparaturteile_ibfk_1` FOREIGN KEY (`repid`) REFERENCES `reparatur` (`repid`),
+  ADD CONSTRAINT `reparaturteile_ibfk_2` FOREIGN KEY (`teileid`) REFERENCES `teile` (`teileid`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
