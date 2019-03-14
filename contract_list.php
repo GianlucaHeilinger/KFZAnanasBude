@@ -19,6 +19,7 @@ echo "<th>Reparatur ID</th>";
 echo "<th>Kunde</th>";
 echo "<th>Fahrzeug</th>";
 echo "<th>Datum</th>";
+echo "<th><center>Rechnung erstellt</center></th>";
 echo "<th><center>Detail</center></th>";
 echo "<th><center>Löschen</center></th>";
 echo "</tr>";
@@ -40,8 +41,8 @@ while($row = $result->fetch())
         $kennzeichen = $row2['kennzeichen'];
     }
 
-    echo "<tr href='contract_edit.php?repid=" . $row['repid']."'>";
-    echo "<td>".$row["repid"]."</td>";
+    echo "<tr href='contract_detail.php?repid=" . $row['repid']."'>";
+    echo "<td class='td-maxw-10'>".$row["repid"]."</td>";
     
     $sql3 = "SELECT titel, vorname, nachname FROM kunde WHERE kundennummer = $kundenid";
     foreach ($pdo->query($sql3) as $row3) { 
@@ -50,7 +51,7 @@ while($row = $result->fetch())
 
     if(isset($kundenid))
     {
-        echo "<td><i class='fas fa-external-link-alt'></i></i> <a href='customer_detail.php?kundennummer=" . $kundenid."'>".$marke . ' ' . $type . ' | ' .$kennzeichen."</a></td>";
+        echo "<td><i class='fas fa-external-link-alt'></i></i> <a class='carlink' href='customer_detail.php?kundennummer=" . $kundenid."'>".$marke . ' ' . $type . ' | ' .$kennzeichen."</a></td>";
     }
     else
     {
@@ -58,6 +59,13 @@ while($row = $result->fetch())
     }
 
     echo "<td>".$row["datum"]."</td>";
+     
+    if ($row["rechnungerstellt"] == 0) {
+            echo "<td><center><i class='fas fa-times'></i></center></td>";
+        } else {
+            echo "<td><center><i class='fas fa-check'></i></center></td>";
+        };
+        
     echo "<td><a href='contract_detail.php?repid=".$row['repid']."'><center><i class='fas fa-info-circle'></i></center></a></td>";
     echo '<td><a style="cursor: pointer;" class="" data-toggle="modal" data-target="#contractdeletemodal' .$row['repid']. '"><center><i class="far fa-trash-alt"></i></center></a></td>'; 
     echo "</tr>"; ?>

@@ -25,8 +25,17 @@ $result = $stmt->fetch();
 ?>
 <!-- -->
 
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-dark btn-new-car mb-3 mb-lg-0" data-toggle="modal" data-target="#partaddmodal">
+    Teil hinzufügen
+    </button>
+<!-- End Trigger -->
+
+<br />
+<hr />
+
 <!-- AUFTRAGSTABELLE -->
-<table id="contracttable" class="display table table-hover">
+<table id="contractdetailtable" class="display table table-hover">
     <thead class="thead-dark">
         <tr>
             <th><center>Teile ID</center></th>
@@ -63,9 +72,10 @@ while($row = $result2->fetch()) {
 </table>
 <!-- -->
 <hr />
+
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-dark btn-new-car mb-3 mb-lg-0" data-toggle="modal" data-target="#partaddmodal">
-    Teil hinzufügen
+<button type="button" class="btn btn-dark btn-new-car mb-3 mb-lg-0 p-3" data-toggle="modal" data-target="#createinvoicemodal">
+    RECHNUNG ERSTELLEN
     </button>
 <!-- End Trigger -->
 
@@ -121,6 +131,56 @@ while($row = $result2->fetch()) {
     </div>
 </div>
 <!-- MODAL ENDE -->
+
+<!-- MODAL CREATE INVOICE -->
+<div class="modal fade" id="createinvoicemodal" tabindex="-1" role="dialog" aria-labelledby="createinvoicemodalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createinvoicemodalLongTitle">Rechnung erstellen</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="invoice_save.php" method="post">
+                <h5>Auftrag abschließen und Rechnung aus Auftrag Nr. <?php echo $repid ?> erstellen?</h5>
+                <br />
+                <input type="hidden" name="repid" value="<?php echo $repid ?>"/>
+                    <div class="row">
+                        <div class="col-12">
+                            <p>Rechnungsnummer eingeben. Letzte war: 
+                            <?php
+                                $sql ="SELECT max(rechnungsnummer) FROM rechnung as letzterechnungsnummer";
+                                $stmt = $pdo->prepare($sql);
+                                $stmt->execute();
+                                $result = $stmt->fetch();
+                                if (isset($result['letzterechnungsnummer'])) {
+                                    echo $result['letzterechnungsnummer'];
+                                } else {
+                                    echo '0';
+                                }                                
+                            ?>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-7"><label for="rechnungsnummer">Rechnungsnummer</label></div>
+                        <div class="col-5"><input name='rechnungsnummer' type='number'/></div>
+                    </div>
+                     
+                </div> <!-- modal body -->
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Abbrechen</button>
+                    <button type="submit" name="submit" value="Speichern" class="btn btn-dark">Rechnung erstellen</button>
+                </form>
+            </div>                
+        </div>
+    </div>
+</div>
+<!-- MODAL ENDE -->
+
 
 
 

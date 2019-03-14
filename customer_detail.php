@@ -146,26 +146,26 @@ $result = $stmt->fetch();
 
         <!-- MODAL DELETE CAR -->
         <div class="modal fade" id="cardeletemodal<?php echo $row['fzid'] ?>" tabindex="-1" role="dialog" aria-labelledby="cardeletemodalTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="cardeletemodalLongTitle">Fahrzeug wirklich löschen?</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="cardeletemodalLongTitle">Fahrzeug wirklich löschen?</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="car_delete.php" method="get">
+                            <input type="hidden" name="fzid" value="<?php echo $row['fzid'] ?>">
+                            Wollen Sie das Fahrzeug mit der ID <?php echo $row['fzid'] ?> wirklich löschen?<br />                                 
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Abbrechen</button>
+                        <button type="submit" name="submit" value="submit" class="btn btn-dark">Fahrzeug löschen</button>
+                    </div>
+                        </form>
                 </div>
-                <div class="modal-body">
-                    <form action="car_delete.php" method="get">
-                        <input type="hidden" name="fzid" value="<?php echo $row['fzid'] ?>">
-                        Wollen Sie das Fahrzeug mit der ID <?php echo $row['fzid'] ?> wirklich löschen?<br />                                 
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Abbrechen</button>
-                    <button type="submit" name="submit" value="submit" class="btn btn-dark">Fahrzeug löschen</button>
-                </div>
-                    </form>
             </div>
-        </div>
         </div>
         <!-- MODAL ENDE -->
 

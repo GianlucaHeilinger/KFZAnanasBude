@@ -3,9 +3,15 @@ body {
     padding: 0;
 }
 
-a, a:link, a:active, a:visited, a:hover {
+a.carlink, a.carlink:link, a.carlink:active, a.carlink:visited {
     /* text-decoration: none; */
     color: #212529;
+}
+
+a.carlink:hover {
+    background-color: #212529;
+    color: white;
+    text-decoration: none;
 }
 
 .logo {
@@ -131,4 +137,8 @@ hr {
 .plusbutton:hover {
     opacity: 1;
     filter: alpha(opacity=100);
+}
+
+.td-maxw-10 {
+    width: 10%;
 }

@@ -120,8 +120,37 @@ $(document).ready( function () {
         ],
         scrollX: false,
         "columnDefs": [
-            { "orderable": false, "targets": 3 },
             { "orderable": false, "targets": 4 },
+            { "orderable": false, "targets": 5 },
+            { "orderable": false, "targets": 6 },
+        ],
+        "language": {
+            "paginate": {
+                "previous": "Zurück",
+                "next": "Nächste",
+            },
+            "search": "Suche:",
+            "lengthMenu": "Zeige _MENU_ Einträge",
+            "zeroRecords": "Keine passenden Einträge gefunden",
+        },
+    });
+
+} );
+
+$(document).ready( function () {
+    var table = $('#contractdetailtable').DataTable( {
+        paging: true,
+        autoWidth: true,
+        ordering: true,
+        responsive: true,
+        "order": [[ 0, "asc" ]],
+        dom: "<'row'<'col-4'l><'col-8'f>tr>" + "<'row'<'col-4'p><'col-8'>>",
+        buttons: [
+            { extend: 'colvis', text: 'Visible', className: 'btn btn-outline-dark btn-sm colvis' },
+        ],
+        scrollX: false,
+        "columnDefs": [
+            { "orderable": false, "targets": 5 },
         ],
         "language": {
             "paginate": {
@@ -148,7 +177,7 @@ $(document).ready( function () {
     } );    
 } );
 $(document).ready( function () {
-    $('#contract').on( 'dblclick', 'tbody tr', function () {
+    $('#contracttable').on( 'dblclick', 'tbody tr', function () {
         window.location.href = $(this).attr('href');
     } );    
 } );

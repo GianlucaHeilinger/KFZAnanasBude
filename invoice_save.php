@@ -4,6 +4,43 @@
 <!-- <body> from header.php -->
 <?php
 
+$repid = $_POST['repid'];
+$rechnungsnummer = $_POST['rechnungsnummer'];
+
+$sql ="SELECT 
+reparatur.repid,
+reparatur.fzid,
+reparatur.datum,
+reparaturteile.reparaturteileid,
+reparaturteile.teileid,
+reparaturteile.anzahl,
+teile.bezeichnung,
+teile.teileart,
+teile.preis
+FROM reparatur
+LEFT JOIN reparaturteile
+ON reparatur.repid = reparaturteile.repid
+LEFT JOIN teile
+ON reparaturteile.teileid = teile.teileid
+WHERE
+repid = $repid";
+$stmt = $pdo->prepare($sql);
+$stmt->execute();
+$result = $stmt->fetch();
+
+while($row2 = $result2->fetch())
+    {
+        $kundenid = $row2['kundeid'];
+        $marke = $row2['marke'];
+        $type = $row2['type'];
+        $kennzeichen = $row2['kennzeichen'];
+    }
+
+
+// SUM(teile.preis) AS summe
+
+
+
 
 
 $rechnungsnummer = $_GET['rechnungsnummer']; // rechnung + rechnungdetails
