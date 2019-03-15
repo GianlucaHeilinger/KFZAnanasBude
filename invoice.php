@@ -24,8 +24,8 @@
             <th>Fahrzeug</th>
             
             <th>Kennzeichen</th>
-            <th>Status</th>
             <th>Gesamtpreis</th>
+            <th>Status</th>
             
             <th><center>Detail</center></th>
             <th><center>Bearbeiten</center></th>
@@ -42,15 +42,15 @@
                         fahrzeug.marke, 
                         fahrzeug.type, 
                         fahrzeug.kennzeichen, 
-                        rechnung.status,  
-                        rechnungdetails.gesamtpreis 
+                        rechnung.summe,  
+                        rechnung.status 
                         FROM rechnung 
                         LEFT JOIN kunde 
                         ON rechnung.kundenid = kunde.kundennummer 
                         LEFT JOIN fahrzeug 
                         ON rechnung.fahrzeugid = fahrzeug.fzid 
-                        LEFT JOIN rechnungdetails 
-                        ON rechnung.rechnungsnummer = rechnungdetails.rechnungsnummer 
+                        #LEFT JOIN rechnungdetails 
+                        #ON rechnung.rechnungsnummer = rechnungdetails.rechnungsnummer 
                         ORDER BY rechnung.rechnungsnummer DESC";
         
         $result = $pdo->query($sql);
@@ -64,8 +64,8 @@
     echo "<td>" . $row["nachname"] . " ". $row["vorname"] . "</td>";
     echo "<td>" . $row["marke"] . " ". $row["type"] . "</td>";
     echo "<td>" . $row["kennzeichen"] . "</td>";
+    echo "<td>&euro; " . sprintf('%0.2f', $row['summe']) . "</td>";
     echo "<td>" . $row["status"] . "</td>";
-    echo "<td>" . $row["gesamtpreis"] . "</td>";
     echo "<td><a href='invoice_detail.php?rechnungsnummer=".$row['rechnungsnummer']."'><center><i class='fas fa-info-circle'></i></center></a></td>";
     echo "<td><a  data-toggle='modal' data-target='#invoiceeditmodal" . $row["rechnungsnummer"]."' name='id'><center><i class='fas fa-file-invoice'></i></center></a></td>";
     

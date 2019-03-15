@@ -3,65 +3,93 @@
 
 <!-- <body> from header.php -->
 <?php
-
 $repid = $_POST['repid'];
-$rechnungsnummer = $_POST['rechnungsnummer'];
 
-$sql ="SELECT 
-reparatur.repid,
-reparatur.fzid,
-reparatur.datum,
-reparaturteile.reparaturteileid,
-reparaturteile.teileid,
-reparaturteile.anzahl,
-teile.bezeichnung,
-teile.teileart,
-teile.preis
+// query um kundennummer eines auftrages zu bekommen
+$sqlforkundennummer = "SELECT
+kunde.kundennummer AS kundennummer
+FROM kunde
+LEFT JOIN fahrzeug
+ON kunde.kundennummer = fahrzeug.kundeid
+LEFT JOIN reparatur
+ON fahrzeug.fzid = reparatur.fzid
+WHERE
+reparatur.repid = $repid
+";
+
+$stmtforkundennummer = $pdo->prepare($sqlforkundennummer);
+$stmtforkundennummer->execute();
+$resultforkundennummer = $stmtforkundennummer->fetch();
+// ende query
+
+// query um fzid eines auftrages zu bekommen
+$sqlforfzid = "SELECT
+fzid AS fzid
 FROM reparatur
-LEFT JOIN reparaturteile
-ON reparatur.repid = reparaturteile.repid
+WHERE
+repid = $repid
+";
+
+$stmtforfzid = $pdo->prepare($sqlforfzid);
+$stmtforfzid->execute();
+$resultforfzid = $stmtforfzid->fetch();
+// ende query
+
+// query für summe
+$sqlforsumme = "SELECT
+reparaturteile.anzahl,
+teile.preis
+from reparaturteile
 LEFT JOIN teile
 ON reparaturteile.teileid = teile.teileid
-WHERE
-repid = $repid";
-$stmt = $pdo->prepare($sql);
-$stmt->execute();
-$result = $stmt->fetch();
+WHERE repid = $repid
+";
 
-while($row2 = $result2->fetch())
-    {
-        $kundenid = $row2['kundeid'];
-        $marke = $row2['marke'];
-        $type = $row2['type'];
-        $kennzeichen = $row2['kennzeichen'];
-    }
+$summe = 0;
+foreach ($pdo->query($sqlforsumme) as $row) {
+    $rowsum = $row['anzahl'] * $row['preis'];
+    $summe = $summe + $rowsum;
+};
+// ende query
 
+$rechnungsnummer = $_POST['rechnungsnummer'];
+$rechnungsdatum = date("Y-m-d");
 
-// SUM(teile.preis) AS summe
+$kundennummer = $resultforkundennummer['kundennummer'];
+$fzid = $resultforfzid['fzid'];
+$status = 'offen';
 
-
-
-
-
-$rechnungsnummer = $_GET['rechnungsnummer']; // rechnung + rechnungdetails
-$rechnungsdatum = $_GET['rechnungsdatum'];   // rechnung
-$kundenid = $_GET['kundenid'];               // rechnung
-$fahrzeugid = $_GET['fahrzeugid'];           // rechnung
-$status = $_GET['status'];                   // rechnung
-$teileid = $_GET['teileid'];                 // rechnungdetails
-$anzahl = $_GET['anzahl'];                   // rechnungdetails
-$preis = $_GET['preis'];                     // rechnungdetails
-
-$statement = $pdo->prepare("INSERT INTO rechnung (rechnungsnummer, rechnungsdatum, kundenid, fahrzeugid, status)VALUES(?,?,?,?,?)");
-$statement->execute(array($rechnungsnummer, $rechnungsdatum, $kundenid, $fahrzeugid, $status));
-
-$statement = $pdo->prepare("INSERT INTO rechnungdetails (rechnungsnummer, teileid, anzahl, preis)VALUES(?,?,?,?)");
-$statement->execute(array($rechnungsnummer, $teileid, $anzahl, $preis));
+$statement = $pdo->prepare("INSERT INTO rechnung (repid, rechnungsnummer, rechnungsdatum, kundenid, fahrzeugid, `summe`, `status`)VALUES(?,?,?,?,?,?,?)");
+$statement->execute(array($repid, $rechnungsnummer, $rechnungsdatum, $kundennummer, $fzid, $summe, $status));
 
 
-echo "Gespeichert wurde: " . $rechnungsnummer . " " . $rechnungsdatum . " " . $kundenid . " " . $fahrzeugid . " " . $status . " " . $teileid . " " . $anzahl . " " . $preis;
+echo 'repid '.$repid;
+echo '<br />';
+echo 'rechnungsnummer '.$rechnungsnummer;
+echo '<br />';
+echo 'rechnungsdatum '.$rechnungsdatum;
+echo '<br />';
+echo 'kundennummer '.$kundennummer;
+echo '<br />';
+echo 'fzid '.$fzid;
+echo '<br />';
+echo 'status '.$status;
+echo '<br />';
+echo 'result kdnr '.$resultforkundennummer['kundennummer'];
+echo '<br />';
+echo 'summe '.$summe;
+echo '<br />';
+echo 'result fzid '.$resultforfzid['fzid'];
+echo '<br />';
 
-header("Refresh: 2; url=invoice.php");
+$rechnungerstellt = 1;
+$statement2 = $pdo->prepare("UPDATE reparatur SET rechnungerstellt = ? WHERE repid = ?");
+$statement2->execute(array($rechnungerstellt, $repid));
+
+echo 'rechnungerstellt '.$rechnungerstellt;
+echo '<br />';
+
+header("Refresh: 3; url=invoice.php");
 ?>
 
 <!-- </body> from footer.php -->
