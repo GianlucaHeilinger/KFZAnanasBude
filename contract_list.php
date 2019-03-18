@@ -59,11 +59,17 @@ while($row = $result->fetch())
     }
 
     echo "<td>".$row["datum"]."</td>";
-     
+
+    $sqlrechnungsnummer = "SELECT rechnung.rechnungsnummer FROM rechnung LEFT JOIN reparatur ON rechnung.repid = reparatur.repid WHERE rechnung.repid = {$row['repid']}";
+        
+    $stmtrechnungsnummer = $pdo->prepare($sqlrechnungsnummer);
+    $stmtrechnungsnummer->execute();
+    $resultrechnungsnummer = $stmtrechnungsnummer->fetch();
+
     if ($row["rechnungerstellt"] == 0) {
             echo "<td><center><i class='fas fa-times'></i></center></td>";
         } else {
-            echo "<td><center><i class='fas fa-check'></i></center></td>";
+            echo "<td><center><!--<i class='fas fa-check'>--><a href='invoices/Rechnung_" . $resultrechnungsnummer['rechnungsnummer'] . ".pdf'>Rechnung_" . $resultrechnungsnummer['rechnungsnummer'] . "</a><!--</i>--></center></td>";
         };
         
     echo "<td><a href='contract_detail.php?repid=".$row['repid']."'><center><i class='fas fa-info-circle'></i></center></a></td>";

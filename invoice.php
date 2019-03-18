@@ -19,13 +19,13 @@
         <tr>
             <th>Re. Nr.</th>
             <th>Re. Datum</th>
-            <th>Kd. Nr.</th>
+            <th><center>Kd. Nr.</center></th>
             <th>Kunde</th>
             <th>Fahrzeug</th>
             
             <th>Kennzeichen</th>
-            <th>Gesamtpreis</th>
-            <th>Status</th>
+            <th><center>Gesamtpreis</center></th>
+            <th><center>Status</center></th>
             
             <th><center>Detail</center></th>
             <th><center>Bearbeiten</center></th>
@@ -33,6 +33,8 @@
     </thead>
     <tbody>
     <?php
+
+    $pdo->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
         
         $sql = "SELECT  rechnung.rechnungsnummer, 
                         rechnung.rechnungsdatum, 
@@ -60,18 +62,18 @@
     echo "<tr href='invoicde_detail.php?rechnungsnummer=" . $row['rechnungsnummer']."'>";
     echo "<td>" . $row["rechnungsnummer"] . "</td>";
     echo "<td>" . $row["rechnungsdatum"] . "</td>";
-    echo "<td>" . $row["kundennummer"] . "</td>";
+    echo "<td><center>" . $row["kundennummer"] . "</center></td>";
     echo "<td>" . $row["nachname"] . " ". $row["vorname"] . "</td>";
     echo "<td>" . $row["marke"] . " ". $row["type"] . "</td>";
     echo "<td>" . $row["kennzeichen"] . "</td>";
-    echo "<td>&euro; " . sprintf('%0.2f', $row['summe']) . "</td>";
-    echo "<td>" . $row["status"] . "</td>";
+    echo "<td class='text-right'>&euro; " . sprintf('%0.2f', $row['summe']) . "</td>";
+    echo "<td><center>" . $row["status"] . "</center></td>";
     echo "<td><a href='invoice_detail.php?rechnungsnummer=".$row['rechnungsnummer']."'><center><i class='fas fa-info-circle'></i></center></a></td>";
-    echo "<td><a  data-toggle='modal' data-target='#invoiceeditmodal" . $row["rechnungsnummer"]."' name='id'><center><i class='fas fa-file-invoice'></i></center></a></td>";
+    echo "<td><a data-toggle='modal' data-target='#invoiceeditmodal" . $row["rechnungsnummer"] . "' name='id'><center><i class='fas fa-file-invoice'></i></center></a></td>";
     
     echo "</tr>";
 ?>
-    <!-- MODAL UPDATE INVOICE -->
+    <!-- MODAL INVOICE EDIT -->
     <div class="modal fade" id="invoiceeditmodal<?php echo $row["rechnungsnummer"] ?>" tabindex="-1" role="dialog" aria-labelledby="invoiceeditmodalTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">

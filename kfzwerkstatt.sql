@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.6deb5
+-- version 4.8.2
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Erstellungszeit: 15. Mrz 2019 um 13:46
--- Server-Version: 5.7.25-0ubuntu0.18.04.2
--- PHP-Version: 7.2.15-0ubuntu0.18.04.1
+-- Host: 127.0.0.1
+-- Erstellungszeit: 18. Mrz 2019 um 17:28
+-- Server-Version: 10.1.34-MariaDB
+-- PHP-Version: 7.2.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -121,14 +123,6 @@ CREATE TABLE `rechnung` (
   `status` varchar(20) COLLATE utf8_german2_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_german2_ci;
 
---
--- Daten für Tabelle `rechnung`
---
-
-INSERT INTO `rechnung` (`rechnungid`, `repid`, `rechnungsnummer`, `rechnungsdatum`, `kundenid`, `fahrzeugid`, `summe`, `status`) VALUES
-(8, 7, 1, '2019-03-15', 6, 1, 28442.4, 'offen'),
-(10, 10, 2, '2019-03-15', 6, 7, 84.32, 'offen');
-
 -- --------------------------------------------------------
 
 --
@@ -159,10 +153,10 @@ CREATE TABLE `reparatur` (
 --
 
 INSERT INTO `reparatur` (`repid`, `fzid`, `datum`, `rechnungerstellt`) VALUES
-(7, 1, '2019-03-12', 1),
-(10, 7, '2019-03-12', 1),
-(11, 1, '2019-03-12', 0),
-(12, 6, '2019-03-14', 0);
+(7, 1, '2019-03-12', 0),
+(10, 7, '2019-03-12', 0),
+(19, 6, '2019-03-03', 0),
+(33, 2, '2019-03-18', 0);
 
 -- --------------------------------------------------------
 
@@ -183,15 +177,14 @@ CREATE TABLE `reparaturteile` (
 
 INSERT INTO `reparaturteile` (`reparaturteileid`, `repid`, `teileid`, `anzahl`) VALUES
 (22, 7, 28, 234),
-(24, 12, 28, 10),
-(25, 12, 29, 3),
 (27, 10, 29, 2),
 (28, 10, 35, 12),
 (29, 10, 43, 12),
-(30, 12, 34, 10),
 (31, 7, 28, 3),
 (32, 7, 40, 12),
-(33, 7, 40, 12);
+(33, 7, 40, 12),
+(60, 19, 28, 12),
+(73, 33, 28, 7);
 
 -- --------------------------------------------------------
 
@@ -295,36 +288,43 @@ ALTER TABLE `teile`
 --
 ALTER TABLE `fahrzeug`
   MODIFY `fzid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
 --
 -- AUTO_INCREMENT für Tabelle `kunde`
 --
 ALTER TABLE `kunde`
   MODIFY `kundennummer` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+
 --
 -- AUTO_INCREMENT für Tabelle `rechnung`
 --
 ALTER TABLE `rechnung`
-  MODIFY `rechnungid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `rechnungid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
+
 --
 -- AUTO_INCREMENT für Tabelle `rechnungdetails`
 --
 ALTER TABLE `rechnungdetails`
   MODIFY `rechnungdetailid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT für Tabelle `reparatur`
 --
 ALTER TABLE `reparatur`
-  MODIFY `repid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `repid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+
 --
 -- AUTO_INCREMENT für Tabelle `reparaturteile`
 --
 ALTER TABLE `reparaturteile`
-  MODIFY `reparaturteileid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `reparaturteileid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
+
 --
 -- AUTO_INCREMENT für Tabelle `teile`
 --
 ALTER TABLE `teile`
   MODIFY `teileid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+
 --
 -- Constraints der exportierten Tabellen
 --
@@ -354,6 +354,7 @@ ALTER TABLE `reparatur`
 ALTER TABLE `reparaturteile`
   ADD CONSTRAINT `reparaturteile_ibfk_1` FOREIGN KEY (`repid`) REFERENCES `reparatur` (`repid`),
   ADD CONSTRAINT `reparaturteile_ibfk_2` FOREIGN KEY (`teileid`) REFERENCES `teile` (`teileid`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

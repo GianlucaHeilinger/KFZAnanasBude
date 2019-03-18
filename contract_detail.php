@@ -10,7 +10,7 @@ $repid = $_GET['repid'];
 
 <!-- AUFTRAGSINFORMATIONEN -->
 <?php
-$sql = "SELECT repid, fzid, datum FROM reparatur WHERE repid = $repid ORDER BY repid DESC";
+$sql = "SELECT repid, fzid, datum, rechnungerstellt FROM reparatur WHERE repid = $repid ORDER BY repid DESC";
         
 $stmt = $pdo->prepare($sql);
 $stmt->execute();
@@ -19,16 +19,20 @@ $result = $stmt->fetch();
     echo '<div class="row bg-dark text-white pt-3 pb-3">';
     echo '<div class="col-4 text-center">REPARATUR ID: ' . $result['repid'] . '</div>';
     echo '<div class="col-4 text-center">REPARATUR FAHRZEUG ID: ' . $result['fzid'] . '</div>';
-    echo '<div class="col-4 text-center">REPARATUR DATUM: ' . $result['datum'] . '</div>';
+    echo '<div class="col-4 text-center">REPARATUR DATUM: ' . $result['datum'] . ' '. $result['rechnungerstellt'] . '</div>';
     echo '</div>';
     echo '<br />'; 
 ?>
 <!-- -->
 
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-dark btn-new-car mb-3 mb-lg-0" data-toggle="modal" data-target="#partaddmodal">
-    Teil hinzufügen
-    </button>
+<button type="button" class="btn btn-dark btn-new-car mb-3 mb-lg-0" data-toggle="modal" data-target="#partaddmodal<?php 
+        if ($result['rechnungerstellt'] > 0) {
+            echo 'alreadycreated';
+        } else {
+            echo '';
+        };
+    ?>">Teil hinzufügen</button>
 <!-- End Trigger -->
 
 <br />
@@ -74,9 +78,13 @@ while($row = $result2->fetch()) {
 <hr />
 
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-dark btn-new-car mb-3 mb-lg-0 p-3" data-toggle="modal" data-target="#createinvoicemodal">
-    RECHNUNG ERSTELLEN
-    </button>
+<button type="button" class="btn btn-dark btn-new-car mb-3 mb-lg-0 p-3" data-toggle="modal" data-target="#createinvoicemodal<?php 
+        if ($result['rechnungerstellt'] > 0) {
+            echo 'alreadycreated';
+        } else {
+            echo '';
+        };
+    ?>">RECHNUNG ERSTELLEN</button>
 <!-- End Trigger -->
 
 <!-- MODAL PART ADD -->
@@ -132,6 +140,31 @@ while($row = $result2->fetch()) {
 </div>
 <!-- MODAL ENDE -->
 
+<!-- MODAL PART ADD -->
+<div class="modal fade" id="partaddmodalalreadycreated" tabindex="-1" role="dialog" aria-labelledby="partaddmodalalreadycreatedTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="partaddmodalalreadycreatedLongTitle">Rechnung bereits erstellt!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Hinzufügen von Teilen nicht mehr möglich!
+            </div> <!-- modal body -->
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Abbrechen</button>
+            </div>
+                </div>
+                </form>
+        </div>
+    </div>
+</div>
+<!-- MODAL ENDE -->
+
+
 <!-- MODAL CREATE INVOICE -->
 <div class="modal fade" id="createinvoicemodal" tabindex="-1" role="dialog" aria-labelledby="createinvoicemodalTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -151,12 +184,13 @@ while($row = $result2->fetch()) {
                         <div class="col-12">
                             <p>Rechnungsnummer eingeben. Letzte war: 
                             <?php
-                                $sql ="SELECT max(rechnungsnummer) FROM rechnung as letzterechnungsnummer";
-                                $stmt = $pdo->prepare($sql);
-                                $stmt->execute();
-                                $result = $stmt->fetch();
-                                if (isset($result['letzterechnungsnummer'])) {
-                                    echo $result['letzterechnungsnummer'];
+                                $stmt = $pdo->prepare("SELECT MAX(rechnungsnummer) AS max_re FROM rechnung");
+                                $stmt -> execute();
+                                $result = $stmt -> fetch(PDO::FETCH_ASSOC);
+                                $max_re = $result['max_re'];
+
+                                if ($max_re > 0) {
+                                    echo $max_re;
                                 } else {
                                     echo '0';
                                 }                                
@@ -181,7 +215,36 @@ while($row = $result2->fetch()) {
 </div>
 <!-- MODAL ENDE -->
 
+<!-- MODAL CREATE INVOICE -->
+<div class="modal fade" id="createinvoicemodalalreadycreated" tabindex="-1" role="dialog" aria-labelledby="createinvoicemodalalreadycreatedTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createinvoicemodalalreadycreatedLongTitle">Rechnung bereits erstellt!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <?php
+                    $sqlrechnungsnummer = "SELECT rechnung.rechnungsnummer FROM rechnung LEFT JOIN reparatur ON rechnung.repid = reparatur.repid WHERE rechnung.repid = {$repid}";
+        
+                    $stmtrechnungsnummer = $pdo->prepare($sqlrechnungsnummer);
+                    $stmtrechnungsnummer->execute();
+                    $resultrechnungsnummer = $stmtrechnungsnummer->fetch();
+                ?>
+                <a href="invoices/Rechnung_<?php echo $resultrechnungsnummer['rechnungsnummer'] ?>.pdf">Rechnung_<?php echo $resultrechnungsnummer['rechnungsnummer'] ?></a>
+                     
+                </div> <!-- modal body -->
 
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Abbrechen</button>
+                </form>
+            </div>                
+        </div>
+    </div>
+</div>
+<!-- MODAL ENDE -->
 
 
 <!-- </body> from footer.php -->
