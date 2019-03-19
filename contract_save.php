@@ -5,15 +5,16 @@
 <?php
 $fzid = $_GET['fzid'];
 $datum = $_GET['date'];
+$rechnungerstellt = 0;
 
-$statement = $pdo->prepare("INSERT INTO reparatur (fzid, datum)VALUES(?,?)");
-$statement->execute(array($fzid, $datum));
+$statement = $pdo->prepare("INSERT INTO reparatur (fzid, datum, rechnungerstellt)VALUES(?,?,?)");
+$statement->execute(array($fzid, $datum, $rechnungerstellt));
 
-echo "Gespeichert wurde: " . " " . $fzid . " " . $datum;
+echo "Gespeichert wurde: " . " " . $fzid . " " . $datum. " " . $rechnungerstellt;
 
 $repid = $pdo->lastInsertId();
 $url = "contract_detail.php?repid={$repid}";
-header("Refresh: 0; url={$url}");
+header("Refresh: 3; url={$url}");
 
 ?>
 
