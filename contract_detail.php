@@ -200,7 +200,7 @@ while($row = $result2->fetch()) {
                     </div>
                     <div class="row">
                         <div class="col-7"><label for="rechnungsnummer">Rechnungsnummer</label></div>
-                        <div class="col-5"><input name='rechnungsnummer' type='number'/></div>
+                        <div class="col-5"><input name='rechnungsnummer' type='number' min="<?php echo ($max_re +1) ?>" step="1" value="<?php echo ($max_re +1) ?>"/></div>
                     </div>
                      
                 </div> <!-- modal body -->

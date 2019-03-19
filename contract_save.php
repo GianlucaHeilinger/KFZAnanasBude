@@ -14,7 +14,7 @@ echo "Gespeichert wurde: " . " " . $fzid . " " . $datum. " " . $rechnungerstellt
 
 $repid = $pdo->lastInsertId();
 $url = "contract_detail.php?repid={$repid}";
-header("Refresh: 3; url={$url}");
+header("Refresh: 0; url={$url}");
 
 ?>
 
