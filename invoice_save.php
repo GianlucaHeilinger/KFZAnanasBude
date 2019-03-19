@@ -326,7 +326,7 @@ $pdf->writeHTML($html, true, false, true, false, '');
 //$pdf->Output($pdfName, 'I');
  
 //Variante 2: PDF im Verzeichnis abspeichern:
-$pdf->Output(dirname(__FILE__).'\\invoices\\'.$pdfName, 'F');
+$pdf->Output(dirname(__FILE__).'/invoices/'.$pdfName, 'F');
 //echo 'PDF herunterladen: <a href="' . 'invoices/' .$pdfName.'">'.$pdfName.'</a>';
  
 //$pdf->Output(dirname(__FILE__).'/'.$pdfName, 'F');
