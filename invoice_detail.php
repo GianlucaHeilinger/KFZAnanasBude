@@ -66,32 +66,73 @@ $result = $stmt->fetch();
 
 <?php
 
-$sql2 = "SELECT
-rechnung.rechnungid,
-rechnung.repid,
-rechnung.rechnungsnummer,
-rechnung.rechnungsdatum,
-rechnung.kundenid,
-rechnung.fahrzeugid,
-rechnung.summe,
-rechnung.status,
-rechnungsteile.rechnungsteileid,
-rechnungsteile.teileid,
-rechnungsteile.anzahl,
-teile.bezeichnung,
-teile.teileart,
-teile.preis
-FROM
-rechnung
-LEFT JOIN
-rechnungsteile
-ON rechnung.rechnungid = rechnungsteile.rechnungsid
-LEFT JOIN
-teile
-ON rechnungsteile.teileid = teile.teileid
-WHERE
-rechnung.rechnungsnummer = $rechnungsnummer";
-$result2 = $pdo->query($sql2);
+// prüfen ob auftrag vorhanden
+$sqlauftrag = "SELECT repid FROM rechnung WHERE rechnungsnummer = $rechnungsnummer";
+$stmtauftrag = $pdo->prepare($sqlauftrag);
+$stmtauftrag->execute();
+$resultauftrag = $stmtauftrag->fetch();
+
+//echo $resultauftrag['repid'];
+
+if ($resultauftrag['repid'] == NULL){
+    $sql2 = "SELECT
+    rechnung.rechnungid,
+    rechnung.repid,
+    rechnung.rechnungsnummer,
+    rechnung.rechnungsdatum,
+    rechnung.kundenid,
+    rechnung.fahrzeugid,
+    rechnung.summe,
+    rechnung.status,
+    rechnungsteile.rechnungsteileid,
+    rechnungsteile.teileid,
+    rechnungsteile.anzahl,
+    teile.bezeichnung,
+    teile.teileart,
+    teile.preis
+    FROM
+    rechnung
+    LEFT JOIN
+    rechnungsteile
+    ON rechnung.rechnungid = rechnungsteile.rechnungsid
+    LEFT JOIN
+    teile
+    ON rechnungsteile.teileid = teile.teileid
+    WHERE
+    rechnung.rechnungsnummer = $rechnungsnummer";
+    $result2 = $pdo->query($sql2);
+} else {
+    $sql2 = "SELECT
+    rechnung.rechnungid,
+    rechnung.repid,
+    rechnung.rechnungsnummer,
+    rechnung.rechnungsdatum,
+    rechnung.kundenid,
+    rechnung.fahrzeugid,
+    rechnung.summe,
+    rechnung.status,
+    reparaturteile.reparaturteileid,
+    reparaturteile.teileid,
+    reparaturteile.anzahl,
+    teile.bezeichnung,
+    teile.teileart,
+    teile.preis
+    FROM
+    rechnung
+    LEFT JOIN
+    reparatur
+    ON rechnung.repid = reparatur.repid
+    LEFT JOIN
+    reparaturteile
+    ON reparatur.repid = reparaturteile.repid
+    LEFT JOIN
+    teile
+    ON reparaturteile.teileid = teile.teileid
+    WHERE
+    rechnung.rechnungsnummer = $rechnungsnummer";
+    $result2 = $pdo->query($sql2);
+};
+
 
 while($row = $result2->fetch()) {
     echo '<tr>';
