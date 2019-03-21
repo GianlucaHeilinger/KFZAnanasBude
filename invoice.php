@@ -6,13 +6,14 @@
 
 
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-dark btn-new-car mb-3 mb-lg-0" data-toggle="modal" data-target="#invoicenewmodal">
+<!-- <button type="button" class="btn btn-dark btn-new-car mb-3 mb-lg-0" data-toggle="modal" data-target="#invoicenewmodal">
     Neue Rechnung
-    </button>
+    </button> -->
 <!-- End Trigger -->
-
+<form action="invoice_new.php" method="post">
+<input value="Neue Rechnung" type="submit" class="btn btn-dark btn-new-car mb-3 mb-lg-0" data-toggle="modal" data-target="#invoicenewmodal"/>
+   
 <br /><hr />
-
 
 <table id="invoicetable" class="display table table-hover">
     <thead class="thead-dark">
@@ -127,6 +128,7 @@
 
 echo "</tbody>";
 echo "</table>";
+echo "</form>";
 ?>
 
 
