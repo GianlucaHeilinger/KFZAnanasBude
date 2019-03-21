@@ -190,12 +190,15 @@ $(document).ready(function () {
             $.ajax({
                 url: "json_teile.php",
                 data: 'query=' + query,            
-                dataType: "json",
+                dataType: "Json",
                 type: "POST",
                 success: function (data) {
                     result($.map(data, function (item) {
                         return item;
                     }));
+                },
+                error: function(req, status, error) {
+                    alert(req.responseText;)
                 }
             });
         }
