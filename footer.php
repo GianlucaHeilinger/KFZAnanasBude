@@ -165,6 +165,36 @@ $(document).ready( function () {
     });
 
 } );
+
+$(document).ready( function () {
+    var table = $('#invoicedetailtable').DataTable( {
+        paging: true,
+        autoWidth: true,
+        ordering: true,
+        responsive: true,
+        "order": [[ 0, "asc" ]],
+        dom: "<'row'<'col-4'l><'col-8'f>tr>" + "<'row'<'col-4'p><'col-8'>>",
+        buttons: [
+            { extend: 'colvis', text: 'Visible', className: 'btn btn-outline-dark btn-sm colvis' },
+        ],
+        scrollX: false,
+        //"columnDefs": [
+        //    { "orderable": false, "targets": 5 },
+        //],
+        "language": {
+            "paginate": {
+                "previous": "Zurück",
+                "next": "Nächste",
+            },
+            "search": "Suche:",
+            "lengthMenu": "Zeige _MENU_ Einträge",
+            "zeroRecords": "Keine passenden Einträge gefunden",
+        },
+    });
+
+} );
+
+
 </script>
 <script>
 $(document).ready( function () {

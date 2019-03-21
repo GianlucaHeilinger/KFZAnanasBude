@@ -38,7 +38,8 @@
     $pdo->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
         
         $sql = "SELECT  rechnung.rechnungsnummer, 
-                        rechnung.rechnungsdatum, 
+                        rechnung.rechnungsdatum,
+                        rechnung.rechnungid, 
                         kunde.kundennummer, 
                         kunde.nachname, 
                         kunde.vorname, 
@@ -65,9 +66,39 @@
     echo "<td>" . $row["rechnungsdatum"] . "</td>";
     echo "<td><center>" . $row["kundennummer"] . "</center></td>";
     echo "<td>" . $row["nachname"] . " ". $row["vorname"] . "</td>";
-    echo "<td>" . $row["marke"] . " ". $row["type"] . "</td>";
-    echo "<td>" . $row["kennzeichen"] . "</td>";
-    echo "<td class='text-right'>&euro; " . sprintf('%0.2f', $row['summe']) . "</td>";
+    if (isset($row['marke'])){
+        echo "<td>" . $row["marke"] . " ". $row["type"] . "</td>";
+    } else {
+        echo "<td>---</td>";
+    };
+    if (isset($row['kennzeichen'])){    
+        echo "<td>" . $row["kennzeichen"] . "</td>";
+    } else {
+        echo "<td>---</td>";
+    };
+
+    if ($row['summe'] == 0){
+        // query für summe
+        $sqlforsumme = "SELECT
+        rechnungsteile.anzahl,
+        teile.preis
+        from rechnungsteile
+        LEFT JOIN teile
+        ON rechnungsteile.teileid = teile.teileid
+        WHERE rechnungsteile.rechnungsid = {$row['rechnungid']}
+        ";
+
+        $summe = 0;
+        foreach ($pdo->query($sqlforsumme) as $row2) {
+            $rowsum = $row2['anzahl'] * $row2['preis'];
+            $summe = $summe + $rowsum;
+        };
+        // ende query
+        echo "<td class='text-right'>&euro; " . sprintf('%0.2f', $summe) . "</td>";
+    } else {
+        echo "<td class='text-right'>&euro; " . sprintf('%0.2f', $row['summe']) . "</td>";
+    };
+
     echo "<td><center>" . $row["status"] . "</center></td>";
     echo "<td><a href='invoice_detail.php?rechnungsnummer=".$row['rechnungsnummer']."'><center><i class='fas fa-info-circle'></i></center></a></td>";
     echo "<td><a data-toggle='modal' data-target='#invoiceeditmodal" . $row["rechnungsnummer"] . "' name='id'><center><i class='fas fa-file-invoice'></i></center></a></td>";

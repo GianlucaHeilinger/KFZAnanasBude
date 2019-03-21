@@ -11,20 +11,32 @@ $rechnungsnummer = $_GET['rechnungsnummer'];
 <!-- RECHNUNGSINFORMATIONEN -->
 <?php
 $sql = "SELECT
-rechnungid,
-repid,
-rechnungsnummer,
-rechnungsdatum,
-kundenid,
-fahrzeugid,
-summe,
-`status`
+rechnung.rechnungid,
+rechnung.repid,
+rechnung.rechnungsnummer,
+rechnung.rechnungsdatum,
+rechnung.kundenid,
+rechnung.fahrzeugid,
+rechnung.summe,
+rechnung.status,
+rechnungsteile.rechnungsteileid,
+rechnungsteile.teileid,
+rechnungsteile.anzahl,
+teile.bezeichnung,
+teile.teileart,
+teile.preis
 FROM
 rechnung
+LEFT JOIN
+rechnungsteile
+ON rechnung.rechnungid = rechnungsteile.rechnungsid
+LEFT JOIN
+teile
+ON rechnungsteile.teileid = teile.teileid
 WHERE
-rechnungsnummer = $rechnungsnummer
+rechnung.rechnungsnummer = $rechnungsnummer
 ORDER BY
-rechnungsnummer DESC";
+rechnung.rechnungsnummer DESC";
         
 $stmt = $pdo->prepare($sql);
 $stmt->execute();
@@ -37,23 +49,10 @@ $result = $stmt->fetch();
     echo '</div>';
     echo '<br />'; 
 ?>
-<!-- -->
 
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-dark btn-new-car mb-3 mb-lg-0" data-toggle="modal" data-target="#partaddmodal<?php 
-        if ($result['rechnungerstellt'] > 0) {
-            echo 'alreadycreated';
-        } else {
-            echo '';
-        };
-    ?>">Teil hinzufügen</button>
-<!-- End Trigger -->
 
-<br />
-<hr />
-
-<!-- AUFTRAGSTABELLE -->
-<table id="contractdetailtable" class="display table table-hover">
+<!-- RECHNUNGSTABELLE -->
+<table id="invoicedetailtable" class="display table table-hover">
     <thead class="thead-dark">
         <tr>
             <th><center>Teile ID</center></th>
@@ -61,17 +60,38 @@ $result = $stmt->fetch();
             <th>Bezeichnung</th>
             <th>Teileart</th>
             <th><center>Preis</center></th>
-            <th><center>Löschen</center></th>
         </tr>
     </thead>
     <tbody>
 
 <?php
 
-$sql2 = "SELECT reparaturteile.reparaturteileid, reparaturteile.teileid, reparaturteile.anzahl, teile.bezeichnung, teile.teileart, teile.preis from reparaturteile LEFT JOIN teile ON reparaturteile.teileid = teile.teileid WHERE repid = $repid";
-
+$sql2 = "SELECT
+rechnung.rechnungid,
+rechnung.repid,
+rechnung.rechnungsnummer,
+rechnung.rechnungsdatum,
+rechnung.kundenid,
+rechnung.fahrzeugid,
+rechnung.summe,
+rechnung.status,
+rechnungsteile.rechnungsteileid,
+rechnungsteile.teileid,
+rechnungsteile.anzahl,
+teile.bezeichnung,
+teile.teileart,
+teile.preis
+FROM
+rechnung
+LEFT JOIN
+rechnungsteile
+ON rechnung.rechnungid = rechnungsteile.rechnungsid
+LEFT JOIN
+teile
+ON rechnungsteile.teileid = teile.teileid
+WHERE
+rechnung.rechnungsnummer = $rechnungsnummer";
 $result2 = $pdo->query($sql2);
-
 
 while($row = $result2->fetch()) {
     echo '<tr>';
@@ -80,7 +100,6 @@ while($row = $result2->fetch()) {
     echo '<td>' . $row['bezeichnung'] . '</td>';
     echo '<td>' . $row['teileart'] . '</td>';
     echo '<td class="text-right">&euro; ' . sprintf('%0.2f', $row['preis']) . '</td>';
-    echo '<td><center><a href="contract_part_delete.php?reparaturteileid=' . $row['reparaturteileid'] . '&repid=' . $repid . '"><i class="far fa-trash-alt"></i></a></center></td>';
     echo '</tr>';
 };
 ?>
@@ -88,18 +107,8 @@ while($row = $result2->fetch()) {
 
 </body>
 </table>
-<!-- -->
-<hr />
 
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-dark btn-new-car mb-3 mb-lg-0 p-3" data-toggle="modal" data-target="#createinvoicemodal<?php 
-        if ($result['rechnungerstellt'] > 0) {
-            echo 'alreadycreated';
-        } else {
-            echo '';
-        };
-    ?>">RECHNUNG ERSTELLEN</button>
-<!-- End Trigger -->
+
 
 <!-- MODAL PART ADD -->
 <div class="modal fade" id="partaddmodal" tabindex="-1" role="dialog" aria-labelledby="partaddmodalTitle" aria-hidden="true">
