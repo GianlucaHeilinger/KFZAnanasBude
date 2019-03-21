@@ -108,6 +108,7 @@ while($row = $result2->fetch()) {
                          <!--<h5 class="card-title">PLATZHALTER</h5>-->
                             <p class="card-text">
                                 <div class="row mb-1">
+                                    <div class="col-12 pb-2"><input type="text" class="typeahead" name="searchteile" id="searchteile" placeholder="Teil suchen..." autocomplete="off"></div>
                                     <div class="col-5 pt-2"><label for="bezeichnung">Bezeichnung</label></div>
                                     <div class="col-7"><select name='teileid' size="1" class="form-control">
                                         <?php

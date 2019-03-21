@@ -6,6 +6,7 @@
 <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
 <script src="https://cdn.datatables.net/fixedheader/3.1.4/js/dataTables.fixedHeader.min.js"></script>
 <script src="static/js/main.js"></script>
+<script type="text/javascript" src="typeahead.js"></script>
 
 <script>
 $(document).ready( function () {
@@ -181,6 +182,25 @@ $(document).ready( function () {
         window.location.href = $(this).attr('href');
     } );    
 } );
+</script>
+<script>
+$(document).ready(function () {
+    $('#searchteile').typeahead({
+        source: function (query, result) {
+            $.ajax({
+                url: "json_teile.php",
+                data: 'query=' + query,            
+                dataType: "json",
+                type: "POST",
+                success: function (data) {
+                    result($.map(data, function (item) {
+                        return item;
+                    }));
+                }
+            });
+        }
+    });
+});
 </script>
 </body>
 </html>
