@@ -111,7 +111,7 @@ $rechnungs_datum = $rechnungsdatum;
 $pdfAuthor = "ANANAS KFZ-BUDE";
  
 $rechnungs_header = '
-<img src="static/img/pp.jpg" style="border-radius: 50%; display: inline-block; vertical-align: middle;" />
+<img src="static/img/ppklein.jpg" style="border-radius: 50%; display: inline-block; vertical-align: middle;" />
 ANANAS KFZ-Bude
 Anna Nass
 www.ananas-kfz-bude.at';

@@ -1,7 +1,7 @@
 <?php require_once('connection.php');
 
-if (isset($_POST['query'])) {
-    $query = $_POST['query'];
+if (isset($_GET['query'])) {
+    $query = $_GET['query'];
     $sql = "SELECT bezeichnung FROM teile WHERE bezeichnung LIKE '%{$query}%'";
     $result = $pdo->query($sql);
 	$array = array();
