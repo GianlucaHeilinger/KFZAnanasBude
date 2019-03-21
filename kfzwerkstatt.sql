@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 21. Mrz 2019 um 14:59
+-- Erstellungszeit: 21. Mrz 2019 um 16:52
 -- Server-Version: 10.1.34-MariaDB
 -- PHP-Version: 7.2.7
 
@@ -118,9 +118,9 @@ CREATE TABLE `rechnung` (
   `rechnungsnummer` int(11) NOT NULL,
   `rechnungsdatum` date NOT NULL,
   `kundenid` int(11) NOT NULL,
-  `fahrzeugid` int(11) NOT NULL,
-  `summe` float NOT NULL,
-  `status` varchar(20) COLLATE utf8_german2_ci NOT NULL
+  `fahrzeugid` int(11) DEFAULT NULL,
+  `summe` float DEFAULT NULL,
+  `status` varchar(20) COLLATE utf8_german2_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_german2_ci;
 
 --
@@ -132,7 +132,8 @@ INSERT INTO `rechnung` (`rechnungid`, `repid`, `rechnungsnummer`, `rechnungsdatu
 (125, 7, 2, '2019-03-20', 6, 1, 29404, 'offen'),
 (126, 19, 3, '2019-03-21', 6, 6, 1440, 'offen'),
 (127, 33, 4, '2019-03-21', 7, 2, 840, 'offen'),
-(128, 10, 5, '2019-03-21', 6, 7, 84.32, 'offen');
+(128, 10, 5, '2019-03-21', 6, 7, 84.32, 'offen'),
+(131, NULL, 201, '2019-03-21', 14, NULL, NULL, 'offen');
 
 -- --------------------------------------------------------
 
@@ -146,6 +147,14 @@ CREATE TABLE `rechnungsteile` (
   `teileid` int(11) NOT NULL,
   `anzahl` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_german2_ci;
+
+--
+-- Daten für Tabelle `rechnungsteile`
+--
+
+INSERT INTO `rechnungsteile` (`rechnungsteileid`, `rechnungsid`, `teileid`, `anzahl`) VALUES
+(2, 131, 29, 10),
+(3, 131, 42, 55);
 
 -- --------------------------------------------------------
 
@@ -322,13 +331,13 @@ ALTER TABLE `kunde`
 -- AUTO_INCREMENT für Tabelle `rechnung`
 --
 ALTER TABLE `rechnung`
-  MODIFY `rechnungid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=129;
+  MODIFY `rechnungid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=132;
 
 --
 -- AUTO_INCREMENT für Tabelle `rechnungsteile`
 --
 ALTER TABLE `rechnungsteile`
-  MODIFY `rechnungsteileid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `rechnungsteileid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT für Tabelle `reparatur`
