@@ -4,22 +4,36 @@
 <!-- <body> from header.php -->
 
 <?php
-$repid = $_GET['repid'];
+$rechnungsnummer = $_GET['rechnungsnummer'];
 ?>
 
 
-<!-- AUFTRAGSINFORMATIONEN -->
+<!-- RECHNUNGSINFORMATIONEN -->
 <?php
-$sql = "SELECT repid, fzid, datum, rechnungerstellt FROM reparatur WHERE repid = $repid ORDER BY repid DESC";
+$sql = "SELECT
+rechnungid,
+repid,
+rechnungsnummer,
+rechnungsdatum,
+kundenid,
+fahrzeugid,
+summe,
+`status`
+FROM
+rechnung
+WHERE
+rechnungsnummer = $rechnungsnummer
+ORDER BY
+rechnungsnummer DESC";
         
 $stmt = $pdo->prepare($sql);
 $stmt->execute();
 $result = $stmt->fetch();
 
     echo '<div class="row bg-dark text-white pt-3 pb-3">';
-    echo '<div class="col-4 text-center">REPARATUR ID: ' . $result['repid'] . '</div>';
-    echo '<div class="col-4 text-center">REPARATUR FAHRZEUG ID: ' . $result['fzid'] . '</div>';
-    echo '<div class="col-4 text-center">REPARATUR DATUM: ' . $result['datum'] . '</div>';
+    echo '<div class="col-4 text-center">RECHNUNG ID: ' . $result['rechnungid'] . '</div>';
+    echo '<div class="col-4 text-center">RECHNUNGSNUMMER: ' . $result['rechnungsnummer'] . '</div>';
+    echo '<div class="col-4 text-center">RECHNUNGSDATUM: ' . $result['rechnungsdatum'] . '</div>';
     echo '</div>';
     echo '<br />'; 
 ?>

@@ -59,7 +59,7 @@
 
         while($row = $result->fetch())
 {
-    echo "<tr href='invoicde_detail.php?rechnungsnummer=" . $row['rechnungsnummer']."'>";
+    echo "<tr href='invoice_detail.php?rechnungsnummer=" . $row['rechnungsnummer']."'>";
     echo "<td>" . $row["rechnungsnummer"] . "</td>";
     echo "<td>" . $row["rechnungsdatum"] . "</td>";
     echo "<td><center>" . $row["kundennummer"] . "</center></td>";

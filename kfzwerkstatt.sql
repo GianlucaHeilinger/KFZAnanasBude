@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 18. Mrz 2019 um 17:28
+-- Erstellungszeit: 21. Mrz 2019 um 14:59
 -- Server-Version: 10.1.34-MariaDB
 -- PHP-Version: 7.2.7
 
@@ -123,16 +123,28 @@ CREATE TABLE `rechnung` (
   `status` varchar(20) COLLATE utf8_german2_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_german2_ci;
 
+--
+-- Daten für Tabelle `rechnung`
+--
+
+INSERT INTO `rechnung` (`rechnungid`, `repid`, `rechnungsnummer`, `rechnungsdatum`, `kundenid`, `fahrzeugid`, `summe`, `status`) VALUES
+(124, 35, 1, '2019-03-18', 6, 1, 562.8, 'offen'),
+(125, 7, 2, '2019-03-20', 6, 1, 29404, 'offen'),
+(126, 19, 3, '2019-03-21', 6, 6, 1440, 'offen'),
+(127, 33, 4, '2019-03-21', 7, 2, 840, 'offen'),
+(128, 10, 5, '2019-03-21', 6, 7, 84.32, 'offen');
+
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `rechnungdetails`
+-- Tabellenstruktur für Tabelle `rechnungsteile`
 --
 
-CREATE TABLE `rechnungdetails` (
-  `rechnungdetailid` int(11) NOT NULL,
-  `rechnungsnummer` int(11) NOT NULL,
-  `gesamtpreis` int(11) NOT NULL
+CREATE TABLE `rechnungsteile` (
+  `rechnungsteileid` int(11) NOT NULL,
+  `rechnungsid` int(11) NOT NULL,
+  `teileid` int(11) NOT NULL,
+  `anzahl` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_german2_ci;
 
 -- --------------------------------------------------------
@@ -153,10 +165,12 @@ CREATE TABLE `reparatur` (
 --
 
 INSERT INTO `reparatur` (`repid`, `fzid`, `datum`, `rechnungerstellt`) VALUES
-(7, 1, '2019-03-12', 0),
-(10, 7, '2019-03-12', 0),
-(19, 6, '2019-03-03', 0),
-(33, 2, '2019-03-18', 0);
+(7, 1, '2019-03-12', 1),
+(10, 7, '2019-03-12', 1),
+(19, 6, '2019-03-03', 1),
+(33, 2, '2019-03-18', 1),
+(35, 1, '2019-03-18', 1),
+(37, 1, '2019-03-14', 0);
 
 -- --------------------------------------------------------
 
@@ -184,7 +198,14 @@ INSERT INTO `reparaturteile` (`reparaturteileid`, `repid`, `teileid`, `anzahl`) 
 (32, 7, 40, 12),
 (33, 7, 40, 12),
 (60, 19, 28, 12),
-(73, 33, 28, 7);
+(73, 33, 28, 7),
+(77, 35, 28, 4),
+(78, 35, 29, 2),
+(79, 35, 36, 10),
+(80, 35, 41, 5),
+(81, 7, 28, 8),
+(82, 7, 35, 9),
+(83, 10, 28, 0);
 
 -- --------------------------------------------------------
 
@@ -252,11 +273,13 @@ ALTER TABLE `rechnung`
   ADD KEY `repid` (`repid`);
 
 --
--- Indizes für die Tabelle `rechnungdetails`
+-- Indizes für die Tabelle `rechnungsteile`
 --
-ALTER TABLE `rechnungdetails`
-  ADD PRIMARY KEY (`rechnungdetailid`),
-  ADD KEY `rechnungsnummer` (`rechnungsnummer`);
+ALTER TABLE `rechnungsteile`
+  ADD PRIMARY KEY (`rechnungsteileid`),
+  ADD KEY `rechnungsnummer` (`rechnungsid`),
+  ADD KEY `teileid` (`teileid`),
+  ADD KEY `rechnungsid` (`rechnungsid`);
 
 --
 -- Indizes für die Tabelle `reparatur`
@@ -299,25 +322,25 @@ ALTER TABLE `kunde`
 -- AUTO_INCREMENT für Tabelle `rechnung`
 --
 ALTER TABLE `rechnung`
-  MODIFY `rechnungid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
+  MODIFY `rechnungid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=129;
 
 --
--- AUTO_INCREMENT für Tabelle `rechnungdetails`
+-- AUTO_INCREMENT für Tabelle `rechnungsteile`
 --
-ALTER TABLE `rechnungdetails`
-  MODIFY `rechnungdetailid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `rechnungsteile`
+  MODIFY `rechnungsteileid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT für Tabelle `reparatur`
 --
 ALTER TABLE `reparatur`
-  MODIFY `repid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `repid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT für Tabelle `reparaturteile`
 --
 ALTER TABLE `reparaturteile`
-  MODIFY `reparaturteileid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
+  MODIFY `reparaturteileid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
 
 --
 -- AUTO_INCREMENT für Tabelle `teile`
@@ -341,6 +364,13 @@ ALTER TABLE `fahrzeug`
 ALTER TABLE `rechnung`
   ADD CONSTRAINT `rechnung_ibfk_1` FOREIGN KEY (`kundenid`) REFERENCES `kunde` (`kundennummer`),
   ADD CONSTRAINT `rechnung_ibfk_2` FOREIGN KEY (`repid`) REFERENCES `reparatur` (`repid`);
+
+--
+-- Constraints der Tabelle `rechnungsteile`
+--
+ALTER TABLE `rechnungsteile`
+  ADD CONSTRAINT `rechnungsteile_ibfk_1` FOREIGN KEY (`rechnungsid`) REFERENCES `rechnung` (`rechnungid`),
+  ADD CONSTRAINT `rechnungsteile_ibfk_2` FOREIGN KEY (`teileid`) REFERENCES `teile` (`teileid`);
 
 --
 -- Constraints der Tabelle `reparatur`
