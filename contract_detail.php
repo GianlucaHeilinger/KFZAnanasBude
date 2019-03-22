@@ -108,9 +108,9 @@ while($row = $result2->fetch()) {
                          <!--<h5 class="card-title">PLATZHALTER</h5>-->
                             <p class="card-text">
                                 <div class="row mb-1">
-                                    <div class="col-12 pb-2"><input type="text" class="typeahead" name="searchteile" id="searchteile" placeholder="Teil suchen..." autocomplete="off"></div>
+                                    <!-- <div class="col-12 pb-3"><input type="text" class="form-control"  name="searchteile" id="searchteile" placeholder="Teil suchen..." autocomplete="off"></div>-->
                                     <div class="col-5 pt-2"><label for="bezeichnung">Bezeichnung</label></div>
-                                    <div class="col-7"><select name='teileid' size="1" class="form-control">
+                                    <div class="col-7"><select id="teileselect" name='teileid' size="1" class="form-control">
                                         <?php
                                             $sql3 = "SELECT teileid, bezeichnung FROM teile";
 
@@ -247,6 +247,33 @@ while($row = $result2->fetch()) {
 </div>
 <!-- MODAL ENDE -->
 
+<script>/*
+
+$(document).ready(function () {
+    //console.log("test");
+    $('#searchteile').change(function(){
+        var current = $('#searchteile').val();
+        
+        $.ajax({
+            url: "json_teile.php",
+            method: "POST",
+            data:{query:current},
+            dataType: "json"
+        }).done(function(data) {
+            //console.log(data);
+            $.each(data, function(i, value) {
+                $('#teileselect').append($('<option>').text(value).attr('value', value));
+            });
+        }).fail(function(xhr, status, error) {
+            console.log( "error: ", error );
+        })
+    });
+        
+        
+        
+    });
+
+*/</script>
 
 <!-- </body> from footer.php -->
 

@@ -1,17 +1,13 @@
 <?php require_once('connection.php');
-
-if (isset($_GET['query'])) {
-    $query = $_GET['query'];
-    $sql = "SELECT bezeichnung FROM teile WHERE bezeichnung LIKE '%{$query}%'";
-    $result = $pdo->query($sql);
-	$array = array();
-    while ($row = $result->fetch()) {
-        $array[] = array (
-            'bezeichnung' => $row['bezeichnung'],
-            'value' => $row['bezeichnung'],
-        );
-    }
-    //RETURN JSON ARRAY
-    echo json_encode ($array);
+$request = $_POST['query'];
+$query = "SELECT bezeichnung FROM teile WHERE bezeichnung LIKE '%{$request}%'";
+$result = $pdo->query($query);
+$data = array();
+while ($row = $result->fetch()) {
+    $data[] = $row['bezeichnung'];
 }
+//RETURN JSON ARRAY
+echo json_encode($data);
+//echo "<script>console.log('" . json_encode($data) . "');</script>";
+
 ?>

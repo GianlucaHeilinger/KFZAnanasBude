@@ -59,7 +59,8 @@ $result = $stmt->fetch();
             <th><center>Menge</center></th>
             <th>Bezeichnung</th>
             <th>Teileart</th>
-            <th><center>Preis</center></th>
+            <th><center>Einzelreis</center></th>
+            <th><center>Gesamtpreis</center></th>
         </tr>
     </thead>
     <tbody>
@@ -133,14 +134,17 @@ if ($resultauftrag['repid'] == NULL){
     $result2 = $pdo->query($sql2);
 };
 
-
+$total = 0;
 while($row = $result2->fetch()) {
+    $rowsum = $row['anzahl'] * $row['preis'];
+    $total += $rowsum;
     echo '<tr>';
     echo '<td><center>' . $row['teileid'] . '</center></td>';
     echo '<td><center>' . $row['anzahl'] . '</center></td>';
     echo '<td>' . $row['bezeichnung'] . '</td>';
     echo '<td>' . $row['teileart'] . '</td>';
-    echo '<td class="text-right">&euro; ' . sprintf('%0.2f', $row['preis']) . '</td>';
+    echo '<td class="text-right">&euro; ' . number_format($row['preis'], 2, ',', '.') . '</td>';
+    echo '<td class="text-right">&euro; ' . number_format($rowsum, 2, ',', '.') . '</td>';
     echo '</tr>';
 };
 ?>
@@ -148,6 +152,7 @@ while($row = $result2->fetch()) {
 
 </body>
 </table>
+<div class="text-right"><span class="text-white" style="background-color: #343a40; padding: 0.75rem;"><b>Total: </b>&euro; <?php echo number_format($total, 2, ',', '.') ?></span></div>
 
 
 
