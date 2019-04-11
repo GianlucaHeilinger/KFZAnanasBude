@@ -3,16 +3,16 @@
 
 <!-- <body> from header.php -->
 <?php
-$rechnungsnummer = $_GET['rechnungsnummer'];
+$rechnungsid = $_GET['rechnungsid'];
+$teileid = $_GET['teileid'];
+$anzahl = $_GET['anzahl'];
 
-$rechnungsdatum = $_GET['rechnungsdatum'];
-$status = $_GET['status'];
-$preis = $_GET['preis'];
+$statement = $pdo->prepare("INSERT INTO rechnungsteile (rechnungsid, teileid, anzahl)VALUES(?,?,?)");
+$statement->execute(array($rechnungsid, $teileid, $anzahl));
 
-$statement = $pdo->prepare("UPDATE rechnung SET rechnungsdatum=?, `status`=?, summe=? WHERE rechnungsnummer=?");
-$statement->execute(array($rechnungsdatum, $status, $preis, $rechnungsnummer));
+echo "Gespeichert wurde: " . " " . $rechnungsid . " " . $teileid . " " . $anzahl;
 
-header("Refresh: 0; url=invoice.php");
+header("Refresh:0; url=invoice_new.php?rechnungsid=$rechnungsid");
 ?>
 
 <!-- </body> from footer.php -->
